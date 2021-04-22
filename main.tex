@@ -1,0 +1,125 @@
+\documentclass[a4paper]{article}
+
+%%%%%%%% CREATE DOCUMENT STRUCTURE %%%%%%%%
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage{subfig}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true,allcolors=black]{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{sectsty}
+\usepackage{apacite}
+\usepackage{float}
+\usepackage{titling} 
+\usepackage{blindtext}
+\usepackage{apacite}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\definecolor{darkgreen}{rgb}{0.0, 0.4, 0.0}
+\usepackage{appendix}
+\usepackage{hyperref}
+\renewcommand{\appendixtocname}{Appendix}
+\renewcommand{\appendixpagename}{Appendix}
+\usepackage{changepage}
+\usepackage{lscape}
+\usepackage{natbib}
+\usepackage{amsmath}
+
+\begin{document}
+
+
+%%%% Title Page
+\begin{titlepage}
+
+% horizontal line and its thickness
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 				
+\center 
+ 
+% University info
+\textsc{\LARGE Delft University of Technology}\\[1cm]
+
+% Course info
+\textsc{\large EPA1361 - Model-Based Decision Making}\\[1cm] 
+\HRule \\[0.8cm]
+{ \huge \bfseries Title}\\[0.7cm] 
+\HRule \\[2cm]
+
+% Author info
+\large\emph{Authors:}\\
+\bigskip 
+David Matheus Hernandez 5242223\\ 
+Elias Bach 5379229 \\ 
+Emily Ryan 5218713 \\
+Lisette de Schipper 5420296 \\ 
+Luka Janssens 5415268 \\ 
+Menghua Prisse 4454308 \\ 
+\\ [1.5cm]
+												
+% Date
+{\large \today}\\[5cm]
+
+% University logo
+\includegraphics[width=0.6\textwidth]{figures/TU_delft_logo.jpg}\\[1cm] 
+\vfill 
+
+\end{titlepage}
+
+%%\begin{abstract}
+%%Your abstract.
+%%\end{abstract}
+
+%table of contents
+%\tableofcontents
+
+% Main chapters
+\newpage
+\input{chapters/1-introduction}
+
+\newpage
+\input{chapters/2-body}
+
+\newpage
+\input{chapters/3-conclusions}
+
+% Appendix 
+\newpage
+\bibliographystyle{apacite}
+\bibliography{ref.bib}
+
+\appendix
+\input{chapters/7_appendix}
+\end{document}
+
+\end{document}
+
+\iffalse
+
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{figures/} 
+        \caption{-}
+        \label{fig:-}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{figures/} 
+        \caption{-}
+        \label{fig-}
+    \end{minipage}\hfill
+\end{figure}
+
+ 
+\fi
