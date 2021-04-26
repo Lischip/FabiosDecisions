@@ -87,11 +87,11 @@ def main():
 
     #models = [vensim_model, excel_model, netlogo_model]
 
-    from ema_workbench import MultiprocessingEvaluator
+    from ema_workbench import MultiprocessingEvaluator, SequentialEvaluator
     import pandas as pd
-
     with MultiprocessingEvaluator(excel_model) as evaluator:
-        temp = evaluator.perform_experiments(5)
+    #with SequentialEvaluator(excel_model) as evaluator:
+        temp = evaluator.perform_experiments(scenarios=50, reporting_interval=1)
     #
     # results = pd.DataFrame()
 #     for model in models:
