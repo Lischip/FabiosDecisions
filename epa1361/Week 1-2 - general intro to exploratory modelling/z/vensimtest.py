@@ -51,28 +51,45 @@ def main():
                       TimeSeriesOutcome('predators'),
                       TimeSeriesOutcome('prey')]
 
-    vensim_model = PysdModel(name= "PredPrey", mdl_file=r'../model/PredPrey.mdl')
-    excel_model = ExcelModel(name="PredPrey", wd=r'../model/', model_file=r'../model/PredPrey.xlsx')
-    netlogo_model = NetLogoModel(name="PredPrey", wd=r'../model/', model_file=r'../model/PredPrey.nlogo')
+    constants2 = [Constant('dt', 0.25)]
 
-    models = [vensim_model, excel_model, netlogo_model]
-    for model in models:
-        model.uncertainties = uncertainties
-        model.constants = constants
-        model.outcomes = outcomes
+
+    #vensim_model = PysdModel(name= "Vensim", mdl_file=r'../model/PredPrey.mdl')
+    #excel_model = ExcelModel(name="Excel", wd='../model/', model_file='../model/PredPrey.xlsx', default_sheet="Sheet1")
+
+    netlogo_model = NetLogoModel(name="Netlogo", wd=r'../model/', model_file=r'../model/PredPrey.nlogo')
+    netlogo_model.run_length = 365
+    netlogo_model.replications = 1
+
+    # vensim_model.uncertainties = uncertainties
+    # vensim_model.constants = constants
+    # vensim_model.outcomes = outcomes
+
+    # excel_model.uncertainties = uncertainties
+    # excel_model.constants = constants2
+    # excel_model.outcomes = outcomes
+
+    netlogo_model.uncertainties = uncertainties
+    netlogo_model.constants = constants2
+    netlogo_model.outcomes = outcomes
+
+    #models = [vensim_model, excel_model, netlogo_model]
 
     from ema_workbench import MultiprocessingEvaluator
+    import pandas as pd
 
-
+    with MultiprocessingEvaluator(netlogo_model) as evaluator:
+        temp = evaluator.perform_experiments(1)
+    #
     # results = pd.DataFrame()
-    # for model in models:
-    #     with MultiprocessingEvaluator(model) as evaluator:
-    #         results = evaluator.perform_experiments(50)
+#     for model in models:
+#         with MultiprocessingEvaluator(model) as evaluator:
+#             temp = evaluator.perform_experiments(50)
+#             temp = pd.DataFrame.from_records(temp)
+#             temp = temp.iloc[:1]
+#             results = pd.concat([results, temp])
+    #print(results)
 
-    for model in models:
-        with MultiprocessingEvaluator(vensim_model) as evaluator:
-            results = evaluator.perform_experiments(50)
-
-    print(results)
+    print(temp)
 if __name__ == '__main__':
     main()
