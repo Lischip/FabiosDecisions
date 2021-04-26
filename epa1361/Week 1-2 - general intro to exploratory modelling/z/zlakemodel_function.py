@@ -21,7 +21,7 @@ def lake_problem(b=0.42, q=2.0, mean=0.02, stdev=0.0017, delta=0.98,
                  l77=0, l78=0, l79=0, l80=0, l81=0, l82=0, l83=0, l84=0, l85=0,
                  l86=0, l87=0, l88=0, l89=0, l90=0, l91=0, l92=0, l93=0, l94=0,
                  l95=0, l96=0, l97=0, l98=0, l99=0,):   
-    lake_problem.decisions = np.array([l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13,
+    decisions = np.array([l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13,
                           l14, l15, l16, l17, l18, l19, l20, l21, l22, l23, l24, l25,
                           l26, l27, l28, l29, l30, l31, l32, l33, l34, l35, l36, l37,
                           l38, l39, l40, l41, l42, l43, l44, l45, l46, l47, l48, l49,
@@ -31,7 +31,6 @@ def lake_problem(b=0.42, q=2.0, mean=0.02, stdev=0.0017, delta=0.98,
                           l86, l87, l88, l89, l90, l91, l92, l93, l94, l95, l96, l97,
                           l98, l99])
     
-    decisions = lake_problem.decisions
     Pcrit = brentq(lambda x: x**q/(1+x**q) - b*x, 0.01, 1.5)
     nvars = len(decisions)
     X = np.zeros((nvars,))
