@@ -53,9 +53,11 @@ def main():
 
     constants2 = [Constant('dt', 0.25)]
 
+    constants3 = [Constant('final_time', 365),
+                  Constant('dt', 0.25)]
 
     #vensim_model = PysdModel(name= "Vensim", mdl_file=r'../model/PredPrey.mdl')
-    #excel_model = ExcelModel(name="Excel", wd='../model/', model_file='../model/PredPrey.xlsx', default_sheet="Sheet1")
+    excel_model = ExcelModel(name="Excel", wd='../model/', model_file='../model/PredPrey.xlsx', default_sheet="Sheet1")
 
     netlogo_model = NetLogoModel(name="Netlogo", wd=r'../model/', model_file=r'../model/PredPrey.nlogo')
     netlogo_model.run_length = 365
@@ -65,21 +67,31 @@ def main():
     # vensim_model.constants = constants
     # vensim_model.outcomes = outcomes
 
-    # excel_model.uncertainties = uncertainties
-    # excel_model.constants = constants2
-    # excel_model.outcomes = outcomes
+    excel_model.uncertainties = uncertainties
+    excel_model.constants = constants2
+    excel_model.outcomes = outcomes
 
     netlogo_model.uncertainties = uncertainties
     netlogo_model.constants = constants2
     netlogo_model.outcomes = outcomes
+
+    import sys
+    sys.path.insert(0, '../model/')
+    import PredPreyCode as PP
+
+    py_model = Model('Py', function=PP.PredPrey)
+
+    py_model.uncertainties = uncertainties
+    py_model.constants = constants3
+    py_model.outcomes = outcomes
 
     #models = [vensim_model, excel_model, netlogo_model]
 
     from ema_workbench import MultiprocessingEvaluator
     import pandas as pd
 
-    with MultiprocessingEvaluator(netlogo_model) as evaluator:
-        temp = evaluator.perform_experiments(1)
+    with MultiprocessingEvaluator(excel_model) as evaluator:
+        temp = evaluator.perform_experiments(5)
     #
     # results = pd.DataFrame()
 #     for model in models:
