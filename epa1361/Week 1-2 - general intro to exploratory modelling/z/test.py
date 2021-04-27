@@ -21,7 +21,7 @@ def main():
                                perform_experiments)
     ema_logging.log_to_stderr(ema_logging.INFO)
 
-    with MultiprocessingEvaluator(model, n_processes=15) as evaluator:
+    with MultiprocessingEvaluator(model, n_processes=6) as evaluator:
         experiments, outcomes = evaluator.perform_experiments(scenarios=1000, policies=4)
 
 if __name__ == '__main__':
