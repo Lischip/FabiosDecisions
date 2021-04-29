@@ -9,3 +9,6 @@ def process_data(experiments, outcomes):
     data = pd.DataFrame(outcomes)
     data['policy'] = policies
     return data
+
+def fix_format(dictionary):
+    return {'prey': np.reshape(dictionary['prey'], (50, 1461))}
