@@ -36,7 +36,6 @@ def lake_problem(b=0.42, q=2.0, mean=0.02, stdev=0.0017, delta=0.98,
     X = np.zeros((nvars,))
     average_daily_P = np.zeros((nvars,))
     decisions = np.array(decisions)
-    print(decisions)
     reliability = 0.0
 
     for _ in range(nsamples):
