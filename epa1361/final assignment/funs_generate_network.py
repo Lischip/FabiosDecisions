@@ -45,8 +45,6 @@ def get_network(plann_steps_max=10):
                             names=['project name', 0,1,2,3,4])
 
 
-    print(projects)
-
     for n in steps:
         a = to_dict_dropna(projects)
         

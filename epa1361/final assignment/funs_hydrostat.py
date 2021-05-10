@@ -61,10 +61,12 @@ def werklijn_inv(Plist, A):
         indexlow = RP >= RPL[j]
         indexup = RP < RPL[j + 1]
         index = np.where((indexlow * indexup) == True)[0]
+        #X[index] = a[j] * np.log(RP[index]) + b[j]
+        #placeholder:
+        if index.size == 0:
+            index = j
         X[index] = a[j] * np.log(RP[index]) + b[j]
 
-    #placeholder:
-    X = RP
     return X
 
 

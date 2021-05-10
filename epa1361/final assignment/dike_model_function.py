@@ -35,11 +35,7 @@ class DikeNetwork(object):
         # Load hydrological statistics:
         self.A = pd.read_excel('./data/hydrology/werklijn_params.xlsx')
 
-        print(self.A)
-
         lowQ, highQ = werklijn_inv([0.992, 0.99992], self.A)
-        print(lowQ)
-        print(highQ)
         self.Qpeaks = np.unique(np.asarray(
             [np.random.uniform(lowQ, highQ) / 6 for _ in range(0, self.num_events)]))[::-1]
 
