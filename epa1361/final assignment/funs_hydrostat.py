@@ -22,7 +22,8 @@ def werklijn_cdf(Xlist, A):
     XL = A['Q'].values
 
     P = np.repeat(np.nan, np.size(X))
-    for j in range(0, nl):
+    #Debugging Jan's crap, changed range range(0, nl) to range(0, nl-1)
+    for j in range(0, nl-1):
         indexlow = X >= XL[j]
         indexup = X < XL[j + 1]
         index = np.where((indexlow * indexup) == True)[0]
@@ -52,13 +53,18 @@ def werklijn_inv(Plist, A):
     Fe = -np.log(P)
     RP = 1 / Fe
 
+    # Debugging Jan's crap: fix this
+    # X has no interesting value as of now
     X = np.repeat(np.nan, np.size(P))
-    for j in range(0, nl):
+    #changed range from range(0, nl) to range(0, nl)
+    for j in range(0, nl-1):
         indexlow = RP >= RPL[j]
         indexup = RP < RPL[j + 1]
         index = np.where((indexlow * indexup) == True)[0]
         X[index] = a[j] * np.log(RP[index]) + b[j]
 
+    #placeholder:
+    X = RP
     return X
 
 
