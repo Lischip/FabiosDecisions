@@ -46,9 +46,10 @@ def calculate_distance(data, oois, scenarios=None, distance='euclidean'):
     return distances
 
 
-dir = 'C:\Users\joren\OneDrive\Documenten\Universiteit\Delft\Q4-2020\Model-based-Decision-making\Assignments\FabiosDecisions\epa1361\Week 5-6 - robustness and direct search'
-fn = '206_experiments_openloop_Apollution.tar.gz'
-results = load_results(dir+fn)
+dir = r'C:\Users\joren\OneDrive\Documenten\Universiteit\Delft\Q4-2020\Model-based-Decision-making\Assignments\FabiosDecisions\epa1361\Week-5-6-robustness-and-direct-search'
+fn = r'206_experiments_openloop_Apollution.tar.gz'
+f = r'C:\Users\joren\OneDrive\Documenten\Universiteit\Delft\Q4-2020\Model-based-Decision-making\Assignments\FabiosDecisions\epa1361\Week-5-6-robustness-and-direct-search\206_experiments_openloop_Apollution.tar.gz'
+results = load_results(f)
 exp, outcomes = results   
 norm_new_out = normalize_out_dic(outcomes)
 oois = list(outcomes.keys())

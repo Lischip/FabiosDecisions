@@ -1,0 +1,3 @@
+Calculations took 101.64530301094055 seconds.
+maximum diversity and solutions: 1.0307457510054456, [[array([ 21,  28,  33, 104])]] 
+
