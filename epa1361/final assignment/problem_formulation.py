@@ -7,11 +7,22 @@ Created on Wed Mar 21 17:34:11 2018
 from ema_workbench import (Model, CategoricalParameter,
                            ScalarOutcome, IntegerParameter, RealParameter)
 from dike_model_function import DikeNetwork  # @UnresolvedImport
+from numpy import diff
 
+planning_steps = []
 
 def sum_over(*args):
     return sum(args)
 
+def difference(*args):
+    '''
+    Return the difference between the args. Assumes args is a tuple of 6, and the first 3 elements belong to one dike, and the second 3 elements to another.
+    '''
+    args = list(args)
+    n = len(planning_steps)
+    dike1 = sum(args[:n])
+    dike2 = sum(args[n:])
+    return(diff([dike1, dike2]))[0]
 
 def get_model_for_problem_formulation(problem_formulation_id):
     ''' Prepare DikeNetwork in a way it can be input in the EMA-workbench.
@@ -19,6 +30,9 @@ def get_model_for_problem_formulation(problem_formulation_id):
     '''
     # Load the model:
     function = DikeNetwork()
+    
+    planning_steps.append(function.planning_steps)
+    
     # workbench model:
     dike_model = Model('dikesnet', function=function)
 
@@ -251,6 +265,8 @@ def get_model_for_problem_formulation(problem_formulation_id):
     # Fully disaggregated:
     elif problem_formulation_id == 5:
         outcomes = []
+        
+        function.planning_steps = [0]
 
         for n in function.planning_steps:
             for dike in function.dikelist:
@@ -264,6 +280,32 @@ def get_model_for_problem_formulation(problem_formulation_id):
             outcomes.append(ScalarOutcome('Expected Evacuation Costs {}'.format(n), kind=direction))
         dike_model.outcomes = outcomes
         
+    # Problem formulation Gorssel
+    elif problem_formulation_id == 6:
+        variable_names = []
+        variable_names_ = []
+
+        for dike in ['A.4', 'A.5']:
+            for n in function.planning_steps:
+                variable_names.extend(['{}_Expected Annual Damage {}'.format(dike, n)])
+                variable_names_.extend(['{}_Expected Number of Deaths {}'.format(dike, n)])
+
+        outcomes = [ScalarOutcome('Difference in Expected Annual Damage Deventer-Gorsel', variable_name=[var for var in variable_names], function=difference, kind= ScalarOutcome.MAXIMIZE)]
+        outcomes.append(ScalarOutcome('Expected Annual Damage Gorsel',variable_name=[var for var in variable_names_[:len(function.planning_steps)]],function=sum_over, kind=ScalarOutcome.MINIMIZE))
+        outcomes.append(ScalarOutcome('Difference in Expected Number of Deaths Deventer-Gorsel',
+                                             variable_name=[var for var in variable_names_
+                                             ], function=difference, kind= ScalarOutcome.MAXIMIZE))
+    
+        dike_model.outcomes = outcomes
+        
+    # Problem formulation Gorssel alt
+    # TO DO: Legacy, can be removed
+    elif problem_formulation_id == 7:
+        outcomes = [ScalarOutcome('gor expected annual damage', kind=ScalarOutcome.MINIMIZE),
+                    ScalarOutcome('dev-gor expected annual damage', kind=ScalarOutcome.MAXIMIZE),
+                    ScalarOutcome('dev-gor expected number of deaths', kind=ScalarOutcome.MAXIMIZE)
+                   ]
+        dike_model.outcomes = outcomes
     else:
         raise TypeError('unknownx identifier')
         

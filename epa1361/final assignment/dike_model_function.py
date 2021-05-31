@@ -286,7 +286,24 @@ class DikeNetwork(object):
             data.update({'RfR Total Costs {}'.format(s): G.nodes[
                                 'RfR_projects {}'.format(s)]['cost'.format(s)]})
             data.update({'Expected Evacuation Costs {}'.format(s): np.sum(EECosts)})
+            
+        #Fabio additions:
+        #legacy can be removed.
+        devgor_expected_annual_damage = []
+        devgor_expected_number_of_deaths = []
+        for dike in ['A.4', 'A.5']:
+            devgor_expected_annual_damage.append(sum([data[str(dike)+"_Expected Annual Damage " + str(s)] for s in self.planning_steps]))
+            devgor_expected_number_of_deaths.append(sum([data[str(dike)+"_Expected Number of Deaths " + str(s)] for s in self.planning_steps]))
+            
 
+        data.update({'gor expected annual damage': devgor_expected_annual_damage[0]})
+                
+        devgor_expected_annual_damage = np.diff(devgor_expected_annual_damage)[0]
+        devgor_expected_number_of_deaths = np.diff(devgor_expected_number_of_deaths)[0]
+
+        data.update({'dev-gor expected annual damage': devgor_expected_annual_damage})
+        data.update({'dev-gor expected number of deaths': devgor_expected_number_of_deaths})
+        
         return data
 
 
