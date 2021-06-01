@@ -21,6 +21,7 @@
 \usepackage{apacite}
 \usepackage{float}
 \usepackage{titling} 
+\usepackage{multirow}
 \usepackage{blindtext}
 \usepackage{apacite}
 \usepackage[colorinlistoftodos]{todonotes}
@@ -33,7 +34,9 @@
 \renewcommand{\appendixpagename}{Appendix}
 \usepackage{changepage}
 \usepackage{lscape}
-\usepackage{natbib}
+%\usepackage{natbib}
+\usepackage[style=apa]{biblatex}
+\addbibresource{mbdm.bib}
 \usepackage{amsmath}
 
 \begin{document}
@@ -105,11 +108,14 @@ Menghua Prisse 4454308 \\
 \newpage
 \input{report/chapters/7_appendix}
 
+\newpage
+\input{report/chapters/8-political_reflection}
 
 % Appendix 
 \newpage
-\bibliographystyle{apacite}
-\bibliography{mbdm.bib}
+%\bibliographystyle{apacite}
+%\bibliography{mbdm.bib}
+\printbibliography
 
 \appendix
 \input{chapters/7_appendix}

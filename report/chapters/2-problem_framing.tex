@@ -1,11 +1,70 @@
 \section{Problem Framing}
 \label{s:prob_frame}
+\subsection{Introduction}
+Across the ages the river IJssel has been of incredible importance in Dutch history. In times of prosperity the river was trading route, in times of war it made up a strategically defendable border. Situated along this river, between the two bigger cities of Deventer and Zutphen, one can find the smaller town of Gorssel. Located along the banks of the IJssel river, water management and flood prevention have both been interwoven with the city's existence since the first farmers situated themselves there. However, when in 1993 and 1995 the water rose to dangerous levels in the IJssel, the discussion on water management became a national interest and thus, the Room for the River initiative was born. (Cite Rijke et al.) However, the fight against water continues. With global warming added to the mix, the rivers currently face even greater pressure (Cite Takken) and a waterproof water protection plan is key for the future of Gorssel and its farmers. Besides the complexity such a plan inherently has, this particular problem requires a careful examination of the actor field. It can fairly be assumed that all parties want to prevent a life-threatening flood, but beneath that, all involved parties have different objectives they aim to achieve. 
+
+This report analyses options for the planning of flood protection measures along the River IJssel, from the perspective of the administrative region of Gorssel. As explained, the problem of flood management in this region is complex, due to significant uncertainties (namely flood wave shapes, dike failure probabilities, and breach widths) and conflicting priorities of different stakeholders in the region. Here, exploratory modelling and analysis is used to support decision making under deep uncertainty. This model-based decision making is performed from the perspective of our problem owner, Gorssel, in addition to two key stakeholders of interest: Overijssel Regional Government, and the city of Deventer. This is done to reveal important trade-offs and the outcomes of conflicting objectives in the Overijssel region.
+
+(Perhaps we could already name what our levers are?) 
 % Problem framing; the decision problem can be structured in many ways. 
 % Our problem owner is Gorssel
-%How are you framing the problem? 
-farms> cities
 
-%What do you see as the key objectives and constraints? 
+
+\subsection{Research question}
+
+%What do you see as the key objectives and constraints?
+Protecting the livelihoods of those that reside in Gorssel is the main objective of Gorssel. Their residents mostly comprise of farmers and so their livelihood is the crops they organically grow. Gorssel wants to protect these farmers from potential flood risks - which would damage crops - but also wants to preserve the amount of land they can use for farming and prevent land encroachment - which would decrease revenue. Both of these are not favourable. The goal of this report is to find a strategy for Gorssel to navigate these difficult times. 
+
+%How are you framing the problem? 
+The research question that is in line with this goal is as follows: 
+\begin{quote}
+    How can Gorssel (Dike Ring 4) protect it's citizens and businesses from flood risk to a similar level as surrounding urban areas, while still preserving the most possible farmland?
+\end{quote}
+
+This question was informed by the mandate for Gorssel provided as part of the EPA1361 Debate (see Chapter \ref{s:poli_reflect} for more information), in addition to formal documentation of the Room for the River project, conducted by Rijkswaterstaat between 2010 and 2019 (CITE: Rijkswaterstaat).
+
+
+%Which other actors are we analysing and why are they natural coalition partners for Gorssel?
+The basic analysis of preferred options were interpreted based on Gorssel's mandate, wherein it's goals and preferred outcomes are known. In order to conduct a complete analysis, however, it is important to understand the goals and objectives of other actors, who might present opportunities for coalition-forming. To determine which actors were of interest, a preliminary power-interest grid was constructed.
+
+%text about why fewer objectives were necessary (ER - hand written notes - needs transcribing)
+
+The prioritised objectives for the Gorssel-perspective problem formulation are:
+\begin{itemize}
+    \item Expected Annual Damage for Gorssel
+    \item Difference in Expected Annual Damage between Gorssel and Deventer
+    \item Difference in Expected Number of Deaths between Gorssel and Deventer
+\end{itemize}
+Details of the function used to calculate the 'difference' objectives are provided in the Appendix.
+
+
+
+%Explain what's in the table (problem formulations) and why.
+
+\begin{table}[h!]
+\begin{tabular}{ll|lll}
+\hline
+         &                                   & Gorssel                 & Deventer                 & Overijssel \\ \hline
+Gorssel  & Expected Annual Damage (Gorssel)  & -                       & \textgreater{}= Deventer & -          \\
+         & Expected Annual Deaths (Gorssel)  & -                       & \textgreater{}= Deventer & -          \\
+         & RfR Costs (Gorssel)               & -                       & Na                       & -          \\
+         & Dike Costs (Gorssel)              & -                       & Na                       & -          \\
+         & Total Costs (Gorssel)             & -                       & Na                       & -          \\
+Deventer & Expected Annual Damage (Deventer) & \textgreater{}= Gorssel & -                        & -          \\
+         & Expected Annual Deaths (Deventer) & \textgreater{}= Gorssel & -                        & -          \\
+         & RfR Costs (Deventer)              & Na                      & -                        & -          \\
+         & Dike Costs (Deventer)             & Na                      & -                        & -          \\
+         & Total Costs (Deventer)            & Na                      & -                        & -          \\
+Doesburg    & Expected Annual Damage (Doesburg)    & \textgreater{}= Gorssel & Na & \textgreater{}= Gorssel/Deventer \\
+            & Expected Annual Deaths (Doesburg)    & \textgreater{}= Gorssel & Na & \textgreater{}= Gorssel/Deventer \\
+Cortenoever & Expected Annual Damage (Cortenoever) & \textgreater{}= Gorssel & Na & \textgreater{}= Gorssel/Deventer \\
+            & Expected Annual Deaths (Cortenoever) & \textgreater{}= Gorssel & Na & \textgreater{}= Gorssel/Deventer
+\end{tabular}
+\caption{-}
+\label{t:objectives}
+\end{table}
+
+ 
 obj: 
 - Same level of protection for people as the city
 - balance flood risk and loss of profits from land encroachment
@@ -19,7 +78,42 @@ cons:
 %It is important to show an awareness of the political arena within which your problem owner is operating. It is also possible to entertain more than one problem formulation.
 
 % Explicit framing of problem from multiple relevant perspective (i.e. rival framings)
-% Rival framings considered include Overijssel and Environmental Groups, as these were seen as being the most consequential to our group.
+% Rival framings considered include Overijssel and Deventer, as these were seen as being the most consequential to our group.
 
+% Rival actors
+    % Deventer: utilitarian framing, more people in city! Hence city actually > farmers
+    % Overijssel: framing itself as facilitator between Gorssel & Deventer, can take more passive role: city farmers battle it out, we implement whatever you figure out.
 
+% TASK: RIVAL ACTORS
+% a) Actor Analysis
+The Room for the River Project is complex multi-actor initiative and therefore objectives between stakeholders will not always align. It is important to keep in mind potential rival actors and conceptualise possible arguments and framings they can/will  use to counteract the aims of the client.
+ 
+Relevant actors and their objectives for the RfR decision arena are listed in table XXX:
+\begin{table}[h!]
+\begin{tabular}{lll}
+\hline 
+Actor & Interest & Objective \\ \hline
+Rijkswaterstaat         & Flood risk mitigation, Maintenance of water infrastructure & designing flood protection with widespread support \\ 
+Delta Commission        & Long-term Flood Risk Mitigation & implementing effective and robust flood protection projects \\
+Transport Company       & Efficient Road Network & ensuring accessibility/connectivity between various cities \\
+Env. Protec. Gr.        & Environmental protection & minimizing land use change in protected areas due to RfR \\
+Gelderland              & Flood risk mitigation, Approval of residents & ensuring equitable time/cost distribution among provinces and municipalities \\
+Cortenoever/Doesburg    & Livability for residents & minimizing land use change \\
+Overijssel              & Flood risk mitigation, Approval of Residents & ensuring equitable time/cost distribution among provinces and municipalities \\
+Deventer                & Livability for residents & provide adequate flood security to residents, minimizing land use change \\
+
+\end{tabular}
+\caption{-}
+\label{t:actortable}
+\end{table}
+% b) Justification of Rival Actors
+Considering the Power interest matrix as well as relations between actors, Deventer and Overijssel are chosen as rival actors to explore alternate problem formulations. Since both Gorssel and Deventer are both administered by the Overijssel provincial government, there is the greatest chance of having conflicting goals and objectives regarding land use change, possibly resulting in negative outcomes for the client. At the same time these two actors also present opportunity of finding common ground and forming coalitions, to support one another at the negotiation table with other provinces, like Gelderland, and to ensure that a mutually beneficial proposal is drafted by the Rijkswaterstaat.
+
+% c) Political Reflection (Framing)
+Opposing stances from rival actors will be accompanied by an alternate framing of the problem. This framing can then be used to justify actions and claims. The city of Deventer, being a much larger munciplality of roughly 100 000 inhabitants, will be able to argue from a utilitarian point of view it should carry greater weight in decision-making. Due to its denser population it can also argue that land encroachment would be far more invasive than compared to relocated several farms in the community of Gorssel. 
+
+Overijssel being the next level administrative body above Gorssel and Deventer may stand
+
+% talk about Overijssel framing
+% other frames (REF)
  
