@@ -1,1 +1,29 @@
 %Can be a link to a github repo
+
+\section{Assumptions}
+\begin{itemize}
+    \item Room for River projects always result in encroachment of farmland while dike projects do not. Subsequently, Gorssel is not concerned by dike expansion costs, but is concerned by RfR costs.
+    \item RfR costs include all relocation costs for farms and houses.
+    \item Model-land objectives of Deventer and Overijssel are consistent with mandates revealed in the debate
+    \item Gorssel is in Overijssel province
+    \item The Rijkswaterstaat has the power and tools to conduct land expropriations under Dutch Law
+    \item It was assumed that damages are not discounted (to minimise the number of scenarios required
+\end{itemize}
+
+
+
+
+
+% RfR also includes moving dikes, so doing RfR after dike heightening is silly
+% We can include metromaps
+% Deventer is DOWNSTREAM, Zutphen, Cortenoever and Doesburg are UPSTREAM
+% Select objectives and pragmatically adjust based on possible policies and scenarios
+    % Deaths - can be aggregated, you don't need to discount deaths
+    % Damage - don't aggregate too soon - but if you do, you need to consider discount rates (and the implications of changing these - this is a critique for the discussion)
+        %How correlated are EAD in different time steps? The more correlations there is, the more likely you can go to higher dimensions
+% Look into algorithm options - Jazmin's work - BORG can go up to 17 different objectives
+    % Also literature on scalarisation functions, where you repeatedly run an optimisation
+% Is it humanly possible to optimise for 30 objectives at a time? No - so it doesn't make sense to try and model what you can't conceptualise.
+    %Use archive logger to collect archive of epsilon progress, then separately, calculate the hypervolume from the archive.
+    % MOEA - tend to fail when moving beyond highly stylised mathematical problems: Zatarain Salazar, J., P. M. Reed, J. D. Quinn, M. Giuliani and A. Castelletti (2017). "Balancing exploration, uncertainty and computational demands in many objective reservoir optimization." Advances in Water Resources 109: 196-210.
+    % Zatarain Salazar, J., P. M. Reed, J. D. Herman, M. Giuliani and A. Castelletti (2016). "A diagnostic assessment of evolutionary algorithms for multi-objective surface water resevoir control." Advances in Water Resources 92(172-185).
