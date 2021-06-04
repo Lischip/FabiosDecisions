@@ -45,10 +45,12 @@ Generate decision space: GET THEM POLICIES
 
 \subsubsection{Sensitivity analysis}
 assess the policies (Sobol, extra trees, Morris) (so we stress test the found candidates) - so with the parcoords plots and stuffffz
+%I found my reasoning again, I thought extra-trees as Rozen2018 describes that it is computationally less expensive than Morris, but approximates the sobol relative importance effects. 
+
+Have a selection of policies (candidate solutions) then test how these behave for different actor's problem framings (sensitivity analysis).
 
 \subsubsection{Update adaptation pathway}
 (so just update it with the new tipping point + policies)
-
 
 \begin{figure}[h!]
     \centering
@@ -67,3 +69,19 @@ assess the policies (Sobol, extra trees, Morris) (so we stress test the found ca
 %Directed search(MOEA, MORDM, multi-scenario MORDM, MOE, may need scen disco) $\xrightarrow{}$ sensitivity analysis (Sobol, MOrris, Extra-Trees) $\xrightarrow{}$ Test on found scenarios
 
 %Tools used are unique from policy presentation - you can use MORDM and do policy pathways - CITE: Kwakkel, Haasnoot and Walker, 2015
+
+
+
+\subsection{Lisettes brainstorm session}
+\begin{itemize}
+    \item Bad policies: We can perform directed search over the decision levers to find out what policies are the worst for Gorssel (with MOEA), and need to be prevented. We can include an argument to calculate the distance from a certain threshold as well (for both uncertainties and outcomes).
+    
+    
+    \item Scary events: identify \textbf{not adaptation tipping point} but signposts \& triggers Gorssel should be watching out for with events (note that we can combine multiple variables if we use ranges!!!) -> is creative!
+    \item Use multi-scenario MORDM on the scenarios we select from previous step that to find out what policies work best against \underline{all of those scenarios} that that FIT our robustness criteria
+    \item sensitivity analysis on these policies.
+    \item Irenes paper: https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2017WR020524  they derive the pareto optimal set for each rival framing -> our first diagnostic verification step is to reevaluate the solutions from each of the problem formulations in the objective spaces of all of the other formulations (so they optimise again)
+    \item ALOOOOONE AT THE EDGE OF A UNIVERSE HUMMING A TUNE FOR MERELY DREAMING WE WEREE SNOW HREMWREMWERM HOEOEHEOhH
+\end{itemize}
+
+
