@@ -6,11 +6,11 @@
 
 
 %In what order are we using the tools and why are we using them this way
-We have opted to combine robust decision making (RDM) and dynamic adaptive policy pathways (DAPP) in our approach to perform risk assessment. DAPP allows for a lot of flexibility, as it represents sequences of promising alternative ways for Gorssel to achieve their objectives as described in Section~\ref{s:prob_frame}. RDM allows us to asses the uncertainty within the variables and analyse their implications. An adaptation tipping point is the point at which a policy does no longer meet the criteria.
+We have opted to combine multi scenario multi-objective robust decision making (multi-scenario MORDM) and dynamic adaptive policy pathways (DAPP) in our approach to perform risk assessment. DAPP allows for a lot of flexibility, as it represents sequences of promising alternative ways for Gorssel to achieve their objectives as described in Section~\ref{s:prob_frame}. multi-scenario MORDM allows us to asses the uncertainty within the variables and analyse their implications. An adaptation tipping point is the point at which a policy does no longer meet the criteria (CITE: Kwakkel 2016 paper from week 8 readings).
 
-We employed TU Delft's open source EMA workbench library which allows for simulations, visualisation and analysis in Python \parencite{kwakkel_exploratory_2017}. An adapted version of the model presented in \citetitle{ciullo_accounting_2019} was used to discover possible strategies. Tool of deltarus to create the metromap.
+We employed TU Delft's open source EMA workbench library which allows for simulations, visualisation and analysis in Python \parencite{kwakkel_exploratory_2017}. An adapted version of the model presented in \citetitle{ciullo_accounting_2019} was used to discover possible strategies. Tool of Deltares used to create the metromap.
 
-\begin{longtable}[c]{lp{2cm}p{3cm}l}
+\begin{longtable}[c]{p{2cm}p{2cm}p{5cm}l}
 \caption{Selected criteria, adaptation objectives, metrics and tolerable impacts}
 \label{tab:criteria}\\
 \textbf{Criteria}        & \textbf{Adaptation Objective} & \textbf{Metric}                                           & \textbf{Tolerable impact} \\
@@ -24,20 +24,27 @@ Difference in flood risk & TBD & Difference Expected Number of Deaths Deventer a
 Difference in protection & TBD & Difference Expected Annual Damage Deventer and Gorssel & TBD
 \end{longtable}
 
-
+The workflow is shown in Figure~\ref{fig:flowchart}.
 \subsection{Generation of scenarios}
 Generate the uncertainty space: Generate n number of cases with LHS that incorporate the uncertainties (and store them in a csv file). Alternatively we could use optimisation as well for this.
 
 \subsection{Below for each policy + for base case (without policy) (so iteratively)}
 \subsubsection{Identification of adaptation tipping points}
 Use scenario discovery (PRIM - so subspace partioning)) to search the results to identify adaptation tipping points. So the results of PRIM are those boxes (which are interesting clusters that contain the interesting cases). (So when we provide PRIM the threshold for outcome, and it will give us the ranges in uncertainty - our triggers).
-MOEA might be the most logical to get the Paeto-approximate set of solutions?
+
+\subsubsection{Scenario selection}
+This was part of ass 9. We should be fine.
 
 \subsubsection{Generation of policies: Directed search to get candidate solutions (policies)}
 Generate decision space: GET THEM POLICIES
+(So we get the Pareto-approximate set of solutions)
+%The paper bt Kwakkel (2015) shows that for a a case like this. MORO would be the most optimal algorithm. It has a better robustness/precision rate. The only disadvantage is the increased computing time.
+%Z: Don't think I agree. Moro sounds overkill and is perhaps therefore not the best choice. So the choice is between MORDM, Multi-scenario MORDM and normal RDM, and on top of that, they're all frameworks (meaning we might need to change our methodology depending on which one we choose). I think Bartholomew_2020 (week 7) is more informative. So the current workflow is pretty much just RDM, with MORDM we'd need to change some stuff since we need to pick a reference scenario, and with Multi-scenario MORDM we don't need to pick a reference scenario. In the paper from Kwakkel + Eker they talk more about Multi-scenario MORDM. It's prettty much just running MORDM a couple of times + some additional steps. (If we have the time we could adapt our method to multi-scenario MORDM, but I don't think we'll have the time, so maybe stick with RDM?) $
+%No you're right, it is probably way too much overkill to go with MORO. 
+%Ok I am going to include a multi-scenario MORDM version right now
 
 \subsubsection{Sensitivity analysis}
-assess the policies (Sobol, extra trees, Morris)
+assess the policies (Sobol, extra trees, Morris) (so we stress test the found candidates) - so with the parcoords plots and stuffffz
 
 \subsubsection{Update adaptation pathway}
 (so just update it with the new tipping point + policies)
@@ -45,22 +52,18 @@ assess the policies (Sobol, extra trees, Morris)
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.25\textwidth]{report/figures/flowchart.png} 
+    \includegraphics[width=0.45\textwidth]{report/figures/flowchart.png} 
     \caption{Flowchart}
     \label{fig:flowchart}
 \end{figure}
 
-\hline
 
 
-
-
-NSGAII-Epsilon - most it can handle is 7-8 objectives. Therefore, the objectives were prioritised.
+%NSGAII-Epsilon - most it can handle is 7-8 objectives. Therefore, the objectives were prioritised.
 %Z: to be fair, this is probably also easiest to communicate to the client, lol
 
-Scenario discovery (PRIM)
+%Scenario discovery (PRIM)
 
-Directed search(MOEA, MORDM, multi-scenario MORDM, MOE, may need scen disco) $\xrightarrow{}$ sensitivity analysis (Sobol, MOrris, Extra-Trees) $\xrightarrow{}$ Test on found scenarios
+%Directed search(MOEA, MORDM, multi-scenario MORDM, MOE, may need scen disco) $\xrightarrow{}$ sensitivity analysis (Sobol, MOrris, Extra-Trees) $\xrightarrow{}$ Test on found scenarios
 
 %Tools used are unique from policy presentation - you can use MORDM and do policy pathways - CITE: Kwakkel, Haasnoot and Walker, 2015
-
