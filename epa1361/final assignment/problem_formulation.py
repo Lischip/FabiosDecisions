@@ -288,20 +288,20 @@ def get_model_for_problem_formulation(problem_formulation_id):
         uncertainties.extend(swap)
         levers = [x for x in levers if x not in swap]
 
-        for dike in ['A.4', 'A.5']:
+        for dike in ['A.5', 'A.4']:
             for n in function.planning_steps:
                 variable_names.extend(['{}_Expected Annual Damage {}'.format(dike, n)])
                 variable_names_.extend(['{}_Expected Number of Deaths {}'.format(dike, n)])
 
-        outcomes = [ScalarOutcome('Difference in Expected Annual Damage Deventer-Gorssel',
+        outcomes = [ScalarOutcome('Difference in Expected Annual Damage Gorssel-Deventer',
                                   variable_name=[var for var in variable_names], function=difference,
-                                  kind= ScalarOutcome.MAXIMIZE)]
+                                  kind=direction)]
         outcomes.append(ScalarOutcome('Expected Annual Damage Gorssel',
                                       variable_name=[var for var in variable_names_[:len(function.planning_steps)]],
-                                      function=sum_over, kind=ScalarOutcome.MINIMIZE))
-        outcomes.append(ScalarOutcome('Difference in Expected Number of Deaths Deventer-Gorssel',
+                                      function=sum_over, kind=direction))
+        outcomes.append(ScalarOutcome('Difference in Expected Number of Deaths Gorssel-Deventer',
                                              variable_name=[var for var in variable_names_
-                                             ], function=difference, kind= ScalarOutcome.MAXIMIZE))
+                                             ], function=difference, kind=direction))
     
         dike_model.outcomes = outcomes
         
