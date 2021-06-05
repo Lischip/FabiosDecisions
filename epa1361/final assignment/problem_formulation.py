@@ -5,7 +5,7 @@ Created on Wed Mar 21 17:34:11 2018
 @author: ciullo
 """
 from ema_workbench import (Model, CategoricalParameter,
-                           ScalarOutcome, IntegerParameter, RealParameter)
+                           ScalarOutcome, IntegerParameter, RealParameter, Constant)
 from dike_model_function import DikeNetwork  # @UnresolvedImport
 from numpy import diff
 
@@ -262,8 +262,6 @@ def get_model_for_problem_formulation(problem_formulation_id):
     elif problem_formulation_id == 5:
         outcomes = []
         
-        function.planning_steps = [0]
-
         for n in function.planning_steps:
             for dike in function.dikelist:
                 for entry in ['Expected Annual Damage', 'Dike Investment Costs',
@@ -283,8 +281,8 @@ def get_model_for_problem_formulation(problem_formulation_id):
         
         #dike rings in Gelderland: Zutphen (A3), Cortenoever(A2), Doesburg(A1)
         #RfR projects in Gelderland: 3, 2, 1
-
-
+        
+        #changing the levers + uncertainties to match the problem framing
         swap = [s for s in levers if "A.3" in str(s) or "A.2" in str(s) or "A.1" in str(s) or "2_RfR" in str(s) or "1_RfR" in str(s) or "0_RfR" in str(s)]
         uncertainties.extend(swap)
         levers = [x for x in levers if x not in swap]
@@ -307,13 +305,39 @@ def get_model_for_problem_formulation(problem_formulation_id):
         # minimise expected deaths as possible for Deventer
         # minimise damage as possible for Deventer
         # They do not want dikes ONLY FOR THEM (change levers)
-        print("poop")
+        
+        outcomes = []
+
+        for entry in ['Expected Annual Damage', 'Expected Number of Deaths']:
+            o = [ScalarOutcome('A.5_{} {}'.format(entry, n), kind=direction) for n in function.planning_steps]
+            outcomes.extend(o)
+            
+        #changing the levers + uncertainties to match the problem framing
+        swap = [s for s in levers if "A.3" in str(s) or "A.2" in str(s) or "A.1" in str(s) or "2_RfR" in str(s) or "1_RfR" in str(s) or "0_RfR" in str(s)]
+        uncertainties.extend(swap)
+        levers = [x for x in levers if x not in swap and "A.5" not in str(x)]
+        dike_model.constants = [Constant('A.5_DikeIncrease {}'.format(n), 0) for n in function.planning_steps]
+
+        dike_model.outcomes = outcomes
+
     #Problem formulation Overijssel
     elif problem_formulation_id == "Overijssel":
-        # minimise deaths for Deventer and Gorssel
-        # minimise damage for Deventer and Gorssel
-        print("poop")
-      
+        
+        outcomes = []
+        
+        for dike in ['A.4', 'A.5']:
+            for entry in ['Expected Annual Damage', 'Expected Number of Deaths']:
+                o = [ScalarOutcome('{}_{} {}'.format(dike, entry, n), kind=direction) for n in function.planning_steps]
+                outcomes.extend(o)
+                
+        #changing the levers + uncertainties to match the problem framing
+        swap = [s for s in levers if "A.3" in str(s) or "A.2" in str(s) or "A.1" in str(s) or "2_RfR" in str(s) or "1_RfR" in str(s) or "0_RfR" in str(s)]
+        uncertainties.extend(swap)
+        levers = [x for x in levers if x not in swap]
+                
+        dike_model.outcomes = outcomes
+    else:
+        raise TypeError('unknown identifier')
     
     # load uncertainties and levers in dike_model:
     dike_model.uncertainties = uncertainties
