@@ -97,10 +97,6 @@ def get_model_for_problem_formulation(problem_formulation_id):
                 levers.append(IntegerParameter(name, dike_lev[lev_name][0],
                                            dike_lev[lev_name][1]))
 
-    # load uncertainties and levers in dike_model:
-    dike_model.uncertainties = uncertainties
-    dike_model.levers = levers
-
     # Problem formulations:
     # Outcomes are all costs, thus they have to minimized:
     direction = ScalarOutcome.MINIMIZE
@@ -284,6 +280,14 @@ def get_model_for_problem_formulation(problem_formulation_id):
     elif problem_formulation_id == "Gorssel":
         variable_names = []
         variable_names_ = []
+        
+        #dike rings in Gelderland: Zutphen (A3), Cortenoever(A2), Doesburg(A1)
+        #RfR projects in Gelderland: 3, 2, 1
+
+
+        swap = [s for s in levers if "A.3" in str(s) or "A.2" in str(s) or "A.1" in str(s) or "2_RfR" in str(s) or "1_RfR" in str(s) or "0_RfR" in str(s)]
+        uncertainties.extend(swap)
+        levers = [x for x in levers if x not in swap]
 
         for dike in ['A.4', 'A.5']:
             for n in function.planning_steps:
@@ -309,8 +313,12 @@ def get_model_for_problem_formulation(problem_formulation_id):
         # minimise deaths for Deventer and Gorssel
         # minimise damage for Deventer and Gorssel
         print("poop")
-        
+      
     
+    # load uncertainties and levers in dike_model:
+    dike_model.uncertainties = uncertainties
+    dike_model.levers = levers
+
     return dike_model, function.planning_steps
 
 if __name__ == '__main__':
