@@ -283,7 +283,8 @@ def get_model_for_problem_formulation(problem_formulation_id):
         #RfR projects in Gelderland: 3, 2, 1
         
         #changing the levers + uncertainties to match the problem framing
-        swap = [s for s in levers if "A.3" in str(s) or "A.2" in str(s) or "A.1" in str(s) or "2_RfR" in str(s) or "1_RfR" in str(s) or "0_RfR" in str(s)]
+        swap = [s for s in levers if "A.3" in str(s) or "A.2" in str(s) or "A.1" in str(s) or "2_RfR" in str(s) or
+                "1_RfR" in str(s) or "0_RfR" in str(s)]
         uncertainties.extend(swap)
         levers = [x for x in levers if x not in swap]
 
@@ -292,8 +293,12 @@ def get_model_for_problem_formulation(problem_formulation_id):
                 variable_names.extend(['{}_Expected Annual Damage {}'.format(dike, n)])
                 variable_names_.extend(['{}_Expected Number of Deaths {}'.format(dike, n)])
 
-        outcomes = [ScalarOutcome('Difference in Expected Annual Damage Deventer-Gorssel', variable_name=[var for var in variable_names], function=difference, kind= ScalarOutcome.MAXIMIZE)]
-        outcomes.append(ScalarOutcome('Expected Annual Damage Gorssel',variable_name=[var for var in variable_names_[:len(function.planning_steps)]],function=sum_over, kind=ScalarOutcome.MINIMIZE))
+        outcomes = [ScalarOutcome('Difference in Expected Annual Damage Deventer-Gorssel',
+                                  variable_name=[var for var in variable_names], function=difference,
+                                  kind= ScalarOutcome.MAXIMIZE)]
+        outcomes.append(ScalarOutcome('Expected Annual Damage Gorssel',
+                                      variable_name=[var for var in variable_names_[:len(function.planning_steps)]],
+                                      function=sum_over, kind=ScalarOutcome.MINIMIZE))
         outcomes.append(ScalarOutcome('Difference in Expected Number of Deaths Deventer-Gorssel',
                                              variable_name=[var for var in variable_names_
                                              ], function=difference, kind= ScalarOutcome.MAXIMIZE))
@@ -313,7 +318,8 @@ def get_model_for_problem_formulation(problem_formulation_id):
             outcomes.extend(o)
             
         #changing the levers + uncertainties to match the problem framing
-        swap = [s for s in levers if "A.3" in str(s) or "A.2" in str(s) or "A.1" in str(s) or "2_RfR" in str(s) or "1_RfR" in str(s) or "0_RfR" in str(s)]
+        swap = [s for s in levers if "A.3" in str(s) or "A.2" in str(s) or "A.1" in str(s) or "2_RfR" in str(s)
+                or "1_RfR" in str(s) or "0_RfR" in str(s)]
         uncertainties.extend(swap)
         levers = [x for x in levers if x not in swap and "A.5" not in str(x)]
         dike_model.constants = [Constant('A.5_DikeIncrease {}'.format(n), 0) for n in function.planning_steps]
@@ -331,7 +337,8 @@ def get_model_for_problem_formulation(problem_formulation_id):
                 outcomes.extend(o)
                 
         #changing the levers + uncertainties to match the problem framing
-        swap = [s for s in levers if "A.3" in str(s) or "A.2" in str(s) or "A.1" in str(s) or "2_RfR" in str(s) or "1_RfR" in str(s) or "0_RfR" in str(s)]
+        swap = [s for s in levers if "A.3" in str(s) or "A.2" in str(s) or "A.1" in str(s) or "2_RfR" in str(s)
+                or "1_RfR" in str(s) or "0_RfR" in str(s)]
         uncertainties.extend(swap)
         levers = [x for x in levers if x not in swap]
                 
