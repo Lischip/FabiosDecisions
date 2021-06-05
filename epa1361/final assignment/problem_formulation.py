@@ -281,7 +281,7 @@ def get_model_for_problem_formulation(problem_formulation_id):
         dike_model.outcomes = outcomes
         
     # Problem formulation Gorssel
-    elif problem_formulation_id == 6:
+    elif problem_formulation_id == "Gorssel":
         variable_names = []
         variable_names_ = []
 
@@ -290,25 +290,27 @@ def get_model_for_problem_formulation(problem_formulation_id):
                 variable_names.extend(['{}_Expected Annual Damage {}'.format(dike, n)])
                 variable_names_.extend(['{}_Expected Number of Deaths {}'.format(dike, n)])
 
-        outcomes = [ScalarOutcome('Difference in Expected Annual Damage Deventer-Gorsel', variable_name=[var for var in variable_names], function=difference, kind= ScalarOutcome.MAXIMIZE)]
-        outcomes.append(ScalarOutcome('Expected Annual Damage Gorsel',variable_name=[var for var in variable_names_[:len(function.planning_steps)]],function=sum_over, kind=ScalarOutcome.MINIMIZE))
-        outcomes.append(ScalarOutcome('Difference in Expected Number of Deaths Deventer-Gorsel',
+        outcomes = [ScalarOutcome('Difference in Expected Annual Damage Deventer-Gorssel', variable_name=[var for var in variable_names], function=difference, kind= ScalarOutcome.MAXIMIZE)]
+        outcomes.append(ScalarOutcome('Expected Annual Damage Gorssel',variable_name=[var for var in variable_names_[:len(function.planning_steps)]],function=sum_over, kind=ScalarOutcome.MINIMIZE))
+        outcomes.append(ScalarOutcome('Difference in Expected Number of Deaths Deventer-Gorssel',
                                              variable_name=[var for var in variable_names_
                                              ], function=difference, kind= ScalarOutcome.MAXIMIZE))
     
         dike_model.outcomes = outcomes
         
-    # Problem formulation Gorssel alt
-    # TO DO: Legacy, can be removed
-    elif problem_formulation_id == 7:
-        outcomes = [ScalarOutcome('gor expected annual damage', kind=ScalarOutcome.MINIMIZE),
-                    ScalarOutcome('dev-gor expected annual damage', kind=ScalarOutcome.MAXIMIZE),
-                    ScalarOutcome('dev-gor expected number of deaths', kind=ScalarOutcome.MAXIMIZE)
-                   ]
-        dike_model.outcomes = outcomes
-    else:
-        raise TypeError('unknownx identifier')
+    # Problem Formulation Deventer
+    elif problem_formulation_id == "Deventer":
+        # minimise expected deaths as possible for Deventer
+        # minimise damage as possible for Deventer
+        # They do not want dikes ONLY FOR THEM (change levers)
+        print("poop")
+    #Problem formulation Overijssel
+    elif problem_formulation_id == "Overijssel":
+        # minimise deaths for Deventer and Gorssel
+        # minimise damage for Deventer and Gorssel
+        print("poop")
         
+    
     return dike_model, function.planning_steps
 
 if __name__ == '__main__':
