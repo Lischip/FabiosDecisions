@@ -1,5 +1,5 @@
 from problem_formulation import get_model_for_problem_formulation
-from ema_workbench import MultiprocessingEvaluator, Policy
+from ema_workbench import MultiprocessingEvaluator, Policy, save_results
 from ema_workbench.em_framework.evaluators import LHS
 from datetime import datetime
 import sys
@@ -24,13 +24,11 @@ def run(actor="Gorssel", n=5000):
     policy0 = Policy('Policy 0', **pol0)
 
     with MultiprocessingEvaluator(dike_model) as evaluator:
-        experiments, results = evaluator.perform_experiments(scenarios=n, policies=policy0, uncertainty_sampling=LHS)
+        results = evaluator.perform_experiments(scenarios=n, policies=policy0, uncertainty_sampling=LHS)
 
-    for result in results:
-        experiments[result] = results[result]
-
-    experiments.to_csv("data/generated/genscen_"+actor+'_'+str(n)+'_'+str(datetime.now().strftime("%d-%m-%Y-%H-%M-%S") +".csv"), index=False)
+    save_results(results, "data/generated/genscen_"+actor+'_'+str(n)+'_'+str(datetime.now().strftime("%d-%m-%Y-%H-%M-%S") +".tar.gz"))
     print("Done!")
+    return
 
 if __name__ == '__main__':
     actor = str(sys.argv[1])
