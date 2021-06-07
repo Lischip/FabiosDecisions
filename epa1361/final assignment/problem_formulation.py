@@ -286,8 +286,7 @@ def get_model_for_problem_formulation(problem_formulation_id):
         variable_names = []
         variable_names_ = []
 
-        #A5,A4 -> Deventer-Gorssel
-        for dike in ('A.5', 'A.4'):
+        for dike in ('A.4', 'A.5'):
             for n in function.planning_steps:
                 variable_names.extend(['{}_Expected Annual Damage {}'.format(dike, n)])
                 variable_names_.extend(['{}_Expected Number of Deaths {}'.format(dike, n)])
