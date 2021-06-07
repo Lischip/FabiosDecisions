@@ -4,7 +4,7 @@ from ema_workbench.em_framework.evaluators import LHS
 from datetime import datetime
 import sys
 
-def run(actor="Gorssel", n=5000):
+def run(actor="Gorssel", n=50000):
     '''
     Run the program to generate_scen for actor
     '''
