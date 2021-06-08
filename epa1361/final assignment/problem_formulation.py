@@ -25,6 +25,7 @@ def difference(*args):
     dike2 = sum(args[n:])
     return dike1 - dike2
 
+
 def get_model_for_problem_formulation(problem_formulation_id):
     ''' Prepare DikeNetwork in a way it can be input in the EMA-workbench.
     Specify uncertainties, levers and problem formulation.
@@ -295,11 +296,11 @@ def get_model_for_problem_formulation(problem_formulation_id):
                                   variable_name=[var for var in variable_names], function=difference,
                                   kind=direction),
                     ScalarOutcome('Difference in Expected Number of Deaths Gorssel-Deventer',
-                                      variable_name=[var for var in variable_names_], function=difference,
+                                  variable_name=[var for var in variable_names_], function=difference,
                                   kind=direction),
                     ScalarOutcome('Expected Annual Damage Gorssel',
-                                      variable_name=[var for var in variable_names_[:len(function.planning_steps)]],
-                                      function=sum_over, kind=direction),]
+                                  variable_name=[var for var in variable_names_[:len(function.planning_steps)]],
+                                  function=sum_over, kind=direction), ]
 
         dike_model.outcomes = outcomes
 
