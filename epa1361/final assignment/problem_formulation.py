@@ -7,7 +7,6 @@ Created on Wed Mar 21 17:34:11 2018
 from ema_workbench import (Model, CategoricalParameter,
                            ScalarOutcome, IntegerParameter, RealParameter, Constant)
 from dike_model_function import DikeNetwork  # @UnresolvedImport
-from numpy import diff
 
 planning_steps = []
 
@@ -24,8 +23,7 @@ def difference(*args):
     n = len(planning_steps)
     dike1 = sum(args[:n])
     dike2 = sum(args[n:])
-    return (diff([dike1, dike2]))[0]
-
+    return dike1 - dike2
 
 def get_model_for_problem_formulation(problem_formulation_id):
     ''' Prepare DikeNetwork in a way it can be input in the EMA-workbench.
@@ -288,7 +286,7 @@ def get_model_for_problem_formulation(problem_formulation_id):
         variable_names = []
         variable_names_ = []
 
-        for dike in ['A.5', 'A.4']:
+        for dike in ('A.4', 'A.5'):
             for n in function.planning_steps:
                 variable_names.extend(['{}_Expected Annual Damage {}'.format(dike, n)])
                 variable_names_.extend(['{}_Expected Number of Deaths {}'.format(dike, n)])
@@ -296,19 +294,19 @@ def get_model_for_problem_formulation(problem_formulation_id):
         outcomes = [ScalarOutcome('Difference in Expected Annual Damage Gorssel-Deventer',
                                   variable_name=[var for var in variable_names], function=difference,
                                   kind=direction),
+                    ScalarOutcome('Difference in Expected Number of Deaths Gorssel-Deventer',
+                                      variable_name=[var for var in variable_names_], function=difference,
+                                  kind=direction),
                     ScalarOutcome('Expected Annual Damage Gorssel',
                                       variable_name=[var for var in variable_names_[:len(function.planning_steps)]],
-                                      function=sum_over, kind=direction),
-                    ScalarOutcome('Difference in Expected Number of Deaths Gorssel-Deventer',
-                                      variable_name=[var for var in variable_names_
-                                                     ], function=difference, kind=direction)]
+                                      function=sum_over, kind=direction),]
 
         dike_model.outcomes = outcomes
 
     # Problem Formulation Deventer
     elif problem_formulation_id == "Deventer":
-        # minimise expected deaths as possible for Deventer
-        # minimise damage as possible for Deventer
+        # Minimise expected deaths as possible for Deventer
+        # Minimise damage as possible for Deventer
         # It is impossible to install dikes in Deventer (hard constraint)
 
         # changing the levers + uncertainties to match the problem framing
