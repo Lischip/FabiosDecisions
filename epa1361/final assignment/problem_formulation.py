@@ -23,8 +23,13 @@ def difference(*args):
     n = len(planning_steps)
     dike1 = sum(args[:n])
     dike2 = sum(args[n:])
+    # https://data.overheid.nl/community/application/1652
+    # https://allecijfers.nl/buurt/gorssel-lochem/
+    dike1 /= 3520
+    # https://allecijfers.nl/gemeente/deventer/
+    # https://opendata.cbs.nl/#/CBS/nl/dataset/37230ned/table?searchKeywords=inwoneraantal%20gorssel
+    dike2 /= 100719
     return dike1 - dike2
-
 
 def get_model_for_problem_formulation(problem_formulation_id):
     ''' Prepare DikeNetwork in a way it can be input in the EMA-workbench.
@@ -277,6 +282,8 @@ def get_model_for_problem_formulation(problem_formulation_id):
     elif problem_formulation_id == "Gorssel":
         # Just want less expected annual damage and number of deaths than Deventer
         # Want to minimise land encroachment
+        # change differences to info
+        # minimise ALL COSTS of ALL DIKES + rfr + evacuation, minimise deaths + minimise damage
 
         # changing the levers + uncertainties to match the problem framing
         swap = [s for s in levers if "A.3" in str(s) or "A.2" in str(s) or "A.1" in str(s) or "2_RfR" in str(s) or
@@ -286,21 +293,35 @@ def get_model_for_problem_formulation(problem_formulation_id):
 
         variable_names = []
         variable_names_ = []
+        variable_names__ = []
 
         for dike in ('A.4', 'A.5'):
             for n in function.planning_steps:
                 variable_names.extend(['{}_Expected Annual Damage {}'.format(dike, n)])
                 variable_names_.extend(['{}_Expected Number of Deaths {}'.format(dike, n)])
 
+        for n in function.planning_steps:
+            variable_names__.extend(['{}_Dike Investment Costs {}'.format(dike, n)
+                                    for dike in function.dikelist] + [
+                                       'RfR Total Costs {}'.format(n)
+                                   ] + ['Expected Evacuation Costs {}'.format(n)])
+
         outcomes = [ScalarOutcome('Difference in Expected Annual Damage Gorssel-Deventer',
                                   variable_name=[var for var in variable_names], function=difference,
-                                  kind=direction),
+                                  kind=ScalarOutcome.INFO),
                     ScalarOutcome('Difference in Expected Number of Deaths Gorssel-Deventer',
                                   variable_name=[var for var in variable_names_], function=difference,
-                                  kind=direction),
-                    ScalarOutcome('Expected Annual Damage Gorssel',
+                                  kind=ScalarOutcome.INFO),
+                    ScalarOutcome('Gorssel Expected Annual Damage',
+                                  variable_name=[var for var in variable_names[:len(function.planning_steps)]],
+                                  function=sum_over, kind=direction),
+                    ScalarOutcome('Gorssel Expected Number of Deaths',
                                   variable_name=[var for var in variable_names_[:len(function.planning_steps)]],
-                                  function=sum_over, kind=direction), ]
+                                  function=sum_over, kind=direction),
+                    ScalarOutcome('Total Costs of Policies',
+                                  variable_name=[var for var in variable_names__],
+                                  function=sum_over, kind=direction)
+                    ]
 
         dike_model.outcomes = outcomes
 
@@ -309,6 +330,7 @@ def get_model_for_problem_formulation(problem_formulation_id):
         # Minimise expected deaths as possible for Deventer
         # Minimise damage as possible for Deventer
         # It is impossible to install dikes in Deventer (hard constraint)
+        # Include minimise rfr costs and minimise evacuation costs
 
         # changing the levers + uncertainties to match the problem framing
         swap = [s for s in levers if "A.3" in str(s) or "A.2" in str(s) or "A.1" in str(s) or "2_RfR" in str(s)
@@ -319,30 +341,47 @@ def get_model_for_problem_formulation(problem_formulation_id):
 
         variable_names = ['A.5_Expected Annual Damage {}'.format(n) for n in function.planning_steps]
         variable_names_ = ['A.5_Expected Number of Deaths {}'.format(n) for n in function.planning_steps]
+        variable_names__ = ['{} {}'.format(e, n)
+                            for e in ['RfR Total Costs', 'Expected Evacuation Costs'] for n in function.planning_steps ]
 
-        dike_model.outcomes = [ScalarOutcome('A.5_Expected Annual Damage',
+        dike_model.outcomes = [ScalarOutcome('Deventer Expected Annual Damage',
                                              variable_name=[var for var in variable_names],
                                              function=sum_over, kind=direction),
-                               ScalarOutcome('A.5_Expected Number of Deaths',
+                               ScalarOutcome('Deventer Expected Number of Deaths',
                                              variable_name=[var for var in variable_names_],
-                                             function=sum_over, kind=direction)]
+                                             function=sum_over, kind=direction),
+                               ScalarOutcome('Total Costs of RfR and Evacuation',
+                                             variable_name=[var for var in variable_names__],
+                                             function=sum_over, kind=direction),
+                               ]
 
     # Problem formulation Overijssel
     elif problem_formulation_id == "Overijssel":
-        # Just want to minimise deaths + damage for the province
+        # Just want to minimise deaths + damage for the province + minimise ALL costs
         variable_names = []
         variable_names_ = []
+        variable_names__ = []
 
         for dike in ['A.4', 'A.5']:
             variable_names.extend(['{}_Expected Annual Damage {}'.format(dike, n) for n in function.planning_steps])
             variable_names_.extend(['{}_Expected Number of Deaths {}'.format(dike, n) for n in function.planning_steps])
 
-        dike_model.outcomes = [ScalarOutcome('Expected Annual Damage',
+        for n in function.planning_steps:
+            variable_names__.extend(['{}_Dike Investment Costs {}'.format(dike, n)
+                                    for dike in function.dikelist] + [
+                                       'RfR Total Costs {}'.format(n)
+                                   ] + ['Expected Evacuation Costs {}'.format(n)])
+
+        dike_model.outcomes = [ScalarOutcome('Gorssel and Deventer Expected Annual Damage',
                                              variable_name=[var for var in variable_names],
                                              function=sum_over, kind=direction),
-                               ScalarOutcome('Expected Number of Deaths',
+                               ScalarOutcome('Gorssel and Deventer Expected Number of Deaths',
                                              variable_name=[var for var in variable_names_],
-                                             function=sum_over, kind=direction)]
+                                             function=sum_over, kind=direction),
+                               ScalarOutcome('Total Costs of Policies',
+                                            variable_name=[var for var in variable_names__],
+                                            function=sum_over, kind=direction)
+        ]
 
         # changing the levers + uncertainties to match the problem framing
         swap = [s for s in levers if "A.3" in str(s) or "A.2" in str(s) or "A.1" in str(s) or "2_RfR" in str(s) or
