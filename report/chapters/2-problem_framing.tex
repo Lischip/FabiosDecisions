@@ -1,11 +1,11 @@
 \section{Problem Framing}
 \label{s:prob_frame}
 \subsection{Introduction}
-Across the ages the river IJssel has been of incredible importance in Dutch history. In times of prosperity the river was trading route, in times of war it made up a strategically defendable border. Situated along this river, between the two bigger cities of Deventer and Zutphen, one can find the smaller town of Gorssel. Located along the banks of the IJssel river, water management and flood prevention have both been interwoven with the city's existence since the first farmers situated themselves there. However, when in 1993 and 1995 the water rose to dangerous levels in the IJssel, the discussion on water management became a national interest and thus, the Room for the River initiative was born. (Cite Rijke et al.) However, the fight against water continues. With global warming added to the mix, the rivers currently face even greater pressure (Cite Takken) and a waterproof water protection plan is key for the future of Gorssel and its farmers. Besides the complexity such a plan inherently has, this particular problem requires a careful examination of the actor field. It can fairly be assumed that all parties want to prevent a life-threatening flood, but beneath that, all involved parties have different objectives they aim to achieve. 
+Across the ages the river IJssel has been of incredible importance in Dutch history. In times of prosperity the river was trading route, in times of war it made up a strategically defendable border. Situated along this river, between the two bigger cities of Deventer and Zutphen, one can find the smaller town of Gorssel. Located along the banks of the IJssel river, water management and flood prevention have both been interwoven with the city's existence since the first farmers situated themselves there. However, when in 1993 and 1995 the water rose to dangerous levels in the IJssel, the discussion on water management became a national interest and thus, the Room for the River initiative was born. (\textbf{Cite Rijke et al.}) However, the fight against water continues. With global warming added to the mix, the rivers currently face even greater pressure (\textbf{Cite Takken}) and a waterproof water protection plan is key for the future of Gorssel and its farmers. Besides the complexity such a plan inherently has, this particular problem requires a careful examination of the actor field. It can fairly be assumed that all parties want to prevent a life-threatening flood, but beneath that, all involved parties have different objectives they aim to achieve. 
 
-This report analyses options for the planning of flood protection measures along the River IJssel, from the perspective of the administrative region of Gorssel. As explained, the problem of flood management in this region is complex, due to significant uncertainties (namely flood wave shapes, dike failure probabilities, and breach widths) and conflicting priorities of different stakeholders in the region. Here, exploratory modelling and analysis is used to support decision making under deep uncertainty. This model-based decision making is performed from the perspective of our problem owner, Gorssel, in addition to two key stakeholders of interest: Overijssel Regional Government, and the city of Deventer. This is done to reveal important trade-offs and the outcomes of conflicting objectives in the Overijssel region.
+This report analyses options for the planning of flood protection measures along the River IJssel, from the perspective of the administrative region of Gorssel. As explained, the problem of flood management in this region is complex, due to significant uncertainties (namely flood wave shapes, dike failure probabilities, and breach widths) and conflicting priorities of different stakeholders in the region. Here, exploratory modelling and analysis is used to support decision making under deep uncertainty. This model-based decision making is performed from the perspective of our problem owner, Gorssel, in addition to two key stakeholders of interest: Overijssel Regional Government, and the city of Deventer. This is done to reveal important trade-offs and the outcomes of conflicting objectives to informa the policy-making process in the Overijssel region.
 
-(Perhaps we could already name what our levers are?) 
+
 % Problem framing; the decision problem can be structured in many ways. 
 % Our problem owner is Gorssel
 
@@ -13,7 +13,7 @@ This report analyses options for the planning of flood protection measures along
 \subsection{Research question}
 
 %What do you see as the key objectives and constraints?
-Protecting the livelihoods of those that reside in Gorssel is the main objective of Gorssel. Their residents mostly comprise of farmers and so their livelihood is the crops they organically grow. Gorssel wants to protect its farmers from potential flood risks - which would damage crops - but also wants to preserve the amount of land they can use for farming and prevent land encroachment - which would decrease revenue. Both of these are not favourable but are currently in a trade-off with each other. However, there is of course a limit to how much land Gorssel wants encroached upon. However, besides protection, it's also important that Gorssel isn't treated lesser than the surrounding cities and that everyone is treated in a "fair" way. 
+Protecting the livelihoods of those that reside in Gorssel is the main objective of Gorssel. Their residents mostly comprise of farmers and so their livelihood is the crops they organically grow. Gorssel wants to minimise flood risk and expected flood damage but also wants to preserve the amount of land they can use for farming and prevent land encroachment - which would decrease revenue. Both of these are not favourable but are currently in a trade-off with each other. However, there is a limit to how much land Gorssel wants encroached upon. However, besides protection, it's also important that Gorssel isn't treated lesser than the surrounding cities and that everyone is treated in a "fair" way. 
 The goal of this report is to find a strategy for Gorssel to navigate these difficult waters. 
 
 % I'm not sure how explicitly to discuss the constraints 
@@ -21,50 +21,29 @@ The goal of this report is to find a strategy for Gorssel to navigate these diff
 %How are you framing the problem? 
 The research question that is in line with this goal is as follows: 
 \begin{quote}
-    How can Gorssel (Dike Ring 4) protect it's citizens and businesses from flood risk to a similar level as surrounding urban areas, while still preserving the most possible farmland?
+    How can Gorssel (Dike Ring 4) affordably protect it's citizens and businesses from flood risk to a similar level as neighbouring urban areas, while still preserving and protecting farmland from encroachment?
 \end{quote}
 
 This question was informed by the mandate for Gorssel provided as part of the EPA1361 Debate (see Chapter \ref{s:poli_reflect} for more information), in addition to formal documentation of the Room for the River project, conducted by Rijkswaterstaat between 2010 and 2019 (CITE: Rijkswaterstaat).
+
+To explore suitable policies for achieving these objectives, a problem formulation in the EMA Workbench was devised.
+The prioritised objectives for the Gorssel-perspective problem formulation are:
+\begin{itemize}
+    \item Minimise Expected Annual Damage for Gorssel: This objective reflects Gorssel's desire to generally minimise flood risk, while also reflecting effects of damage to farms and other property
+    \item Minimise Expected Number of Deaths for Gorssel: This objective reflects Gorssel's desire to generally minimse flood risk.
+    \item Minimise Total Costs: This objective reflects the desire to reduce the cost impact of flood mitigation measures taken across the entire IJssel River system. Total costs for all actors was considered relevant given the requirement of cost sharing for flood mitigation activities across the region.
+    \item Difference in Expected Annual Damage (EAD) between Gorssel and Deventer (information only - no objective set): This function returns results on the difference in Expected Annual Damages between Gorssel and Deventer, but will not be optimised for. The results for this feature under different policies serves to provide information on the relative 'fairness' in terms of rural-urban burden sharing in terms of flood risk, and as an additional feature for informing satisficing or regret-based robustness metrics.
+    \item Difference in Expected Number of Deaths between Gorssel and Deventer (information only - no objective set): rationale for inclusion of this metric is as for difference in EAD.
+\end{itemize}
+These five core objectives are a refinement of all available objectives. These were prioritised due to the computational limitations of the exploratory modelling and analysis approaches (as explained in Section \ref{s:approach}) and due to limitations in stakeholder comprehension of multiple objectives.
 
 
 %Which other actors are we analysing and why are they natural coalition partners for Gorssel?
 The basic analysis of preferred options were interpreted based on Gorssel's mandate, wherein it's goals and preferred outcomes are known. In order to conduct a complete analysis, however, it is important to understand the goals and objectives of other actors, who might present opportunities for coalition-forming. To determine which actors were of interest, a preliminary power-interest grid was constructed.
 
-%text about why fewer objectives were necessary (ER - hand written notes - needs transcribing)
 
-The prioritised objectives for the Gorssel-perspective problem formulation are:
-\begin{itemize}
-    \item Expected Annual Damage for Gorssel
-    \item Difference in Expected Annual Damage between Gorssel and Deventer
-    \item Difference in Expected Number of Deaths between Gorssel and Deventer
-\end{itemize}
-Details of the function used to calculate the 'difference' objectives are provided in the Appendix. These three core objectives are a refinement of all available objectives. These were prioritised due to the limitations of the exploratory modelling and analysis approaches (as explained in Section \ref{s:approach}) and due to limitations in stakeholder comprehension of multiple objectives.
 
-%Explain what's in the table (problem formulations) and why.
-Table \ref{t:objectives} summarises all desired positions, from which the above three priority objectives were chosen. These were informed by stakeholder consultation in the Room for the River debates, and through information on the mandate of Gorssel.
 
-\begin{table}[h!]
-\begin{tabular}{ll|lll}
-\hline
-         &                                   & Gorssel                 & Deventer                 & Overijssel \\ \hline
-Gorssel  & Expected Annual Damage (Gorssel)  & -                       & \textgreater{}= Deventer & -          \\
-         & Expected Annual Deaths (Gorssel)  & -                       & \textgreater{}= Deventer & -          \\
-         & RfR Costs (Gorssel)               & -                       & Na                       & -          \\
-         & Dike Costs (Gorssel)              & -                       & Na                       & -          \\
-         & Total Costs (Gorssel)             & -                       & Na                       & -          \\
-Deventer & Expected Annual Damage (Deventer) & \textgreater{}= Gorssel & -                        & -          \\
-         & Expected Annual Deaths (Deventer) & \textgreater{}= Gorssel & -                        & -          \\
-         & RfR Costs (Deventer)              & Na                      & -                        & -          \\
-         & Dike Costs (Deventer)             & Na                      & -                        & -          \\
-         & Total Costs (Deventer)            & Na                      & -                        & -          \\
-Doesburg    & Expected Annual Damage (Doesburg)    & \textgreater{}= Gorssel & Na & \textgreater{}= Gorssel/Deventer \\
-            & Expected Annual Deaths (Doesburg)    & \textgreater{}= Gorssel & Na & \textgreater{}= Gorssel/Deventer \\
-Cortenoever & Expected Annual Damage (Cortenoever) & \textgreater{}= Gorssel & Na & \textgreater{}= Gorssel/Deventer \\
-            & Expected Annual Deaths (Cortenoever) & \textgreater{}= Gorssel & Na & \textgreater{}= Gorssel/Deventer
-\end{tabular}
-\caption{-}
-\label{t:objectives}
-\end{table}
 
 
 %What levers are relevant, and what is being treated as uncertain. 
@@ -106,5 +85,3 @@ Opposing stances from rival actors will be accompanied by an alternate framing o
 
 Overijssel being the next level administrative body above Gorssel and Deventer, will have greater influence on which RfR measures to implement. As a provincial government, Overijssel is required to find some sort of balance of impacts between urban and rural communities. Due to Deventer's larger economic importance it may use similar framing to legitimise claims for needing to implement certain measures over others. Regional policy-makers can also obscure discourse using ill-defined neologisms, for example hybrid concepts such as "nature development" and "spatial quality" \parencite{warner_implementing_2011}. These empty signifiers combine environmental with economic values, to appear holistic and fair. Yet, these frames do not address social and economic concerns of Gorssel's population and fail to address increasing divide between urban and rural populations. These views can thus still be challenged and refine definition to specifically address these problems.
 
-% include Victim-Villain-Hero framing?
-% Overijssel casts Gelderland as villain to get concessions from farmers
