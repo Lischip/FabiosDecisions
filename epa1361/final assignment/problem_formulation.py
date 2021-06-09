@@ -337,12 +337,21 @@ def get_model_for_problem_formulation(problem_formulation_id):
                 or "1_RfR" in str(s) or "0_RfR" in str(s)]
         uncertainties.extend(swap)
         levers = [x for x in levers if x not in swap and "A.5" not in str(x)]
+
+        # Deventer stated the dikes could not be increased.
         dike_model.constants = [Constant('A.5_DikeIncrease {}'.format(n), 0) for n in function.planning_steps]
 
         variable_names = ['A.5_Expected Annual Damage {}'.format(n) for n in function.planning_steps]
         variable_names_ = ['A.5_Expected Number of Deaths {}'.format(n) for n in function.planning_steps]
         variable_names__ = ['{} {}'.format(e, n)
-                            for e in ['RfR Total Costs', 'Expected Evacuation Costs'] for n in function.planning_steps ]
+                            for e in ['RfR Total Costs', 'Expected Evacuation Costs'] for n in function.planning_steps]
+
+        # Not truly necessary, as these would just be 0, but might save us some time.
+        otherdikes = function.dikelist.tolist()
+        otherdikes.remove("A.5")
+
+        variable_names__.extend(['{}_Dike Investment Costs {}'.format(dike, n)
+                                    for dike in otherdikes for n in function.planning_steps])
 
         dike_model.outcomes = [ScalarOutcome('Deventer Expected Annual Damage',
                                              variable_name=[var for var in variable_names],
@@ -350,7 +359,7 @@ def get_model_for_problem_formulation(problem_formulation_id):
                                ScalarOutcome('Deventer Expected Number of Deaths',
                                              variable_name=[var for var in variable_names_],
                                              function=sum_over, kind=direction),
-                               ScalarOutcome('Total Costs of RfR and Evacuation',
+                               ScalarOutcome('Total Costs of Policies',
                                              variable_name=[var for var in variable_names__],
                                              function=sum_over, kind=direction),
                                ]
