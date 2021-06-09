@@ -5,9 +5,10 @@
     \item Room for River projects always result in encroachment of farmland while dike projects do not. Subsequently, Gorssel is not concerned by dike expansion costs, but is concerned by RfR costs.
     \item RfR costs include all relocation costs for farms and houses.
     \item Model-land objectives of Deventer and Overijssel are consistent with mandates revealed in the debate
-    \item Gorssel is in Overijssel province
+    \item Gorssel is in the province of Overijssel
     \item The Rijkswaterstaat has the power and tools to conduct land expropriations under Dutch Law
     \item It was assumed that damages are not discounted (to minimise the number of scenarios required
+    \item Used population figures from the last available census to make values for the difference function per capita rather than absolute figures. It was not considered to be important to find very precise information for this value.
 \end{itemize}
 
 
@@ -27,3 +28,29 @@
     %Use archive logger to collect archive of epsilon progress, then separately, calculate the hypervolume from the archive.
     % MOEA - tend to fail when moving beyond highly stylised mathematical problems: Zatarain Salazar, J., P. M. Reed, J. D. Quinn, M. Giuliani and A. Castelletti (2017). "Balancing exploration, uncertainty and computational demands in many objective reservoir optimization." Advances in Water Resources 109: 196-210.
     % Zatarain Salazar, J., P. M. Reed, J. D. Herman, M. Giuliani and A. Castelletti (2016). "A diagnostic assessment of evolutionary algorithms for multi-objective surface water resevoir control." Advances in Water Resources 92(172-185).
+    
+%Explain what's in the table (problem formulations) and why.
+Table \ref{t:objectives} summarises all assumed objectives, prior to the debate, from which the above three priority objectives were chosen. These were informed by stakeholder consultation ahead of the Room for the River debates, and through information on the mandate of Gorssel.
+
+\begin{table}[h!]
+\begin{tabular}{ll|lll}
+\hline
+         &                                   & Gorssel                 & Deventer                 & Overijssel \\ \hline
+Gorssel  & Expected Annual Damage (Gorssel)  & -                       & \textgreater{}= Deventer & -          \\
+         & Expected Annual Deaths (Gorssel)  & -                       & \textgreater{}= Deventer & -          \\
+         & RfR Costs (Gorssel)               & -                       & Na                       & -          \\
+         & Dike Costs (Gorssel)              & -                       & Na                       & -          \\
+         & Total Costs (Gorssel)             & -                       & Na                       & -          \\
+Deventer & Expected Annual Damage (Deventer) & \textgreater{}= Gorssel & -                        & -          \\
+         & Expected Annual Deaths (Deventer) & \textgreater{}= Gorssel & -                        & -          \\
+         & RfR Costs (Deventer)              & Na                      & -                        & -          \\
+         & Dike Costs (Deventer)             & Na                      & -                        & -          \\
+         & Total Costs (Deventer)            & Na                      & -                        & -          \\
+Doesburg    & Expected Annual Damage (Doesburg)    & \textgreater{}= Gorssel & Na & \textgreater{}= Gorssel/Deventer \\
+            & Expected Annual Deaths (Doesburg)    & \textgreater{}= Gorssel & Na & \textgreater{}= Gorssel/Deventer \\
+Cortenoever & Expected Annual Damage (Cortenoever) & \textgreater{}= Gorssel & Na & \textgreater{}= Gorssel/Deventer \\
+            & Expected Annual Deaths (Cortenoever) & \textgreater{}= Gorssel & Na & \textgreater{}= Gorssel/Deventer
+\end{tabular}
+\caption{-}
+\label{t:objectives}
+\end{table}
