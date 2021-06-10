@@ -10,10 +10,18 @@ from dike_model_function import DikeNetwork  # @UnresolvedImport
 
 planning_steps = []
 
+actor = str()
+
+thresholds = {"Gorssel":2e8,
+              "Deventer": 2e8,
+              "Overijssel": 2e8}
 
 def sum_over(*args):
     return sum(args)
 
+def sum_over_threshold(*args):
+    global actor
+    return max(sum(args), thresholds[actor])
 
 def difference(*args):
     '''
@@ -39,6 +47,8 @@ def get_model_for_problem_formulation(problem_formulation_id):
     function = DikeNetwork()
 
     planning_steps.append(function.planning_steps)
+    global actor
+    actor = problem_formulation_id
 
     # workbench model:
     dike_model = Model('dikesnet', function=function)
@@ -300,11 +310,15 @@ def get_model_for_problem_formulation(problem_formulation_id):
                 variable_names.extend(['{}_Expected Annual Damage {}'.format(dike, n)])
                 variable_names_.extend(['{}_Expected Number of Deaths {}'.format(dike, n)])
 
-        for n in function.planning_steps:
-            variable_names__.extend(['{}_Dike Investment Costs {}'.format(dike, n)
-                                    for dike in function.dikelist] + [
-                                       'RfR Total Costs {}'.format(n)
-                                   ] + ['Expected Evacuation Costs {}'.format(n)])
+        variable_names__ = ['A.4_{} {}'.format(e, n) for e in ['Dike Investment Costs', 'Expected Evacuation Costs']
+                            for n in function.planning_steps]
+
+
+        # for n in function.planning_steps:
+        #     variable_names__.extend(['{}_Dike Investment Costs {}'.format(dike, n)
+        #                             for dike in function.dikelist] + [
+        #                                'RfR Total Costs {}'.format(n)
+        #                            ] + ['Expected Evacuation Costs {}'.format(n)])
 
         outcomes = [ScalarOutcome('Difference in Expected Annual Damage Gorssel-Deventer',
                                   variable_name=[var for var in variable_names], function=difference,
@@ -318,10 +332,10 @@ def get_model_for_problem_formulation(problem_formulation_id):
                     ScalarOutcome('Gorssel Expected Number of Deaths',
                                   variable_name=[var for var in variable_names_[:len(function.planning_steps)]],
                                   function=sum_over, kind=direction),
-                    ScalarOutcome('Total Costs of Policies',
+                    ScalarOutcome('Gorssel Expected Costs of Dike and Evacuation',
                                   variable_name=[var for var in variable_names__],
-                                  function=sum_over, kind=direction)
-                    ]
+                                  function=sum_over_threshold, kind=direction)
+                    ] # evacuation + their own dikes
 
         dike_model.outcomes = outcomes
 
@@ -343,15 +357,7 @@ def get_model_for_problem_formulation(problem_formulation_id):
 
         variable_names = ['A.5_Expected Annual Damage {}'.format(n) for n in function.planning_steps]
         variable_names_ = ['A.5_Expected Number of Deaths {}'.format(n) for n in function.planning_steps]
-        variable_names__ = ['{} {}'.format(e, n)
-                            for e in ['RfR Total Costs', 'Expected Evacuation Costs'] for n in function.planning_steps]
-
-        # Not truly necessary, as these would just be 0, but might save us some time.
-        otherdikes = function.dikelist.tolist()
-        otherdikes.remove("A.5")
-
-        variable_names__.extend(['{}_Dike Investment Costs {}'.format(dike, n)
-                                    for dike in otherdikes for n in function.planning_steps])
+        variable_names__ = ['A.5_Expected Evacuation Costs {}'.format(n) for n in function.planning_steps]
 
         dike_model.outcomes = [ScalarOutcome('Deventer Expected Annual Damage',
                                              variable_name=[var for var in variable_names],
@@ -359,10 +365,10 @@ def get_model_for_problem_formulation(problem_formulation_id):
                                ScalarOutcome('Deventer Expected Number of Deaths',
                                              variable_name=[var for var in variable_names_],
                                              function=sum_over, kind=direction),
-                               ScalarOutcome('Total Costs of Policies',
+                               ScalarOutcome('Deventer Expected Costs of Evacuation',
                                              variable_name=[var for var in variable_names__],
-                                             function=sum_over, kind=direction),
-                               ]
+                                             function=sum_over_threshold, kind=direction),
+                               ] # evacation
 
     # Problem formulation Overijssel
     elif problem_formulation_id == "Overijssel":
@@ -374,12 +380,9 @@ def get_model_for_problem_formulation(problem_formulation_id):
         for dike in ['A.4', 'A.5']:
             variable_names.extend(['{}_Expected Annual Damage {}'.format(dike, n) for n in function.planning_steps])
             variable_names_.extend(['{}_Expected Number of Deaths {}'.format(dike, n) for n in function.planning_steps])
-
-        for n in function.planning_steps:
-            variable_names__.extend(['{}_Dike Investment Costs {}'.format(dike, n)
-                                    for dike in function.dikelist] + [
-                                       'RfR Total Costs {}'.format(n)
-                                   ] + ['Expected Evacuation Costs {}'.format(n)])
+            variable_names__.extend(['{}_{} {}'.format(dike, e, n)
+                                     for e in ['Expected Evacuation Costs']
+                                     for n in function.planning_steps])
 
         dike_model.outcomes = [ScalarOutcome('Gorssel and Deventer Expected Annual Damage',
                                              variable_name=[var for var in variable_names],
@@ -387,9 +390,9 @@ def get_model_for_problem_formulation(problem_formulation_id):
                                ScalarOutcome('Gorssel and Deventer Expected Number of Deaths',
                                              variable_name=[var for var in variable_names_],
                                              function=sum_over, kind=direction),
-                               ScalarOutcome('Total Costs of Policies',
-                                            variable_name=[var for var in variable_names__],
-                                            function=sum_over, kind=direction)
+                               ScalarOutcome('Gorssel and Deventer Expected Costs of Evacuation',
+                                            variable_name=[var for var in variable_names__] ,
+                                            function=sum_over_threshold, kind=direction)
         ]
 
         # changing the levers + uncertainties to match the problem framing

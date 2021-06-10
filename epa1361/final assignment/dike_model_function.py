@@ -276,10 +276,13 @@ class DikeNetwork(object):
 
                 # Expected Evacuation costs: depend on the event, the higher
                 # the event, the more people you have got to evacuate:
-                EECosts.append(np.trapz(node['evacuation_costs {}'.format(s)], self.p_exc))
+                # Fabio addaptation
+                evacosts = np.trapz(node['evacuation_costs {}'.format(s)], self.p_exc)
+                EECosts.append(evacosts)
 
                 data.update({'{}_Expected Annual Damage {}'.format(dike,s): disc_EAD,
                          '{}_Expected Number of Deaths {}'.format(dike,s): END,
+                          '{}_Expected Evacuation Costs {}'.format(dike, s): evacosts,
                          '{}_Dike Investment Costs {}'.format(dike,s
                                               ): node['dikecosts {}'.format(s)]})
 
