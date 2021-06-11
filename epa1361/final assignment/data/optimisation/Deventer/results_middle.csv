@@ -1,4 +1,2 @@
-3_RfR 0,3_RfR 1,3_RfR 2,4_RfR 0,4_RfR 1,4_RfR 2,EWS_DaysToThreat,A.4_DikeIncrease 0,A.4_DikeIncrease 1,A.4_DikeIncrease 2,Deventer Expected Annual Damage,Deventer Expected Number of Deaths,Total Costs of Policies
-1,1,0,0,0,0,0,0,0,0,0.0,0.0,1244892666.918717
-0,0,0,0,0,0,0,0,0,0,48725581.128886744,0.04059385677667571,1002492666.9187167
-0,0,1,0,0,0,0,0,0,0,4354775.251488373,0.003602759743221812,1123692666.9187167
+3_RfR 0,3_RfR 1,3_RfR 2,4_RfR 0,4_RfR 1,4_RfR 2,EWS_DaysToThreat,A.4_DikeIncrease 0,A.4_DikeIncrease 1,A.4_DikeIncrease 2,Deventer Expected Annual Damage,Deventer Expected Number of Deaths,Deventer Budget Overrun
+1,1,1,0,0,0,0,0,0,1,0.0,0.0,0.0
