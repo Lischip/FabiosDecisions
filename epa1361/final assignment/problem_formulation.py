@@ -33,7 +33,7 @@ def sum_over(*args):
     return sum(args)
 
 def sum_over_threshold(actor, *args):
-    return max(sum(args), thresholds[actor])
+    return max(0, max(sum(args), thresholds[actor]) - thresholds[actor])
 
 G_sum_over_t = functools.partial(sum_over_threshold, "Gorssel")
 D_sum_over_t = functools.partial(sum_over_threshold, "Deventer")
@@ -346,9 +346,12 @@ def get_model_for_problem_formulation(problem_formulation_id):
                     ScalarOutcome('Gorssel Expected Number of Deaths',
                                   variable_name=[var for var in variable_names_[:len(function.planning_steps)]],
                                   function=sum_over, kind=direction),
-                    ScalarOutcome('Gorssel Expected Total Costs',
+                    ScalarOutcome('Gorssel Budget Overrun ',
                                   variable_name=[var for var in variable_names__],
                                   function=G_sum_over_t, kind=direction),
+                    ScalarOutcome('Gorssel Total Costs ',
+                                  variable_name=[var for var in variable_names__],
+                                  function=sum_over, kind=ScalarOutcome.INFO),
                     ] # evacuation + their own dikes
 
         dike_model.outcomes = outcomes
@@ -385,9 +388,12 @@ def get_model_for_problem_formulation(problem_formulation_id):
                                ScalarOutcome('Deventer Expected Number of Deaths',
                                              variable_name=[var for var in variable_names_],
                                              function=sum_over, kind=direction),
-                               ScalarOutcome('Deventer Expected Total Costs',
+                               ScalarOutcome('Deventer Budget Overrun',
                                              variable_name=[var for var in variable_names__],
                                              function=D_sum_over_t, kind=direction),
+                               ScalarOutcome('Deventer Total Costs',
+                                             variable_name=[var for var in variable_names__],
+                                             function=sum_over, kind=ScalarOutcome.INFO)
                                ] # evacation
 
     # Problem formulation Overijssel
@@ -412,9 +418,12 @@ def get_model_for_problem_formulation(problem_formulation_id):
                                ScalarOutcome('Gorssel and Deventer Expected Number of Deaths',
                                              variable_name=[var for var in variable_names_],
                                              function=sum_over, kind=direction),
-                               ScalarOutcome('Gorssel and Deventer Expected Total Costs',
+                               ScalarOutcome('Gorssel and Deventer Budget Overrun',
                                             variable_name=[var for var in variable_names__] ,
-                                            function=O_sum_over_t, kind=direction)
+                                            function=O_sum_over_t, kind=direction),
+                               ScalarOutcome('Gorssel and Deventer Total Costs',
+                                             variable_name=[var for var in variable_names__],
+                                             function=O_sum_over_t, kind=ScalarOutcome.INFO)
         ]
 
         # changing the levers + uncertainties to match the problem framing
