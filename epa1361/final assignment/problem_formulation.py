@@ -15,19 +15,20 @@ planning_steps = []
 # https://data.overheid.nl/community/application/1652
 # https://allecijfers.nl/buurt/gorssel-lochem/
 n_gorssel = 3520
+n_lochem = 33590
 # https://allecijfers.nl/gemeente/deventer/
 # https://opendata.cbs.nl/#/CBS/nl/dataset/37230ned/table?searchKeywords=inwoneraantal%20gorssel
-n_deventer = 1000719
-
+n_deventer = 100719
+budget = 2e8
 
 # "Het totale budget was 2,3 miljard euro"
 # http://www.waterbouwsite.nl/projects/project.php?ID_projecten=361&show_uitvoerders=1   95.6 mln
 # https://www.ijsseldeltaprogramma.nl/ruimte-voor-de-rivier-ijsseldelta-al-in-2022-afgerond/ 121 million for phase 2, so
 # about 200e6 for the entire rfr stuff?
 
-thresholds = {"Overijssel": 2e8,
-              "Gorssel": (n_gorssel/(n_gorssel + n_deventer)) *2e8,
-              "Deventer": (n_deventer/(n_gorssel + n_deventer)) *2e8}
+thresholds = {"Overijssel": budget,
+              "Gorssel": (n_lochem /(n_lochem + n_deventer)) *budget,
+              "Deventer": (n_deventer/(n_lochem + n_deventer)) *budget}
 
 def sum_over(*args):
     return sum(args)
