@@ -3,6 +3,7 @@ import numpy as np
 import scipy as sp
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 import altair as alt
 import sys
 from ema_workbench import (Model, CategoricalParameter,
@@ -27,50 +28,51 @@ from problem_formulation import get_model_for_problem_formulation
 ema_logging.log_to_stderr(ema_logging.INFO)
 
 
-def run(actors=['Gorssel', 'Deventer', 'Overijssel'], n_scen=50):
+def run(actor, n_scen=50):
     """
     Run the program to generate extra trees per actor and perform sensitivity analysis
     """
 
-    for ActorName in actors:
-        # Specify the model
-        dike_model, planning_steps = get_model_for_problem_formulation(ActorName)
+    # Specify the model
+    dike_model, planning_steps = get_model_for_problem_formulation(actor)
 
-        print('Starting analysis:', ActorName)
-        ema_logging.log_to_stderr(ema_logging.INFO)
+    print('Starting analysis:', actor)
+    ema_logging.log_to_stderr(ema_logging.INFO)
 
-        # run analysis
-        with MultiprocessingEvaluator(dike_model) as evaluator:
-            sobol_results = evaluator.perform_experiments(n_scen, policies=1,
-                                                          uncertainty_sampling=SOBOL)
+    # run analysis
+    with MultiprocessingEvaluator(dike_model) as evaluator:
+        sobol_results = evaluator.perform_experiments(n_scen, policies=1,
+                                                      uncertainty_sampling=SOBOL)
 
-        # Save the results
-        save_results(sobol_results, './results/open_exploration_sobol_' + str(n_scen) + '_' + ActorName + '.tar.gz')
+    # Save the results
+    save_results(sobol_results, './results/open_exploration_sobol_' + str(n_scen) + '_' + actor + '.tar.gz')
 
-        print('Experiments saved:', ActorName)
+    print('Experiments saved:', actor)
 
-        sobol_experiments, sobol_outcomes = sobol_results
+    sobol_experiments, sobol_outcomes = sobol_results
 
-        x = sobol_experiments
-        y = sobol_outcomes
+    x = sobol_experiments
+    y = sobol_outcomes
 
-        print('Starting feature scoring:', ActorName)
+    print('Starting feature scoring:', actor)
 
-        fs = feature_scoring.get_feature_scores_all(x, y, alg='extra trees')
+    fs = feature_scoring.get_feature_scores_all(x, y, alg='extra trees')
 
-        # Set up figure
-        sns.set_style('white')
-        fig, ax = plt.subplots(1, 1)
-        fig.set_size_inches(20, 15)
+    # Set up figure
+    sns.set_style('white')
+    fig, ax = plt.subplots(1, 1)
+    fig.set_size_inches(20, 15)
 
-        sns.heatmap(fs, cmap='viridis', annot=True, ax=ax)
-        ax.set_title('Feature scoring ' + ActorName, fontsize=18)
+    sns.heatmap(fs, cmap='viridis', annot=True, ax=ax)
+    ax.set_title('Feature scoring ' + actor, fontsize=18)
 
-        # Might wanna add to appendices, but better if we make our own visualisation to merge all the actors
-        # and show what each one is sensitive to
-        plt.savefig('results/visualisations/Feature_scoring_' + ActorName + '.png')
+    # Might wanna add to appendices, but better if we make our own visualisation to merge all the actors
+    # and show what each one is sensitive to
+    plt.savefig('results/visualisations/Feature_scoring_' + actor + '.png')
 
-        print('Feature scoring visualization saved:', ActorName)
+    print('Feature scoring visualization saved:', actor)
+
+    print('Done!')
 
 if __name__ == '__main__':
     actors = str(sys.argv[1])
