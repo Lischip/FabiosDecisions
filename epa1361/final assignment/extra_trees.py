@@ -3,8 +3,8 @@ import numpy as np
 import scipy as sp
 import pandas as pd
 import matplotlib.pyplot as plt
-
 import altair as alt
+import sys
 from ema_workbench import (Model, CategoricalParameter,
                            ScalarOutcome, IntegerParameter, RealParameter, save_results, load_results)
 from dike_model_function import DikeNetwork  # @UnresolvedImport
@@ -36,7 +36,7 @@ def run(actors=['Gorssel', 'Deventer', 'Overijssel'], n_scen=50):
         # Specify the model
         dike_model, planning_steps = get_model_for_problem_formulation(ActorName)
 
-        print('Analysis:', ActorName)
+        print('Starting analysis:', ActorName)
         ema_logging.log_to_stderr(ema_logging.INFO)
 
         # run analysis
@@ -47,10 +47,15 @@ def run(actors=['Gorssel', 'Deventer', 'Overijssel'], n_scen=50):
         # Save the results
         save_results(sobol_results, './results/open_exploration_sobol_' + str(n_scen) + '_' + ActorName + '.tar.gz')
 
+        print('Experiments saved:', ActorName)
+
         sobol_experiments, sobol_outcomes = sobol_results
 
         x = sobol_experiments
         y = sobol_outcomes
+
+        print('Starting feature scoring:', ActorName)
+
         fs = feature_scoring.get_feature_scores_all(x, y, alg='extra trees')
 
         # Set up figure
@@ -64,5 +69,12 @@ def run(actors=['Gorssel', 'Deventer', 'Overijssel'], n_scen=50):
         # Might wanna add to appendices, but better if we make our own visualisation to merge all the actors
         # and show what each one is sensitive to
         plt.savefig('results/visualisations/Feature_scoring_' + ActorName + '.png')
+
+        print('Feature scoring visualization saved:', ActorName)
+
+if __name__ == '__main__':
+    actors = str(sys.argv[1])
+    n_scen = int(sys.argv[2])
+    run(actors, n_scen)
 
 # EOF
