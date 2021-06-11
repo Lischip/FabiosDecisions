@@ -10,11 +10,25 @@ from dike_model_function import DikeNetwork  # @UnresolvedImport
 
 planning_steps = []
 
+
 actor = str()
 
-thresholds = {"Gorssel":2e8,
-              "Deventer": 2e8,
-              "Overijssel": 2e8}
+# https://data.overheid.nl/community/application/1652
+# https://allecijfers.nl/buurt/gorssel-lochem/
+n_gorssel = 3520
+# https://allecijfers.nl/gemeente/deventer/
+# https://opendata.cbs.nl/#/CBS/nl/dataset/37230ned/table?searchKeywords=inwoneraantal%20gorssel
+n_deventer = 1000719
+
+
+# "Het totale budget was 2,3 miljard euro"
+# http://www.waterbouwsite.nl/projects/project.php?ID_projecten=361&show_uitvoerders=1   95.6 mln
+# https://www.ijsseldeltaprogramma.nl/ruimte-voor-de-rivier-ijsseldelta-al-in-2022-afgerond/ 121 million for phase 2, so
+# about 200e6 for the entire rfr stuff?
+
+thresholds = {"Overijssel": 1.15e9,
+              "Gorssel": (n_gorssel/(n_gorssel + n_deventer)) *1.15e9,
+              "Deventer": (n_deventer/(n_gorssel + n_deventer)) *1.15e9}
 
 def sum_over(*args):
     return sum(args)
@@ -33,10 +47,10 @@ def difference(*args):
     dike2 = sum(args[n:])
     # https://data.overheid.nl/community/application/1652
     # https://allecijfers.nl/buurt/gorssel-lochem/
-    dike1 /= 3520
+    dike1 /= n_gorssel
     # https://allecijfers.nl/gemeente/deventer/
     # https://opendata.cbs.nl/#/CBS/nl/dataset/37230ned/table?searchKeywords=inwoneraantal%20gorssel
-    dike2 /= 100719
+    dike2 /= n_deventer
     return dike1 - dike2
 
 def get_model_for_problem_formulation(problem_formulation_id):
@@ -47,6 +61,7 @@ def get_model_for_problem_formulation(problem_formulation_id):
     function = DikeNetwork()
 
     planning_steps.append(function.planning_steps)
+
     global actor
     actor = problem_formulation_id
 
@@ -310,9 +325,9 @@ def get_model_for_problem_formulation(problem_formulation_id):
                 variable_names.extend(['{}_Expected Annual Damage {}'.format(dike, n)])
                 variable_names_.extend(['{}_Expected Number of Deaths {}'.format(dike, n)])
 
-        variable_names__ = ['A.4_{} {}'.format(e, n) for e in ['Dike Investment Costs', 'Expected Evacuation Costs']
-                            for n in function.planning_steps]
-
+        for n in function.planning_steps:
+            variable_names__.extend(['A.4_{} {}'.format(e, n) for e in ['Dike Investment Costs', 'Expected Evacuation Costs']])
+            variable_names__.extend(["3_RfR {}".format(n)])
 
         # for n in function.planning_steps:
         #     variable_names__.extend(['{}_Dike Investment Costs {}'.format(dike, n)
@@ -332,9 +347,9 @@ def get_model_for_problem_formulation(problem_formulation_id):
                     ScalarOutcome('Gorssel Expected Number of Deaths',
                                   variable_name=[var for var in variable_names_[:len(function.planning_steps)]],
                                   function=sum_over, kind=direction),
-                    ScalarOutcome('Gorssel Expected Costs of Dike and Evacuation',
+                    ScalarOutcome('Gorssel Expected Total Costs',
                                   variable_name=[var for var in variable_names__],
-                                  function=sum_over_threshold, kind=direction)
+                                  function=sum_over_threshold, kind=direction),
                     ] # evacuation + their own dikes
 
         dike_model.outcomes = outcomes
@@ -355,9 +370,15 @@ def get_model_for_problem_formulation(problem_formulation_id):
         # Deventer stated the dikes could not be increased.
         dike_model.constants = [Constant('A.5_DikeIncrease {}'.format(n), 0) for n in function.planning_steps]
 
-        variable_names = ['A.5_Expected Annual Damage {}'.format(n) for n in function.planning_steps]
-        variable_names_ = ['A.5_Expected Number of Deaths {}'.format(n) for n in function.planning_steps]
-        variable_names__ = ['A.5_Expected Evacuation Costs {}'.format(n) for n in function.planning_steps]
+        variable_names = []
+        variable_names_ = []
+        variable_names__ = []
+
+        for n in function.planning_steps:
+            variable_names.extend(['A.5_Expected Annual Damage {}'.format(n)])
+            variable_names_.extend(['A.5_Expected Number of Deaths {}'.format(n)])
+            variable_names__.extend(['A.5_Expected Evacuation Costs {}'.format(n)])
+            variable_names__.extend(["4_RfR {}".format(n)])
 
         dike_model.outcomes = [ScalarOutcome('Deventer Expected Annual Damage',
                                              variable_name=[var for var in variable_names],
@@ -365,7 +386,7 @@ def get_model_for_problem_formulation(problem_formulation_id):
                                ScalarOutcome('Deventer Expected Number of Deaths',
                                              variable_name=[var for var in variable_names_],
                                              function=sum_over, kind=direction),
-                               ScalarOutcome('Deventer Expected Costs of Evacuation',
+                               ScalarOutcome('Deventer Expected Total Costs',
                                              variable_name=[var for var in variable_names__],
                                              function=sum_over_threshold, kind=direction),
                                ] # evacation
@@ -381,8 +402,10 @@ def get_model_for_problem_formulation(problem_formulation_id):
             variable_names.extend(['{}_Expected Annual Damage {}'.format(dike, n) for n in function.planning_steps])
             variable_names_.extend(['{}_Expected Number of Deaths {}'.format(dike, n) for n in function.planning_steps])
             variable_names__.extend(['{}_{} {}'.format(dike, e, n)
-                                     for e in ['Expected Evacuation Costs']
+                                     for e in ['Dike Investment Costs', 'Expected Evacuation Costs']
                                      for n in function.planning_steps])
+
+        variable_names__.extend("{}_RfR {}".format(rfr, n) for rfr in (3, 4) for n in function.planning_steps)
 
         dike_model.outcomes = [ScalarOutcome('Gorssel and Deventer Expected Annual Damage',
                                              variable_name=[var for var in variable_names],
@@ -390,7 +413,7 @@ def get_model_for_problem_formulation(problem_formulation_id):
                                ScalarOutcome('Gorssel and Deventer Expected Number of Deaths',
                                              variable_name=[var for var in variable_names_],
                                              function=sum_over, kind=direction),
-                               ScalarOutcome('Gorssel and Deventer Expected Costs of Evacuation',
+                               ScalarOutcome('Gorssel and Deventer Expected Total Costs',
                                             variable_name=[var for var in variable_names__] ,
                                             function=sum_over_threshold, kind=direction)
         ]

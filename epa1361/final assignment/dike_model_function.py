@@ -123,6 +123,10 @@ class DikeNetwork(object):
         # Call RfR initialization:
         self._initialize_rfr_ooi(G, dikelist, self.planning_steps)
 
+        # Fabio moved this
+        # Dictionary storing outputs:
+        data = {}
+
         # Load all kwargs into network. Kwargs are uncertainties and levers:
         for item in kwargs:
             # when item is 'discount rate':
@@ -138,11 +142,17 @@ class DikeNetwork(object):
                     # Note: kwargs[item] in this case can be either 0
                     # (no project) or 1 (yes project)
                     temporal_step = string2.split(' ')[1]
-                    
+
                     proj_node = G.nodes['RfR_projects {}'.format(temporal_step)]
+
+                    old_cost = proj_node['cost']
+
                     # Cost of RfR project
                     proj_node['cost'] += kwargs[item] * proj_node[string1][
                         'costs_1e6'] * 1e6
+
+                    # Fabio's addition
+                    data.update({'{}_{}'.format(string1, string2): proj_node['cost'] - old_cost})
 
                     # Iterate over the location affected by the project
                     for key in proj_node[string1].keys():
@@ -154,7 +164,7 @@ class DikeNetwork(object):
                     # string1: dikename or EWS
                     # string2: name of uncertainty or lever
                     G.nodes[string1][string2] = kwargs[item]
-                    
+
         self.progressive_height_and_costs(G, dikelist, self.planning_steps)
 
         # Percentage of people who can be evacuated for a given warning
@@ -162,9 +172,6 @@ class DikeNetwork(object):
         G.nodes['EWS']['evacuation_percentage'] = G.nodes['EWS']['evacuees'][
             G.nodes['EWS']['DaysToThreat']]
 
-        # Dictionary storing outputs:
-        data = {}
-        
         for s in self.planning_steps:
             for Qpeak in Qpeaks:
                 node = G.nodes['A.0']
@@ -276,7 +283,7 @@ class DikeNetwork(object):
 
                 # Expected Evacuation costs: depend on the event, the higher
                 # the event, the more people you have got to evacuate:
-                # Fabio addaptation
+                # Fabio's adaptation
                 evacosts = np.trapz(node['evacuation_costs {}'.format(s)], self.p_exc)
                 EECosts.append(evacosts)
 
