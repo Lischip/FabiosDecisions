@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="96affc32-a0b4-420f-9ad5-31a4badde532" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deventer_optimisation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/deventer_optimisation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gorssel_optimisation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/gorssel_optimisation.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
