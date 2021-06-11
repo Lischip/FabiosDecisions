@@ -7,11 +7,10 @@ Created on Wed Mar 21 17:34:11 2018
 from ema_workbench import (Model, CategoricalParameter,
                            ScalarOutcome, IntegerParameter, RealParameter, Constant)
 from dike_model_function import DikeNetwork  # @UnresolvedImport
+import functools
+
 
 planning_steps = []
-
-
-actor = str()
 
 # https://data.overheid.nl/community/application/1652
 # https://allecijfers.nl/buurt/gorssel-lochem/
@@ -33,9 +32,12 @@ thresholds = {"Overijssel": 1.15e9,
 def sum_over(*args):
     return sum(args)
 
-def sum_over_threshold(*args):
-    global actor
+def sum_over_threshold(actor, *args):
     return max(sum(args), thresholds[actor])
+
+G_sum_over_t = functools.partial(sum_over_threshold, "Gorssel")
+D_sum_over_t = functools.partial(sum_over_threshold, "Deventer")
+O_sum_over_t = functools.partial(sum_over_threshold, "Overijssel")
 
 def difference(*args):
     '''
@@ -61,9 +63,6 @@ def get_model_for_problem_formulation(problem_formulation_id):
     function = DikeNetwork()
 
     planning_steps.append(function.planning_steps)
-
-    global actor
-    actor = problem_formulation_id
 
     # workbench model:
     dike_model = Model('dikesnet', function=function)
@@ -349,7 +348,7 @@ def get_model_for_problem_formulation(problem_formulation_id):
                                   function=sum_over, kind=direction),
                     ScalarOutcome('Gorssel Expected Total Costs',
                                   variable_name=[var for var in variable_names__],
-                                  function=sum_over_threshold, kind=direction),
+                                  function=G_sum_over_t, kind=direction),
                     ] # evacuation + their own dikes
 
         dike_model.outcomes = outcomes
@@ -388,7 +387,7 @@ def get_model_for_problem_formulation(problem_formulation_id):
                                              function=sum_over, kind=direction),
                                ScalarOutcome('Deventer Expected Total Costs',
                                              variable_name=[var for var in variable_names__],
-                                             function=sum_over_threshold, kind=direction),
+                                             function=D_sum_over_t, kind=direction),
                                ] # evacation
 
     # Problem formulation Overijssel
@@ -415,7 +414,7 @@ def get_model_for_problem_formulation(problem_formulation_id):
                                              function=sum_over, kind=direction),
                                ScalarOutcome('Gorssel and Deventer Expected Total Costs',
                                             variable_name=[var for var in variable_names__] ,
-                                            function=sum_over_threshold, kind=direction)
+                                            function=O_sum_over_t, kind=direction)
         ]
 
         # changing the levers + uncertainties to match the problem framing
