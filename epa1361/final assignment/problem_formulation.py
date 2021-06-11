@@ -25,9 +25,9 @@ n_deventer = 1000719
 # https://www.ijsseldeltaprogramma.nl/ruimte-voor-de-rivier-ijsseldelta-al-in-2022-afgerond/ 121 million for phase 2, so
 # about 200e6 for the entire rfr stuff?
 
-thresholds = {"Overijssel": 1.15e9,
-              "Gorssel": (n_gorssel/(n_gorssel + n_deventer)) *1.15e9,
-              "Deventer": (n_deventer/(n_gorssel + n_deventer)) *1.15e9}
+thresholds = {"Overijssel": 2e8,
+              "Gorssel": (n_gorssel/(n_gorssel + n_deventer)) *2e8,
+              "Deventer": (n_deventer/(n_gorssel + n_deventer)) *2e8}
 
 def sum_over(*args):
     return sum(args)
