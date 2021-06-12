@@ -348,10 +348,10 @@ def get_model_for_problem_formulation(problem_formulation_id):
                     ScalarOutcome('Gorssel Expected Number of Deaths',
                                   variable_name=[var for var in variable_names_[:len(function.planning_steps)]],
                                   function=sum_over, kind=direction),
-                    ScalarOutcome('Gorssel Budget Overrun ',
+                    ScalarOutcome('Gorssel Budget Overrun',
                                   variable_name=[var for var in variable_names__],
                                   function=G_sum_over_t, kind=direction),
-                    ScalarOutcome('Gorssel Total Costs ',
+                    ScalarOutcome('Gorssel Total Costs',
                                   variable_name=[var for var in variable_names__],
                                   function=sum_over, kind=ScalarOutcome.INFO),
                     ] # evacuation + their own dikes
