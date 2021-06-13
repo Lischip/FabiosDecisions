@@ -7,7 +7,7 @@ Created on Wed Mar 21 17:34:11 2018
 from ema_workbench import (Model, CategoricalParameter,
                            ScalarOutcome, IntegerParameter, RealParameter, Constant)
 from dike_model_function import DikeNetwork  # @UnresolvedImport
-import functools
+# import functools
 
 
 planning_steps = []
@@ -19,7 +19,7 @@ n_lochem = 33590
 # https://allecijfers.nl/gemeente/deventer/
 # https://opendata.cbs.nl/#/CBS/nl/dataset/37230ned/table?searchKeywords=inwoneraantal%20gorssel
 n_deventer = 100719
-budget = 1e8
+# budget = 1e8
 
 # "Het totale budget was 2,3 miljard euro"
 # http://www.waterbouwsite.nl/projects/project.php?ID_projecten=361&show_uitvoerders=1   95.6 mln
@@ -27,19 +27,19 @@ budget = 1e8
 # about 200e6 for the entire rfr stuff?
 
 
-thresholds = {"Overijssel": budget,
-              "Gorssel": 1e7,
-              "Deventer": 1e7}
+# thresholds = {"Overijssel": budget,
+#               "Gorssel": 1e7,
+#               "Deventer": 1e7}
 
 def sum_over(*args):
     return sum(args)
 
-def sum_over_threshold(actor, *args):
-    return max(0, max(sum(args), thresholds[actor]) - thresholds[actor])
-
-G_sum_over_t = functools.partial(sum_over_threshold, "Gorssel")
-D_sum_over_t = functools.partial(sum_over_threshold, "Deventer")
-O_sum_over_t = functools.partial(sum_over_threshold, "Overijssel")
+# def sum_over_threshold(actor, *args):
+#     return max(0, max(sum(args), thresholds[actor]) - thresholds[actor])
+#
+# G_sum_over_t = functools.partial(sum_over_threshold, "Gorssel")
+# D_sum_over_t = functools.partial(sum_over_threshold, "Deventer")
+# O_sum_over_t = functools.partial(sum_over_threshold, "Overijssel")
 
 def difference(*args):
     '''
@@ -348,12 +348,9 @@ def get_model_for_problem_formulation(problem_formulation_id):
                     ScalarOutcome('Gorssel Expected Number of Deaths',
                                   variable_name=[var for var in variable_names_[:len(function.planning_steps)]],
                                   function=sum_over, kind=direction),
-                    ScalarOutcome('Gorssel Budget Overrun',
-                                  variable_name=[var for var in variable_names__],
-                                  function=G_sum_over_t, kind=direction),
                     ScalarOutcome('Gorssel Total Costs',
                                   variable_name=[var for var in variable_names__],
-                                  function=sum_over, kind=ScalarOutcome.INFO),
+                                  function=sum_over, kind=direction),
                     ] # evacuation + their own dikes
 
         dike_model.outcomes = outcomes
@@ -390,12 +387,9 @@ def get_model_for_problem_formulation(problem_formulation_id):
                                ScalarOutcome('Deventer Expected Number of Deaths',
                                              variable_name=[var for var in variable_names_],
                                              function=sum_over, kind=direction),
-                               ScalarOutcome('Deventer Budget Overrun',
-                                             variable_name=[var for var in variable_names__],
-                                             function=D_sum_over_t, kind=direction),
                                ScalarOutcome('Deventer Total Costs',
                                              variable_name=[var for var in variable_names__],
-                                             function=sum_over, kind=ScalarOutcome.INFO)
+                                             function=sum_over, kind=direction)
                                ] # evacation
 
     # Problem formulation Overijssel
@@ -420,12 +414,9 @@ def get_model_for_problem_formulation(problem_formulation_id):
                                ScalarOutcome('Gorssel and Deventer Expected Number of Deaths',
                                              variable_name=[var for var in variable_names_],
                                              function=sum_over, kind=direction),
-                               ScalarOutcome('Gorssel and Deventer Budget Overrun',
-                                            variable_name=[var for var in variable_names__] ,
-                                            function=O_sum_over_t, kind=direction),
                                ScalarOutcome('Gorssel and Deventer Total Costs',
                                              variable_name=[var for var in variable_names__],
-                                             function=O_sum_over_t, kind=ScalarOutcome.INFO)
+                                             function=O_sum_over_t, kind=direction)
         ]
 
         # changing the levers + uncertainties to match the problem framing
