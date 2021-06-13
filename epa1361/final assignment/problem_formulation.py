@@ -416,7 +416,7 @@ def get_model_for_problem_formulation(problem_formulation_id):
                                              function=sum_over, kind=direction),
                                ScalarOutcome('Gorssel and Deventer Total Costs',
                                              variable_name=[var for var in variable_names__],
-                                             function=O_sum_over_t, kind=direction)
+                                             function=sum_over, kind=direction)
         ]
 
         # changing the levers + uncertainties to match the problem framing
