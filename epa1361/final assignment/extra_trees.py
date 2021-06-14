@@ -46,30 +46,26 @@ def run(actor, n_scen=50):
         temp = pd.read_csv("data/optimisation/" + actor + "/results_" + case + ".csv")
         read_results.append(temp)
 
-    opt_df = pd.DataFrame()
-    for i, result in enumerate(read_results):
-        opt_df = pd.concat([opt_df, result], axis=0)
-
-    levers = [i.name for i in dike_model.levers]
+    levers = [lever.name for lever in dike_model.levers]
 
     policies = []
-
-    for nr, entry in opt_df.iterrows():
-        policy_dict = {}
-
-        for i in levers:
-            policy_dict[i] = entry[i]
-
-        policies.append(Policy(policy_dict))
+    for i, result in enumerate(read_results):
+        result = result.loc[:, levers]
+        # print(result)
+        for j, row in result.iterrows():
+            # print(f'scenario {cases[i]} option {j}')
+            policy = Policy(f'scenario {cases[i]} option {j}', **row.to_dict())
+            policies.append(policy)
 
     print('Starting analysis:', actor)
     ema_logging.log_to_stderr(ema_logging.INFO)
 
     # run analysis
     with MultiprocessingEvaluator(dike_model) as evaluator:
-        sobol_results = evaluator.perform_experiments(n_scen, policies=1,
+        sobol_results = evaluator.perform_experiments(n_scen,
+                                                      # policies=1,
                                                       # policies=0,
-                                                      # policies=policies,
+                                                      policies=policies,
                                                       uncertainty_sampling=SOBOL)
 
     # Save the results
