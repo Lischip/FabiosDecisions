@@ -28,7 +28,7 @@ from problem_formulation import get_model_for_problem_formulation
 ema_logging.log_to_stderr(ema_logging.INFO)
 
 
-def run(actor, n_scen=50):
+def run(actor, n_scen):
     """
     Run the program to generate extra trees per actor and perform sensitivity analysis
     """
@@ -97,6 +97,7 @@ def run(actor, n_scen=50):
     print('Feature scoring visualization saved:', actor)
 
     print('Done!')
+
 
 if __name__ == '__main__':
     actors = str(sys.argv[1])
