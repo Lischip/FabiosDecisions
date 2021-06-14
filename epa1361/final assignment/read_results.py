@@ -2,10 +2,8 @@ from ema_workbench import Scenario, Policy, MultiprocessingEvaluator, ema_loggin
 from ema_workbench.analysis import prim
 from problem_formulation import get_model_for_problem_formulation
 from ema_workbench.em_framework.evaluators import BaseEvaluator
-
 from ema_workbench.em_framework.optimization import (HyperVolume,
                                                      EpsilonProgress)
-
 import pandas as pd
 import numpy as np
 from ema_workbench.analysis import parcoords
