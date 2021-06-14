@@ -254,8 +254,7 @@ def get_model_for_problem_formulation(problem_formulation_id):
                                                                                  ) for n in function.planning_steps],
                                       function=sum_over, kind=direction))
         outcomes.append(ScalarOutcome('Expected Evacuation Costs',
-                                      variable_name=['Expected Evacuation Costs {}'.format(n
-                                                                                           ) for n in
+                                      variable_name=['Expected Evacuation Costs {}'.format(n) for n in
                                                      function.planning_steps],
                                       function=sum_over, kind=direction))
 
