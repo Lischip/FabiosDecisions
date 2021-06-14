@@ -36,12 +36,40 @@ def run(actor, n_scen=50):
     # Specify the model
     dike_model, planning_steps = get_model_for_problem_formulation(actor)
 
+    # Get policies
+
+    cases = {0: "best", 1: "low", 2: "middle", 3: "high", 4: "worst deaths", 5: "absolute worst"}
+
+    read_results = []
+
+    for _, case in cases.items():
+        temp = pd.read_csv("data/optimisation/" + actor + "/results_" + case + ".csv")
+        read_results.append(temp)
+
+    opt_df = pd.DataFrame()
+    for i, result in enumerate(read_results):
+        opt_df = pd.concat([opt_df, result], axis=0)
+
+    levers = [i.name for dike_model.levers]
+
+    policies = []
+
+    for nr, entry in opt_df.iterrows():
+        policy_dict = {}
+
+        for i in levers:
+            policy_dict[i] = entry[i]
+
+        policies.append(Policy(policy_dict))
+
     print('Starting analysis:', actor)
     ema_logging.log_to_stderr(ema_logging.INFO)
 
     # run analysis
     with MultiprocessingEvaluator(dike_model) as evaluator:
         sobol_results = evaluator.perform_experiments(n_scen, policies=1,
+                                                      # policies=0,
+                                                      # policies=policies,
                                                       uncertainty_sampling=SOBOL)
 
     # Save the results
