@@ -46,34 +46,30 @@ def run(actor, n_scen=50):
         temp = pd.read_csv("data/optimisation/" + actor + "/results_" + case + ".csv")
         read_results.append(temp)
 
-    opt_df = pd.DataFrame()
-    for i, result in enumerate(read_results):
-        opt_df = pd.concat([opt_df, result], axis=0)
-
-    levers = [i.name for i in dike_model.levers]
+    levers = [lever.name for lever in dike_model.levers]
 
     policies = []
-
-    for nr, entry in opt_df.iterrows():
-        policy_dict = {}
-
-        for i in levers:
-            policy_dict[i] = entry[i]
-
-        policies.append(Policy(policy_dict))
+    for i, result in enumerate(read_results):
+        result = result.loc[:, levers]
+        # print(result)
+        for j, row in result.iterrows():
+            # print(f'scenario {cases[i]} option {j}')
+            policy = Policy(f'scenario {cases[i]} option {j}', **row.to_dict())
+            policies.append(policy)
 
     print('Starting analysis:', actor)
     ema_logging.log_to_stderr(ema_logging.INFO)
 
     # run analysis
     with MultiprocessingEvaluator(dike_model) as evaluator:
-        sobol_results = evaluator.perform_experiments(n_scen, policies=1,
+        sobol_results = evaluator.perform_experiments(scenarios=n_scen,
+                                                      # policies=1,
                                                       # policies=0,
-                                                      # policies=policies,
+                                                      policies=policies,
                                                       uncertainty_sampling=SOBOL)
 
     # Save the results
-    save_results(sobol_results, './results/open_exploration_sobol_' + str(n_scen) + '_' + actor + '.tar.gz')
+    save_results(sobol_results, './results/extra_trees_sobol_' + str(n_scen) + '_' + actor + '.tar.gz')
 
     print('Experiments saved:', actor)
 
@@ -96,7 +92,7 @@ def run(actor, n_scen=50):
 
     # Might wanna add to appendices, but better if we make our own visualisation to merge all the actors
     # and show what each one is sensitive to
-    plt.savefig('results/visualisations/Feature_scoring_' + actor + '.png')
+    plt.savefig('results/visualisations/Feature_scoring_' + actor + '_' + str(n_scen) + 'scen.png')
 
     print('Feature scoring visualization saved:', actor)
 
