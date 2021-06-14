@@ -50,7 +50,7 @@ def run(actor, n_scen=50):
     for i, result in enumerate(read_results):
         opt_df = pd.concat([opt_df, result], axis=0)
 
-    levers = [i.name for dike_model.levers]
+    levers = [i.name for i in dike_model.levers]
 
     policies = []
 
