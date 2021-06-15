@@ -23,9 +23,11 @@ import SALib.util.results
 from ema_workbench.analysis import regional_sa
 from numpy.lib import recfunctions as rf
 from ema_workbench.util import ema_logging
+from funs_project import get_opti_policies
 import time
 from problem_formulation import get_model_for_problem_formulation
 ema_logging.log_to_stderr(ema_logging.INFO)
+
 
 
 def run(actor, n_scen):
@@ -34,28 +36,11 @@ def run(actor, n_scen):
     """
 
     # Specify the model
-    dike_model, planning_steps = get_model_for_problem_formulation(actor)
+    dike_model, _ = get_model_for_problem_formulation(actor)
 
     # Get policies
 
-    cases = {0: "best", 1: "low", 2: "middle", 3: "high", 4: "worst deaths", 5: "absolute worst"}
-
-    read_results = []
-
-    for _, case in cases.items():
-        temp = pd.read_csv("data/optimisation/" + actor + "/results_" + case + ".csv")
-        read_results.append(temp)
-
-    levers = [lever.name for lever in dike_model.levers]
-
-    policies = []
-    for i, result in enumerate(read_results):
-        result = result.loc[:, levers]
-        # print(result)
-        for j, row in result.iterrows():
-            # print(f'scenario {cases[i]} option {j}')
-            policy = Policy(f'scenario {cases[i]} option {j}', **row.to_dict())
-            policies.append(policy)
+    policies = get_opti_policies(actor)
 
     print('Starting analysis:', actor)
     ema_logging.log_to_stderr(ema_logging.INFO)
