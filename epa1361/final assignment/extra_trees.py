@@ -89,4 +89,4 @@ if __name__ == '__main__':
     n_scen = int(sys.argv[2])
     run(actors, n_scen)
 
-# EOFpip
+# EOF
