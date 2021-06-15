@@ -77,7 +77,7 @@ def run(actor, n_scen):
 
     # Might wanna add to appendices, but better if we make our own visualisation to merge all the actors
     # and show what each one is sensitive to
-    plt.savefig('results/visualisations/Feature_scoring_' + actor + '_' + str(n_scen) + 'scen.png')
+    plt.savefig('..report/figures/Feature_scoring_' + actor + '_' + str(n_scen) + 'scen.png')
 
     print('Feature scoring visualization saved:', actor)
 
