@@ -14,7 +14,7 @@ def get_cases(actor, n_scenarios=1000):
     Obtain the cases used from optimisation
     """
     du_experiments, _ = load_results(
-        "data/optimisation/du_scen_" + str(n_scenarios) + "_" + actor + ".tar.gz")
+        "simulation/optimisation/du_scen_" + str(n_scenarios) + "_" + actor + ".tar.gz")
 
     cases_set = set()
 
@@ -37,8 +37,8 @@ def get_opti_results(actor, n_scenarios=1000):
     read_results = []
 
     for _, case in cases.items():
-        temp = pd.read_csv("data/optimisation/" + actor + "/results_" + case + ".csv")
-        temp_ = pd.read_csv("data/optimisation/" + actor + "/convergence_" + case + ".csv")
+        temp = pd.read_csv("simulation/optimisation/" + actor + "/results_" + case + ".csv")
+        temp_ = pd.read_csv("simulation/optimisation/" + actor + "/convergence_" + case + ".csv")
         read_results.append([temp, temp_])
 
     # opt_df = pd.DataFrame()

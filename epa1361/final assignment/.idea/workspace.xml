@@ -3,7 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="96affc32-a0b4-420f-9ad5-31a4badde532" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opt_proc_Overijssel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/opt_proc_Overijssel.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SA_mod.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/SA_mod.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Untitled.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/emily_notebook.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/emily_notebook.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/funs_project.py" beforeDir="false" afterPath="$PROJECT_DIR$/funs_project.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen_scen.py" beforeDir="false" afterPath="$PROJECT_DIR$/gen_scen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opt_proc_deventer.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/opt_proc_deventer.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opt_proc_gorssel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/opt_proc_gorssel.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/opt_proc_overijssel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/opt_proc_overijssel.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optimisation_deventer.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/optimisation_deventer.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optimisation_gorssel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/optimisation_gorssel.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/optimisation_overijssel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/optimisation_overijssel.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/read_results.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_results.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scen_discovery_deventer.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scen_discovery_deventer.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scen_discovery_gorssel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scen_discovery_gorssel.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scen_discovery_overijssel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scen_discovery_overijssel.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scen_selection.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scen_selection.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

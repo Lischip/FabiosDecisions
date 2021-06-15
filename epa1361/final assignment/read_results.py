@@ -18,8 +18,8 @@ def opti_results(actor, cases={0: "best", 1: "low", 2: "middle", 3: "high", 4: "
     read_results = []
 
     for _, case in cases.items():
-        temp = pd.read_csv("data/optimisation/" + actor + "/results_" + case + ".csv")
-        temp_ = pd.read_csv("data/optimisation/" + actor + "/convergence_" + case + ".csv")
+        temp = pd.read_csv("simulation/optimisation/" + actor + "/results_" + case + ".csv")
+        temp_ = pd.read_csv("simulation/optimisation/" + actor + "/convergence_" + case + ".csv")
         read_results.append([temp, temp_])
 
         opt_df = pd.DataFrame()

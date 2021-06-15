@@ -26,7 +26,7 @@ def run(actor="Gorssel", n=50000):
     with MultiprocessingEvaluator(dike_model) as evaluator:
         results = evaluator.perform_experiments(scenarios=n, policies=policy0, uncertainty_sampling=LHS)
 
-    save_results(results, "data/generated/genscen_"+actor+'_'+str(n)+'_'+str(datetime.now().strftime("%d-%m-%Y-%H-%M-%S") +".tar.gz"))
+    save_results(results, "simulation/generated/genscen_"+actor+'_'+str(n)+'_'+str(datetime.now().strftime("%d-%m-%Y-%H-%M-%S") +".tar.gz"))
     print("Done!")
     return
 
