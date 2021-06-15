@@ -3,22 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="96affc32-a0b4-420f-9ad5-31a4badde532" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SA_mod.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/SA_mod.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Untitled.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/emily_notebook.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/emily_notebook.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funs_project.py" beforeDir="false" afterPath="$PROJECT_DIR$/funs_project.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen_scen.py" beforeDir="false" afterPath="$PROJECT_DIR$/gen_scen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opt_proc_deventer.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/opt_proc_deventer.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opt_proc_gorssel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/opt_proc_gorssel.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/opt_proc_overijssel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/opt_proc_overijssel.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/optimisation_deventer.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/optimisation_deventer.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/optimisation_gorssel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/optimisation_gorssel.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/optimisation_overijssel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/optimisation_overijssel.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/read_results.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_results.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scen_discovery_deventer.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scen_discovery_deventer.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scen_discovery_gorssel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scen_discovery_gorssel.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scen_discovery_overijssel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scen_discovery_overijssel.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scen_selection.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scen_selection.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,12 +20,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectId" id="1tdSvqxInwynxjGrWHj37Yszxnr" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -124,5 +111,8 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
