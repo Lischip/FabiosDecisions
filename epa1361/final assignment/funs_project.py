@@ -22,7 +22,7 @@ def the_cases(actor):
         return dcases
     else:
         print("Error")
-        return
+        return 0
 
 def crude_policy_selection(actor, clusters):
     """"
