@@ -71,4 +71,20 @@ def get_opti_policies(actor, n_scenarios=1000):
 
     return policies
 
+def get_selected_policies(actor):
+    """
+    Obtain narrowed down policies selected for a specific actor
+    """
+    dike_model, _ = get_model_for_problem_formulation(actor)
+    levers = [lever.name for lever in dike_model.levers]
+    policies_df = pd.read_csv('simulation/selected_policies_' + actor + '.csv')
+    policies_df = policies_df.loc[:, levers]
+    policies = []
+
+    for i, row in policies_df.iterrows():
+        policy = Policy(f'Policy {i}', **row.to_dict())
+        policies.append(policy)
+
+    return policies
+
 # EOF

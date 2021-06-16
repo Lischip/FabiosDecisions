@@ -23,7 +23,7 @@ import SALib.util.results
 from ema_workbench.analysis import regional_sa
 from numpy.lib import recfunctions as rf
 from ema_workbench.util import ema_logging
-from funs_project import get_opti_policies
+from funs_project import get_opti_policies, get_selected_policies
 import time
 from problem_formulation import get_model_for_problem_formulation
 ema_logging.log_to_stderr(ema_logging.INFO)
@@ -40,7 +40,8 @@ def run(actor, n_scen):
 
     # Get policies
 
-    policies = get_opti_policies(actor)
+    # policies = get_opti_policies(actor)
+    policies = get_selected_policies(actor)
 
     print('Starting analysis:', actor)
     ema_logging.log_to_stderr(ema_logging.INFO)
