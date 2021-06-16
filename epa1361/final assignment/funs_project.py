@@ -1,17 +1,74 @@
 from ema_workbench import Scenario, Policy, MultiprocessingEvaluator, ema_logging, load_results
-from ema_workbench.analysis import prim
 from problem_formulation import get_model_for_problem_formulation
-from ema_workbench.em_framework.evaluators import BaseEvaluator
-from ema_workbench.em_framework.optimization import (HyperVolume,
-                                                     EpsilonProgress)
 import pandas as pd
-import numpy as np
-from ema_workbench.analysis import parcoords
-import seaborn as sns
+from sklearn.cluster import KMeans
+from sklearn import preprocessing
 
 gcases = {0: "best", 1: "low", 2: "middle", 3: "high", 4: "worst deaths", 5: "absolute worst"}
 ocases = {0: "best", 1: "low", 2: "middle", 3: "high", 4: "worst deaths", 5: "absolute worst"}
 dcases = {0: "best", 1: "low", 2: "middle", 3: "high", 4: "absolute worst", 5: "worst damage"}
+
+
+def the_cases(actor):
+    if actor == "Overijssel":
+        return ocases
+    elif actor == "Gorssel":
+        return gcases
+    elif actor == "Deventer":
+        return dcases
+    else:
+        print("Error")
+        return
+
+def crude_policy_selection(actor, clusters):
+    """"
+    make a crude policy selection by clustering the dataframe, normalising each cluster, and selecting the policies
+    with the worst sum over each row.
+    """
+    # read in results from optimisation
+    results = []
+
+    for _, case in the_cases(actor).items():
+        temp = pd.read_csv("simulation/optimisation/" + actor + "/results_" + case + ".csv")
+        temp_ = pd.read_csv("simulation/optimisation/" + actor + "/convergence_" + case + ".csv")
+        results.append([temp, temp_])
+
+    # collapse in 1 dataframe
+    opt_df = pd.DataFrame()
+    for i, (result, convergence) in enumerate(results):
+        result["scenario"] = i
+        opt_df = pd.concat([opt_df, result], axis=0)
+
+    # clean up
+    opt_df.reset_index(inplace=True, drop=True)
+    opt_df.drop_duplicates(inplace=True)
+
+    # select policies + add scenario back
+    policies = opt_df.iloc[:, :-4]
+    policies = pd.concat([policies, opt_df["scenario"]], axis=1)
+
+    kmeans = KMeans(n_clusters=clusters, random_state=0).fit(policies.iloc[:, :-1])
+
+    # get all policies in each cluster
+    policies['cluster'] = kmeans.labels_
+    groups = policies.groupby(by="cluster")
+    groups = groups.obj.sort_values("cluster", ascending=True)
+
+    # assign values to each policy in each  cluster
+    groups["value"] = 0
+    for i in range(clusters):
+        group = groups.loc[groups["cluster"] == i]
+        group = group.iloc[:, :-3]
+        scaler = preprocessing.MinMaxScaler().fit(group)
+        data_scaled = scaler.transform(group)
+        groups.at[group.index.values, 'value'] = data_scaled.sum(axis=1)
+
+    # get the most extreme two per cluster
+    idx = []
+    for cluster in range(clusters):
+        idx.extend(groups.loc[groups["cluster"] == cluster].sort_values(by="value", ascending=False)[:2].index.values.tolist())
+
+    return opt_df.iloc[idx]
 
 def get_cases(actor, n_scenarios=1000):
     """
