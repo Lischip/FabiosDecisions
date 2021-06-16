@@ -9,6 +9,10 @@ import numpy as np
 from ema_workbench.analysis import parcoords
 import seaborn as sns
 
+gcases = {0: "best", 1: "low", 2: "middle", 3: "high", 4: "worst deaths", 5: "absolute worst"}
+dcases = {0: "best", 1: "low", 2: "middle", 3: "high", 4: "absolute worst", 5: "worst damage"}
+ocases= {0: "best", 1: "low", 2: "middle", 3: "high", 4: "worst deaths", 5: "absolute worst"}
+
 def get_cases(actor, n_scenarios=1000):
     """
     Obtain the cases used from optimisation
