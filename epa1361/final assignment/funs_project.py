@@ -152,7 +152,7 @@ def get_selected_policies(actor):
     """
     dike_model, _ = get_model_for_problem_formulation(actor)
     levers = [lever.name for lever in dike_model.levers]
-    policies_df = pd.read_csv('simulation/selected_policies_' + actor + '.csv')
+    policies_df = pd.read_csv('simulation/selected/selected_policies_' + actor + '.csv')
     policies_df = policies_df.loc[:, levers]
     policies = []
 

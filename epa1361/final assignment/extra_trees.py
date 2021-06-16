@@ -46,6 +46,7 @@ def run(actor, n_scen):
     print('Starting analysis:', actor)
     ema_logging.log_to_stderr(ema_logging.INFO)
 
+    start = time.time()
     # run analysis
     with MultiprocessingEvaluator(dike_model) as evaluator:
         sobol_results = evaluator.perform_experiments(scenarios=n_scen,
@@ -80,10 +81,14 @@ def run(actor, n_scen):
     # and show what each one is sensitive to
     plt.savefig('../../report/figures/results/Feature_scoring_' + actor + '_' + str(n_scen) + 'scen.png')
 
+    end = time.time()
+    duration = end - start
+
     print('Feature scoring visualization saved:', actor)
 
     print('Done!')
-
+    print()
+    print('Analysis duration:', str(duration))
 
 if __name__ == '__main__':
     actors = str(sys.argv[1])
