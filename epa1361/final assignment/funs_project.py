@@ -9,7 +9,7 @@ ocases = {0: "best", 1: "low", 2: "middle", 3: "high", 4: "worst deaths", 5: "ab
 dcases = {0: "best", 1: "low", 2: "middle", 3: "high", 4: "absolute worst", 5: "worst damage"}
 
 
-n_overijssel = 1.16e
+n_overijssel = 1.16e6
 n_deventer = 100719
 n_lochem = 33590
 
