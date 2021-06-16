@@ -5,68 +5,14 @@
 % Convincing story, consistent with approach using carefully designed visuals and tables to support narrative
 
 \subsection{Uncertainty Analysis}
+Uncertainty Analysis revealed uncertainties in these ranges: x-y
 
+The scenarios selected were based on understanding both how the policies perform under these uncertainty ranges, as well as under a diverse set of 'better' conditions. As such, the two 'worst case' scenarios fall within this uncertainty range, while the remaining scenarios fall across other ranges.
 
 
 \subsection{Robust Decision Making}
 %Look at the policies for the five different scenarios, and examine tradeoffs using different robustness metrics.
-For the robust decision making process two metrics were used: Satisficing and maximum regret. The robustness metrics are discussed below for the three different actors.\newline
-
-The threshold values for the satisficing analysis can be found in \autoref{tab:threshold}. The threshold values for the total costs are the exact budgets of the institutions for water/traffic management so that it is a somewhat realistic representation. Expected annual damage was taken as 10\% of the Total costs that are available every year to the institutions. The values for expected annual casualties is calculated from the maximum risk of 1:100,000 people that can die from flooding multiplied \cite{slootjesandvandermost_2016} . Which is then multiplied with the amount of inhabitants of the area.
-% Please add the following required packages to your document preamble:
-
-\begin{table}[H]
-\centering
-\caption{This table shows the threshold values for the three actors. The values for the town of Gorssel come from its bigger municipality Lochem \cite{gorssel-2021}. Deventers value is derived from \cite{deventer-2021}. The value for Overijssel is gained from \cite{provincie-overijssel-2021}.}
-\label{tab:threshold}
-\begin{tabular}{@{}llll@{}}
-\cmidrule(l){2-4}
- &
-  \multicolumn{3}{c}{\textbf{Robustness threshold values}} \\ \cmidrule(l){2-4} 
-\multicolumn{1}{l|}{} &
-  \multicolumn{1}{l|}{\textbf{Outcome}} &
-  \multicolumn{1}{l|}{\textbf{Goal}} &
-  \multicolumn{1}{l|}{\textbf{Threshold}} \\ \cmidrule(l){2-4} 
-\multicolumn{1}{c|}{\multirow{3}{*}{Gorssel}} &
-  \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Expected annual\\ damage\end{tabular}} &
-  \multicolumn{1}{l|}{Minimize} &
-  \multicolumn{1}{l|}{$5.4E+05$} \\ \cmidrule(l){2-4} 
-\multicolumn{1}{c|}{} &
-  \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Expected annual\\ casualties\end{tabular}} &
-  \multicolumn{1}{l|}{Minimize} &
-  \multicolumn{1}{l|}{$1.0E-05$} \\ \cmidrule(l){2-4} 
-\multicolumn{1}{c|}{} &
-  \multicolumn{1}{l|}{Total costs} &
-  \multicolumn{1}{l|}{Minimize} &
-  \multicolumn{1}{l|}{$5.4E+06$} \\ \cmidrule(l){2-4} 
-\multicolumn{4}{l}{} \\ \cmidrule(l){2-4} 
-\multicolumn{1}{l|}{\multirow{3}{*}{Deventer}} &
-  \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Expected annual\\ damage\end{tabular}} &
-  \multicolumn{1}{l|}{Minimize} &
-  \multicolumn{1}{l|}{$1.1E+06$} \\ \cmidrule(l){2-4} 
-\multicolumn{1}{l|}{} &
-  \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Expected annual\\ casualties\end{tabular}} &
-  \multicolumn{1}{l|}{Minimize} &
-  \multicolumn{1}{l|}{$1.0E-05$} \\ \cmidrule(l){2-4} 
-\multicolumn{1}{l|}{} &
-  \multicolumn{1}{l|}{Total costs} &
-  \multicolumn{1}{l|}{Minimize} &
-  \multicolumn{1}{l|}{$1.1E+07$} \\ \cmidrule(l){2-4} 
-\multicolumn{4}{l}{} \\ \cmidrule(l){2-4} 
-\multicolumn{1}{l|}{\multirow{3}{*}{Overijssel}} &
-  \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Expected annual\\ damage\end{tabular}} &
-  \multicolumn{1}{l|}{Minimize} &
-  \multicolumn{1}{l|}{$1.53E+06$} \\ \cmidrule(l){2-4} 
-\multicolumn{1}{l|}{} &
-  \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}Expected annual\\ casualties\end{tabular}} &
-  \multicolumn{1}{l|}{Minimize} &
-  \multicolumn{1}{l|}{$1.0E-05$} \\ \cmidrule(l){2-4} 
-\multicolumn{1}{l|}{} &
-  \multicolumn{1}{l|}{Total costs} &
-  \multicolumn{1}{l|}{Minimize} &
-  \multicolumn{1}{l|}{$1.53E+07$} \\ \cmidrule(l){2-4} 
-\end{tabular}
-\end{table}
+For the robust decision making process two metrics were used: Satisficing and maximum regret. 
 %#################################################################
 %   REGRET AND SATISFICING - GORSSEL
 %#################################################################
@@ -156,6 +102,8 @@ Gorssel has several policies that come above the now set threshold. These three 
 \end{figure}
 
 \subsubsection{Sensitivity Analysis}
+
+To see which policies and uncertainties have a large effect on model behaviour, a sensitivity analysis is carried out. The SOBOL analysis of these can be viewed per actor. 
 
 \subsubsection{Gorssel}
 \subsubsection{Deventer}
