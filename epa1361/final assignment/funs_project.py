@@ -13,6 +13,16 @@ n_overijssel = 1.16e6
 n_deventer = 100719
 n_lochem = 33590
 
+thresholds_overijssel = {'Gorssel and Deventer Expected Annual Damage': 1.53e6,
+                         'Gorssel and Deventer Expected Number of Deaths': (1e-5*n_overijssel),
+                         'Gorssel and Deventer Total Costs': 1.53e7}
+thresholds_deventer = {'Deventer Expected Annual Damage': 1.1e6,
+                       'Deventer Expected Number of Deaths': (1e-5*n_deventer),
+                       'Deventer Total Costs': 1.1e7}
+thresholds_gorssel = {'Gorssel Expected Annual Damage': 5.4e5,
+                      'Gorssel Expected Number of Deaths': (1e-5*n_lochem),
+                      'Gorssel Total Costs': 5.4e6}
+
 def the_cases(actor):
     if actor == "Overijssel":
         return ocases
