@@ -9,26 +9,51 @@
 
 % Identifies key limitations of their analysis from both a methodological point of view and the policy arena point of view. Discusses their implications for conclusions and suggests ideas for future work to overcome them
 
-Rdm enabled us to investigate the trade-offs of different policies, but this method is not adaptable. Rijkswaterstaat advocates adaptive planning. It would have been good to complement our approach with Dynamic Adaptive Policy Pathways as explained by \cite{kwakkel_coping_2016}.
+\subsection{Methodological Limitations}
+In the analysis process, we made several methodological decisions to enable the effective modelling of the problem posed by Gorssel. While the key decisions have been justified in Section\ref{s:approach}, there remains a few methodological threats to the validity of this report's policy advice.
 
-Discussion stuff to remember:
-\begin{itemize}
-    \item EWS is a global policy across the whole region - this is dom
-    \item The implementation of upstream strategies rendering our policies ineffective \textcolor{red}{consider moving this to the discussion in main report}
-    \item Bottom up vs top down planning and implementation of policies. Current scoping of the policy solutions to the Overijssel region may conflict with Rijkswaterstaat's top-down planning. Working with the client, the focus of objectives was concerned with preparing for workshopping a proposal at the level of Overijssel. This means that while the analysis is relevant in this context, it may fail to account for top-down decisions from Rijkswaterstaat.
-    \item Translating problem formulation into problem framing - originally looked at optimising for the difference between damage in Gorssel and Deventer, but minimising this as an objective is arguably too Machiavellian (minimising this to below zero is effectively choosing scenarios that maximise deaths in Deventer).
-    \item We are considering evacuation costs for Deventer so that we have a tradeoff that justifies MORDM. That's the practical explanation, but how do we put that in the report? No upper bound of zero on this because it is used only as additional information to colour the policy conversation
-    \item The difference between Gorssel and Deventer is not used to optimise, but to capture the intangible concepts of fairness and equality between urban and rural areas. It's a concept to add not to the model but to the analysis. That difference seems to be always in favour of Gorssel though, but does that cover the real impact? For example Gorssel probably receives a lot less revenue, so damages there are probably more impactful than in Deventer.
-    \item Costs are global, they are minimised by Gorssel and Deventer because even if no projects are done in their land, they can still be required to share the costs of projects upstream.
-    \item MORO might be considered for further development of scenarios if more time or computing power is available.
-    \item Additional iterations on the model specification and framing should be conducted in light of identified policies and scenarios. Having identified opportunities for coalitions (or tensions between policies of different actors), should iterate through the Multi-scenario MORDM process again, re-specifying the problem formulations, or adding in new issues or objectives. For instance, running new problem formulations for actors in Gelderland province to test the policies against their objectives and preferences.
-    \item (Cite: Kasprzyk 2016) explains that aggregated, lower objective approaches to modelling might bias decision support tools. Due to limitations in computation and explainability for clients, some of the objectives had to be aggregated in our modelling approach. Future work should look to disaggregate factors (especially cost objectives) to identify whether the aggregation of these factors introduced bias in the policy analysis in favour of one approach or another.
-    \item Beware negotiated nonsense - these solutions will need to be validated through consultation with stakeholders and subject matter experts.
-    \item Actors can still care about the costs of things they are not paying because that means less money available to them anyways (i.e. an upstream city cares about the money spent in a downstream project because that means there is less money for upstream projects).
-    \item The model does not necessarily have to reflect reality too closely, a good model is self invalidating because it changes the system.
-    
-    
-    
-    \item So when u perform dike-increase at planning step 1, u're not going to Rfr at planning step 2, u can only increase dikes up to a certain level (30 cm), u can't just keep increasing. Every increase in dike height also results in an increase in land encroachment.
-    \item Also, whenever you want to switch to RfR programs, you have to take away part of the dike that you built, so strengthening dikes can be robust but not necessarily resilient and end up increasing costs.
-\end{itemize}
+\subsubsection{Aggregation and Disaggregation of Model Attributes}
+In choosing the problem formulations for Gorssel, Deventer, and Overijssel, a number of key variables in the model were either aggregated or disaggregated, to achieve a problem formulation that adequately articulated the actor's objectives. Indeed, there is a trade-off between higher levels of aggregation, which may allow for more information to be embedded within fewer objectives, and lower levels of aggregation, which introduces more bias into the problem formulation. \citeauthor{kasprzyk_battling_2016} (\citeyear{kasprzyk_battling_2016}) explain that aggregated, lower objective approaches to modelling might bias decision support tools. Due to limitations in computation and explainability for clients, some of the objectives had to be aggregated in our modelling approach. 
+
+The aggregation of outcomes over all planning steps also limits the type of policy advice we were able to provide. By aggregating these outcomes, we are unable to consider the timing of decisions in our policy analysis, limiting our ability to consider reversibility and timeliness of decisions necessary for presenting advice in the form of Dynamic Adaptive Policy Pathways \parencite{kwakkel_coping_2016} (Cite: Marchau 2019).
+
+It is also feasible that this aggregation created bias related to the influence of different uncertainties. Uncertainty analysis revealed that many of the uncertainties had little to no influence on the outcomes for the actors considered, with Probability of Failure of the Gorssel dike being the most consequential factor for the outcomes in the Gorssel analysis.
+
+\subsubsection{Validation with stakeholders}
+The assumptions applied in the development of problem formulations were not validated with input from the client (Gorssel) or from the 'rival' stakeholders. This meant that it wasn't possible to sanity-check the proposed policies, or revise the problem formulations in light of expert input. As a result, only one iteration was performed over the complete Multi-Scenario MORDM process to generate the policy advice presented in Section \ref{s:results}. This may limit the relevancy and robustness of the proposed policies, as well as likelihood of acceptance by stakeholders.
+
+Further to this, some assumptions were made about the objectives and constraints for stakeholders which influenced the way in which the problem formulations were structured. For example, in it's problem formulation, Deventer has a hard constraint on dike increases in it's policy formulation. This generated some unusual policies, which warrants further investigation.
+
+\subsubsection{Limitations of RDM}
+RDM is a strong approach for handling wicked problems, but is not without it's own limitations \parencite{kwakkel_coping_2016}. RDM enabled us to investigate the trade-offs of different policies, but this method is limited in it's adaptability once implemented. Further to this, Rijkswaterstaat advocates adaptive planning (\textbf{SOURCE??}), and policy proposals, even at the municipal level, should look to come in line with national approaches.
+
+\subsubsection{Creation of the 'Difference' objectives}
+In translating Gorssel's mandate from problem framing into model problem formulation, we originally looked at minimising on the difference between damage in Gorssel and Deventer. This was proposed as a means of quantifying the 'fairness' of different policies in terms of effects in rural and urban areas. However, after further consideration, we decided that minimising this as an objective was arguably too Machiavellian, given that minimising this to below zero is effectively choosing scenarios that maximise deaths in Deventer, often without any additional benefit to Gorssel.
+
+This objective was instead retained for calculation of satisficing robustness metrics, to capture the intangible concepts of fairness and equality between urban and rural areas. However, this decision meant that the objective is more for the benefit of the client and analysts, and does not add any analytical rigour to the definition of 'fairness'. Further to this, the difference value in optimisations is always in favour of Gorssel, but it remains uncertain that this covers the real inequity between the rural and urban actors. For example Gorssel probably receives a lot less revenue, so damages there are probably more impactful than in Deventer.
+
+
+\subsection{Policy Arena Limitations}
+
+The policy arena was demarcated in section \ref{s:prob_frame} and although justified, there are still some threats present. 
+
+\subsubsection{Scoping of the model versus real life}
+With the manner the policy arena has been scoped for Gorssel, the implementations of upstream strategies is considered outside of it. However, in actuality, the implementation of upstream strategies would render our found policies ineffective. Furthermore, the decision made within our scope is influenced by and has an influence on the choices other actors make, especially in a financial manner. This has to do with the "fairness" we seek for Gorssel. For instance, Dike Rings 1 to 3, who are upstream, care about the funds being made available for projects for Dike Ring 4 and 5, as this means there will be less funds available for the projects upstream. This ties in with another problem to do with the scoping and the fact that the Early Warning System is a "global" policy - meaning that it would in fact affect all actors and not merely the one within our scope. In that sense, the decision made here to use it would mean that we should also convince the other actors instead of just the ones within the scope as they are also affected by it. 
+
+\subsubsection{Decision Making Processes}
+The current scoping of the policy solutions may conflict with Rijkswaterstaat's actual manner of top-down planning. Bottom-up vs top-down planning and implementation of policies. For Gorssel, the focus of objectives was concerned with preparing a strategy on how to develop a proposal with the province of Overijssel. This means that while the analysis is relevant in this context, it may fail to account the reality of how Rijkswaterstaat functions. Similarly, the decisions made in the model cannot always be implemented in the order suggested. (continue this if actual policy suggests this) For instance, when dike strengthening is done first and Room for the River follows after, the dikes would have to be dismantled. 
+
+\subsubsection{Actors' Dependency on Models}
+To better serve Gorssel, the base model given by Rijkswaterstaat was adjusted, such as the disaggregation of costs of Room for the River projects. This was done to better suit Gorssel, but poses a problem when other actors in the policy arena use the same (base) model or have also made small adjustments, as we may not be able to assume a consensus exists among all actors, as \cite{kwakkel_coping_2016} writes is important to have. All findings should be treated with a certain wariness so they're not used to support actors' agendas. Models are frequently misused to support agendas (Cite Saltelli 2020). A way to prevent this negotiated nonsense is validation through stakeholders and experts. 
+
+\subsection{Proposed Improvements and Further Work}
+
+\textcolor{red}{Consider formatting this as a table?}
+
+Problem: Higher levels of aggregation/Solution: Future work should look to disaggregate factors (especially cost objectives) to identify whether the aggregation of these factors introduced bias in the policy analysis in favour of one approach or another.
+
+Problem: Limitations of RDM and reversibility of decisions/Solution: re-evaluate the problem for multiple time steps and apply DAPP. The selection of the style of proposed policy should ultimately match the client's risk tolerance and 
+
+Problem: Lack of validation with stakeholders/Solution: Additional iterations on the model specification and framing should be conducted in light of identified policies and scenarios. Having identified opportunities for coalitions (or tensions between policies of different actors), should iterate through the Multi-scenario MORDM process again, re-specifying the problem formulations, or adding in new issues or objectives. For instance, running new problem formulations for actors in Gelderland province to test the policies against their objectives and preferences.
+
+Problem: Creation of difference objectives/Solution: Investigate alternative robustness metrics through consultation with stakeholders and client. There are a range of metrics that could serve to underline robustness in terms of inequities in proposed policies \parencite{mcphail_robustness_2018}.
