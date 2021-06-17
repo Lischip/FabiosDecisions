@@ -13,11 +13,15 @@ The scenarios selected were based on understanding both how the policies perform
 
 %Z going ham
 
+Before sensitivity analysis and scenario discovery, we found that there is a high correlation between deaths and damages for all actors: $0.09$ for Gorssel, $0.98$ for Deventer, and $0.98$ for Overijssel. Hence, during the remainder of this section, we only target damage.
+
 For the sensitivity analysis on scenarios without any policies, extra trees was employed. It showed that for Gorssel only the durability of their own dike was by far the most dominant (estimator instance of 0.55). For Deventer this dominance was shared by the durability of their own dike and Gorssel's dike (estimator instances of 0.5 and 0.6 respectively). For Overijssel the sensitivity analysis showed the durability of Deventer's dike would be the most dominant (estimator instance of 0.5).
 
-We also found that there is a high correlation between deaths and damages for all actors: $0.09$ for Gorssel, $0.98$ for Deventer, and $0.98$ for Overijssel. Hence, during the scenario discovery process, we only looked at the Damages. The Prim-algorithm allowed us to zoomed in on certain outcomes. We specifically looked at the worst 10 percentile of damages, and the best 40. Whenever a density was reached $>0.8$ we looked at the range of uncertainties. This showed that the durability of Gorssel's dike is also dominant for Overijssel (even though it had an estimator instance of 0.06 during the sensitivity analysis).
+The Prim-algorithm allowed us to zoomed in on certain outcomes. We specifically looked at the worst 10 percentile of damages, and the best 40. Whenever a density $\rho$ with $\rho>0.8$ was reached, we looked at the range of uncertainties. This showed that the durability of Gorssel's dike is also dominant for Overijssel (even though it had an estimator instance of 0.06 during the sensitivity analysis).
 
-Based on these values the scenarios for the optimisation were selected. The values for 
+What we found odd 
+
+Based on these values the scenarios for the optimisation were selected. In Figure~\ref{fig:prim} we show the values for the selected scenarios for the most dominant sensitive input variables.
 
 
 \begin{figure}[h]
@@ -103,32 +107,26 @@ Gorssels 'scenario absolute worst option 2' performs best for the domain-criteri
 \end{figure}
 
 \subsection{Shortlisted policies for each Actor}
-From the robustness analysis, a subset of the top five most robust policies (prioritising regret-based metrics) were identified. Here, a brief description of each policy, and the relevant actions in terms of dike heightening, room the the river projects, and early warning systems are presented for each actor.
+From the robustness analysis, a subset of the top five most robust policies (prioritising regret-based metrics) were identified. Here, a brief description of each policy, and the relevant actions in terms of dike heightening, room the the river projects, and early warning systems are presented for each actor. The damage, death, and cost outcomes are not included in these tables, as they are already assumed to have been optimised to be within acceptable levels based on the robustness metrics in previous steps.
 \subsubsection{Gorssel}
 The five most robust policies for Gorssel are presented in Table \ref{fig:gpols}
 
 \begin{figure}[h]
     \centering
-    \caption{Robust policies for Gorssel. Numbers 0-2 in the columns represent action at a given planning step, RfR stands for Room for the River, dike increases are in decimetres, EWS refers to Early Warning System in days}
+    \caption{Robust policies for Gorssel. RfR stands for Room for the River, dike increases are in decimetres and aggregated over all planning steps, EWS refers to Early Warning System in days}
     \includegraphics[width=0.4\textwidth]{report/figures/gpols.png}
     \label{fig:gpols}
 \end{figure}
 
-To describe these five policies in plain-English, none of Gorssel's preferred policies contain Room for the River upgrades, specific differences in policies are:
-\begin{itemize}
-    \item G1: With only one day of early warning for flood threats, and two Room for the River Projects implemented in Deventer, this policy requires large dike increases in both Gorssel and Deventer (80cm and 1.5m respectively) to manage flood risks.
-    \item G2: One additional Room for the River project and two days of warning in this policy allows for more modest dike increases.
-    \item G3: Implement Room for River projects at all planning steps
-    \item G4: Implement Room for River projects at all planning steps
-    \item G5: Implement Room for River projects at all planning steps
-\end{itemize}
+
+
 
 \subsubsection{Deventer}
 The five most robust policies for Deventer are presented in Table \ref{fig:dpols}
 
 \begin{figure}[h]
     \centering
-    \caption{Robust policies for Deventer. Numbers 0-2 in the columns represent action at a given planning step, RfR stands for Room for the River, dike increases are in decimetres, EWS refers to Early Warning System in days}
+    \caption{Robust policies for Deventer. RfR stands for Room for the River, dike increases are in decimetres and aggregated over all planning steps, EWS refers to Early Warning System in days}
     \includegraphics[width=0.4\textwidth]{report/figures/dpols.png}
     \label{fig:dpols}
 \end{figure}
@@ -138,17 +136,17 @@ The five most robust policies for Overijssel are presented in Table \ref{fig:opo
 
 \begin{figure}[h]
     \centering
-    \caption{Robust policies for Overijssel. Numbers 0-2 in the columns represent action at a given planning step, RfR stands for Room for the River, dike increases are in decimetres, EWS refers to Early Warning System in days}
+    \caption{Robust policies for Overijssel. RfR stands for Room for the River, dike increases are in decimetres and aggregated over all planning steps, EWS refers to Early Warning System}
     \includegraphics[width=0.4\textwidth]{report/figures/opols.png}
     \label{fig:opols}
 \end{figure}
 
-Overijssel's policies prioritise dike increases in the first planning step, with none of the policies prioritising Room for the River (reflecting the relative expense of these policies compared to dike increases).
+Overijssel's policies prioritise dike increases in the first planning step, with none of the policies prioritising Room for the River (reflecting the relative expense of these policies compared to dike increases). Of interest to Gorssel is policies O8 and O10 (highlighted yellow in the table). These two policies are favourable for both Gorssel and Overijssel (given minimal investment costs in Gorssel), and present an opportunity for starting discussions with Overijssel Province for pursuing such a policy.
 
 
 \subsection{Sensitivity Analysis}
 
-To see which policies and uncertainties have a large effect on model behaviour, a sensitivity analysis is carried out. The analysis of these can be viewed per actor in the following section. Firstly, the sensitivity analysis was done with feature scoring without the policies to get a grasp of which uncertainty the actors would be most sensitive to. After, policies are added and analysed to assess whether they would be sensitive or not. The generated figures for the sensitivity analysis can be found in Appendix \textbf{XXX}
+To see which policies and uncertainties have a large effect on model behaviour, a sensitivity analysis is carried out. The analysis of these can be viewed per actor in the following section. Firstly, the sensitivity analysis was done with feature scoring without the policies to get a grasp of which uncertainty the actors would be most sensitive to. After, policies are added and analysed to assess whether they would be sensitive or not. The generated figures for the sensitivity analysis can be found in Appendix \ref{a:sensitivity-analysis}/
 
 \subsubsection{Gorssel}
 
