@@ -1,5 +1,5 @@
 from ema_workbench import Scenario, Policy, MultiprocessingEvaluator, ema_logging, load_results
-from problem_formulation import get_model_for_problem_formulation
+from problem_formulation import get_model_for_problem_formulation, n_lochem, n_deventer
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn import preprocessing
@@ -10,8 +10,8 @@ dcases = {0: "best", 1: "low", 2: "middle", 3: "high", 4: "absolute worst", 5: "
 
 
 n_overijssel = 1.16e6
-n_deventer = 100719
-n_lochem = 33590
+#n_deventer = 100719
+#n_lochem = 33590
 
 thresholds_overijssel = {'Gorssel and Deventer Expected Annual Damage': 1.53e6,
                          'Gorssel and Deventer Expected Number of Deaths': (1e-5*n_overijssel),
@@ -24,6 +24,9 @@ thresholds_gorssel = {'Gorssel Expected Annual Damage': 5.4e5,
                       'Gorssel Total Costs': 5.4e6}
 
 def the_cases(actor):
+    """
+    Returns a dictionary with numeric keys and the appropriate scenario name
+    """
     if actor == "Overijssel":
         return ocases
     elif actor == "Gorssel":
