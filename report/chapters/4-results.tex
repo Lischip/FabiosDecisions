@@ -1,6 +1,6 @@
 \section{Results}
 \label{s:results}
-%Results; this should be a readable summary of the results from applying the approach. Don’t pursue death by figures but carefully select what visualizations (figures, tables) are functional for telling your story and logically lead to the main conclusions and policy advice?
+%Results; this should be a readable summary of the results from applying the approach. Don’t pursue death by figures but carefully select what visualisations (figures, tables) are functional for telling your story and logically lead to the main conclusions and policy advice?
 
 % Convincing story, consistent with approach using carefully designed visuals and tables to support narrative
 
@@ -39,7 +39,7 @@ Gorssel has several policies that come above the now set threshold. These three 
   \hfill
   \begin{minipage}[b]{0.4\textwidth}
     \includegraphics[width=1.15\textwidth]{report/figures/results/regret_figure_Gorssel.png}
-    \caption{Results for Gorssels maximum regret}
+    \caption{Results for Gorssel's maximum regret}
     \label{fig:regret_gorssel}
   \end{minipage}
 \end{figure}
@@ -55,21 +55,21 @@ Gorssel has several policies that come above the now set threshold. These three 
 \begin{itemize}
     \item Deventer has no regret for their total costs, which is logical if they try to get Gorssel to pay for everything.
     \item Deventer has three policies that come above the now set threshold. Shown in Table \ref{tab:deventer}...
-    \item Deventers results for the domain criterion show that there is only one policy solution for the best option that actually performs okay with most of the reference scenarios with a score around 0.6(damages). The other candidate-solutions score lower. 
-    \item all candidate-solutions satisfy the thresholds for deventer in regards to deaths and total budget.
+    \item Deventer's results for the domain criterion show that there is only one policy solution for the best option that actually performs okay with most of the reference scenarios with a score around 0.6(damages). The other candidate-solutions score lower. 
+    \item all candidate-solutions satisfy the thresholds for Deventer in regards to deaths and total budget.
 \end{itemize}
 
 \begin{figure}[H]
   \centering
   \begin{minipage}[b]{0.4\textwidth}
     \includegraphics[width=1.15\textwidth]{report/figures/results/domain_criterion_Deventer.png}
-    \caption{Results for Deventers domain criterion}
+    \caption{Results for Deventer's domain criterion}
     \label{fig:domain_criterion_Deventers}
   \end{minipage}
   \hfill
   \begin{minipage}[b]{0.4\textwidth}
     \includegraphics[width=1.15\textwidth]{report/figures/results/regret_figure_Deventer.png}
-    \caption{Results for Deventers maximum regret}
+    \caption{Results for Deventer's maximum regret}
     \label{fig:regret_Deventers}
   \end{minipage}
 \end{figure}
@@ -82,15 +82,15 @@ Gorssel has several policies that come above the now set threshold. These three 
 \begin{itemize}
     \item Overijsel has regret for their Total cost. ? or at least that is what I think the figure means.
     \item Deventer has two policies that come above the now set threshold. Shown in Table \ref{tab:deventer}...
-    \item Overijssels results for the domain criterion show that there is only one policy solution for the best option that actually performs okay with most of the reference scenarios with a score around 0.6 (total costs). The other candidate-solutions score lower. 
+    \item Overijssel's results for the domain criterion show that there is only one policy solution for the best option that actually performs okay with most of the reference scenarios with a score around 0.6 (total costs). The other candidate-solutions score lower. 
     \item all candidate-solutions satisfy the thresholds for Overijssel in regards to deaths.
-    \item for the criteria annual damage, the candiate solutions generated a wide spread of domain-criterion score. The results shown in (SHOULD I SHOW THE TABLE IN THE APPENDIX?) show that the top candidtate solutions, that fit most reference scenario's for this threshold, exist out of all possible candidate-solutions combined to their respective(base scenario?(wost/best stuff like that)
+    \item for the criteria annual damage, the candidate solutions generated a wide spread of domain-criterion score. The results shown in (SHOULD I SHOW THE TABLE IN THE APPENDIX?) show that the top candidate solutions, that fit most reference scenario's for this threshold, exist out of all possible candidate-solutions combined to their respective(base scenario?(worst/best stuff like that)
 \end{itemize}
 \begin{figure}[H]
   \centering
   \begin{minipage}[b]{0.4\textwidth}
     \includegraphics[width=1.15\textwidth]{report/figures/results/domain_criterion_Overijssel.png}
-    \caption{Results for Overijssels domain criterion}
+    \caption{Results for Overijssel's domain criterion}
     \label{fig:domain_criterion_Overijssels}
   \end{minipage}
   \hfill
@@ -101,14 +101,22 @@ Gorssel has several policies that come above the now set threshold. These three 
   \end{minipage}
 \end{figure}
 
-\subsubsection{Sensitivity Analysis}
+\subsection{Sensitivity Analysis}
 
-To see which policies and uncertainties have a large effect on model behaviour, a sensitivity analysis is carried out. The SOBOL analysis of these can be viewed per actor. 
+To see which policies and uncertainties have a large effect on model behaviour, a sensitivity analysis is carried out. The analysis of these can be viewed per actor in the following section. Firstly, the sensitivity analysis was done with feature scoring without the policies to get a grasp of which uncertainty the actors would be most sensitive to. After, policies are added and analysed to assess whether they would be sensitive or not. The generated figures for the sensitivity analysis can be found in Appendix \textbf{XXX}
 
 \subsubsection{Gorssel}
+
+From the sensitivity analysis for uncertainties for Gorssel is becomes apparent that they are not only influenced on their own dike failure, but also on that of Deventer, for those two have the highest impact on the deaths and damage. This makes sense, because if the dikes break, this will have catastrophic consequences for Gorssel. When adding the policies, we observe that the sensitivity to dike failure remains the highest for both the deaths and damage. 
+
 \subsubsection{Deventer}
+
+For Deventer the biggest threat to damages and deaths is the dike failure of just Deventer. This is in line with expectations, because on because they are further  When adding the policies, we see that the outcome is still least robust under dike failure. 
+
 \subsubsection{Overijssel}
 
+For the province of Overijssel it can be observed that they are sensitive to dike increase in 
+Costs are most sensitive to the dike increase in Gorssel, which makes sense because this is the most costly procedure in the province, other than Room for the River. 
 
 \subsection{Policy Comparison}
 Here, the top five policies from each actor are considered and compared to investigate opportunities for coalition forming, or to identify sources of tension in the policy-making process.
