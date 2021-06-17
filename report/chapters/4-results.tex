@@ -13,8 +13,8 @@ The scenarios selected were based on understanding both how the policies perform
 
 
 \subsection{Robust Decision Making}
-%Look at the policies for the five different scenarios, and examine tradeoffs using different robustness metrics.
-For the robust decision making process two metrics were used: Satisficing and maximum regret. 
+%Look at the policies for the five different scenarios, and examine trade-offs using different robustness metrics.
+For the robust decision making process two metrics were used: Satisficing (or the domain-criterion) and maximum regret. 
 %#################################################################
 %   REGRET AND SATISFICING - GORSSEL
 %#################################################################
@@ -46,13 +46,6 @@ Gorssel has several policies that come above the now set threshold. These three 
 %   REGRET AND SATISFICING - DEVENTER
 %#################################################################
 \subsubsection{Deventer}
-\textbf{results shown in figures: still have to add the tables which show the policy that is satisficing for every threshold. Also I'll put it nicely tomorrow. }
-\begin{itemize}
-    \item Deventer has no regret for their total costs, which is logical if they try to get Gorssel to pay for everything.
-    \item Deventer has three policies that come above the now set threshold. Shown in Table \ref{tab:deventer}...
-    \item Deventer's results for the domain criterion show that there is only one policy solution for the best option that actually performs okay with most of the reference scenarios with a score around 0.6(damages). The other candidate-solutions score lower. 
-    \item all candidate-solutions satisfy the thresholds for Deventer in regards to deaths and total budget.
-\end{itemize}
 
 \begin{figure}[H]
   \centering
@@ -73,14 +66,7 @@ Gorssel has several policies that come above the now set threshold. These three 
 %   REGRET AND SATISFICING - OVERIJSSEL
 %#################################################################
 \subsubsection{Overijssel}
-\textbf{results shown in figures: still have to add the tables which show the policy that is satisficing for every threshold. Also I'll put it nicely tomorrow. }
-\begin{itemize}
-    \item Overijsel has regret for their Total cost. ? or at least that is what I think the figure means.
-    \item Deventer has two policies that come above the now set threshold. Shown in Table \ref{tab:deventer}...
-    \item Overijssel's results for the domain criterion show that there is only one policy solution for the best option that actually performs okay with most of the reference scenarios with a score around 0.6 (total costs). The other candidate-solutions score lower. 
-    \item all candidate-solutions satisfy the thresholds for Overijssel in regards to deaths.
-    \item for the criteria annual damage, the candidate solutions generated a wide spread of domain-criterion score. The results shown in (SHOULD I SHOW THE TABLE IN THE APPENDIX?) show that the top candidate solutions, that fit most reference scenario's for this threshold, exist out of all possible candidate-solutions combined to their respective(base scenario?(worst/best stuff like that)
-\end{itemize}
+
 \begin{figure}[H]
   \centering
   \begin{minipage}[b]{0.4\textwidth}
@@ -102,8 +88,8 @@ From the robustness analysis, a subset of the top five most robust policies were
 The five most robust policies for Gorssel are presented in Table
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.4\textwidth]{}
     \caption{-}
+    \includegraphics[width=0.4\textwidth]{report/figures/gpols.png}
     \label{fig:msmordm}
 \end{figure}
 
