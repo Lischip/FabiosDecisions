@@ -12,6 +12,15 @@ Uncertainty Analysis revealed uncertainties in these ranges: x-y
 The scenarios selected were based on understanding both how the policies perform under these uncertainty ranges, as well as under a diverse set of 'better' conditions. As such, the two 'worst case' scenarios fall within this uncertainty range, while the remaining scenarios fall across other ranges.
 
 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{report/figures/results/scenario_discovery.png}
+    \caption{The results from scenario discovery process. The sensitivity analysis showed only a couple of uncertainties were dominant for the results. For Gorssel the durability of their own dike was by far the most dominant (0.55). For Deventer this dominance was shared by the durability of their own dike and Gorssel's dike (0.5 and 0.6 respectively). For Overijssel the sensitivity analysis showed the durability of Deventer's dike would be the most dominant (0.5). During the scenario discovery process it was found that the durability of Gorssel's dike is also dominant (just not as dominant as Deventer's dike)}
+    \label{fig:msmordm}
+\end{figure}
+
+
 \subsection{Robust Decision Making}
 %Look at the policies for the five different scenarios, and examine trade-offs using different robustness metrics.
 For the robust decision making process two metrics were used: Satisficing (or the domain-criterion) and maximum regret. 
@@ -19,12 +28,12 @@ For the robust decision making process two metrics were used: Satisficing (or th
 %   REGRET AND SATISFICING - GORSSEL
 %#################################################################
 \subsubsection{Gorssel}
-The results from this analysis: The results for Gorssels satisficing analysis with the domain criterion are shown in \autoref{fig:domain_criterion_gorsse}. The 12 selected policies are analysed for trade-offs and how satisficing their results are. \newline
+The results from this analysis: The results for Gorssels satisficing analysis with the domain criterion are shown in \autoref{fig:domain_criterion_gorssel}. The 12 selected policies are analysed for trade-offs and how satisficing their results are. \newline
 \autoref{fig:domain_criterion_gorssel} shows that every policy is satisficing for "gorssel Expected Number of Deaths". This means that later policy recommendations, can be sure that the legal standards for citizen safety will be met in "all" scenarios. \newline
 
 Gorssels 'scenario absolute worst option 2' performs best for the domain-criterion results. The policy reaches the highest domain-criterion scores on average. However this policy comes with a big trade-off with the expected annual damage, where the policy often goes over the annual damage budget, and thus reaches a low domain-criterion value for 'expected annual damage'. This would make the policy less robust in terms of damage and more in terms of costs. For the other policies it is the other way around. Most policies except for 'scenario absolute worst option 2' score 0 on 'total costs' and these policies are thus not robust, when considering only satisficing results.  
 
-
+\autoref{fig:regret_gorssel} shows the results for Gorssel's regret analysis. 
 
 
 
@@ -81,22 +90,42 @@ Gorssels 'scenario absolute worst option 2' performs best for the domain-criteri
   \hfill
   \begin{minipage}[b]{0.4\textwidth}
     \includegraphics[width=1.15\textwidth]{report/figures/results/regret_figure_Overijssel.png}
-    \caption{Results for Overijssels maximum regret}
+    \caption{Results for Overijssel's maximum regret}
     \label{fig:regret_Overijssels}
   \end{minipage}
 \end{figure}
 
-\subsection{Shortlisted Policies for each Actor}
+\subsection{Shortlisted policies for each Actor}
 From the robustness analysis, a subset of the top five most robust policies (prioritising regret-based metrics) were identified. Here, a brief description of each policy, and the relevant actions in terms of dike heightening, room the the river projects, and early warning systems are presented for each actor.
 \subsubsection{Gorssel}
-The five most robust policies for Gorssel are presented in Table
+The five most robust policies for Gorssel are presented in Table \ref{fig:gpols}
+
 \begin{figure}[h]
     \centering
-    \caption{-}
+    \caption{Robust policies for Gorssel. Numbers 0-2 in the columns represent action at a given planning step, RfR stands for Room for the River, dike increases are in decimetres, EWS refers to Early Warning System in days}
     \includegraphics[width=0.4\textwidth]{report/figures/gpols.png}
-    \label{fig:msmordm}
+    \label{fig:gpols}
 \end{figure}
 
+\subsubsection{Deventer}
+The five most robust policies for Deventer are presented in Table \ref{fig:dpols}
+
+\begin{figure}[h]
+    \centering
+    \caption{Robust policies for Deventer. Numbers 0-2 in the columns represent action at a given planning step, RfR stands for Room for the River, dike increases are in decimetres, EWS refers to Early Warning System in days}
+    \includegraphics[width=0.4\textwidth]{report/figures/dpols.png}
+    \label{fig:dpols}
+\end{figure}
+
+\subsubsection{Overijssel}
+The five most robust policies for Overijssel are presented in Table \ref{fig:opols}
+
+\begin{figure}[h]
+    \centering
+    \caption{Robust policies for Overijssel. Numbers 0-2 in the columns represent action at a given planning step, RfR stands for Room for the River, dike increases are in decimetres, EWS refers to Early Warning System in days}
+    \includegraphics[width=0.4\textwidth]{report/figures/opols.png}
+    \label{fig:opols}
+\end{figure}
 
 
 
