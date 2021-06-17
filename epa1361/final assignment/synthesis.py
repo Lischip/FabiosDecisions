@@ -8,11 +8,14 @@ def run():
     '''
     Check the policies for other actors
     '''
-    n_scen=10000
+    n_scen= 10000
     dike_model, planning_steps = get_model_for_problem_formulation("Gorssel")
 
     D_policies = pd.read_csv("simulation/selected/selected_policies_Deventer.csv")
     O_policies = pd.read_csv("simulation/selected/selected_policies_Overijssel.csv")
+
+    D_policies = D_policies.iloc[:, 1:]
+    O_policies = O_policies.iloc[:, 1:]
 
     D_policies["A.5_DikeIncrease 0"] = 0
     D_policies["A.5_DikeIncrease 1"] = 0
@@ -37,6 +40,7 @@ def run():
     dike_model, planning_steps = get_model_for_problem_formulation("Overijssel")
 
     G_policies = pd.read_csv("simulation/selected/selected_policies_Gorssel.csv")
+    G_policies = G_policies.iloc[:, 1:]
 
     policies= []
     for _, row in G_policies.iterrows():
