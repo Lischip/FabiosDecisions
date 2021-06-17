@@ -67,7 +67,7 @@ def run(actor, n_scen):
 
     print('Starting feature scoring:', actor)
 
-    fs = feature_scoring.get_feature_scores_all(x, y, alg='extra trees')
+    fs = feature_scoring.get_feature_scores_all(x.drop('policy', axis=1), y, alg='extra trees')
 
     # Set up figure
     sns.set_style('white')
