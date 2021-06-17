@@ -107,7 +107,7 @@ def get_opti_results(actor, n_scenarios=1000):
     Obtain the optimisation results (paretto front) stored for a given actor
     """
 
-    cases = get_cases(actor, n_scenarios)
+    cases = the_cases(actor, n_scenarios)
 
     read_results = []
 
