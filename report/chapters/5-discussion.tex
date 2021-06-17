@@ -29,6 +29,9 @@ Further to this, some assumptions were made about the objectives and constraints
 \subsubsection{Limited use of uncertainty analysis and scenario discovery}
 The results of uncertainty analysis and scenario discovery from the preliminary round of MORDM were not employed effectively in the subsequent selection of scenarios. Time constraints in the analysis process meant that information on uncertainties was not adequately incorporated to adjust the uncertainty ranges over which selected scenarios were sampled. The results from these analyses could have been better incorporated into decreasing the dimensionality and uncertainty of the selected scenarios, which in turn, could have reduced computational intensity of other downstream tasks in the multi-scenario MORDM. This limitation may also offer an explanation for why the final proposed policies remain highly sensitive to a single input factor (probability of dike failure at Gorssel).
 
+\subsubsection{Inefficient order of steps}
+As can be seen in Figure~\ref{fig:msmordm}, we selected our subset of policies after we had re-evaluated under deep-uncertainty. It would have been more efficient if we had done this before the re-evaluation. We wasted computational power on re-evaluating policies that were excluded by the next step. This is very unfortunate, as 1000 scenarios per policy is relatively small.
+
 \subsubsection{Limitations of RDM}
 RDM is a strong approach for handling wicked problems, but is not without it's own limitations \parencite{kwakkel_coping_2016}. RDM enabled us to investigate the trade-offs of different policies, but this method is limited in it's adaptability once implemented. Further to this, Rijkswaterstaat advocates adaptive planning (\textbf{SOURCE??}), and policy proposals, even at the municipal level, should look to come in line with national approaches.
 

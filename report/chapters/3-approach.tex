@@ -5,12 +5,12 @@
 % Analysis is carried out across the explicated rival problem framings and relies on state-of- the-art deep uncertainty techniques
 
 % Analysis is carried out across the explicated rival problem framings and relies on state-of- the-art deep uncertainty techniques
-Multiple alternative approaches were considered to analyse the explicated problem framings. Ultimately, a straightforward combination of techniques was adopted to analyse and interpret the problem framings of Gorssel, as well as its two rival/coalition-forming actors, Deventer and Overijssel. A multi-scenario multi objective robust decision making (MORDM) process was chosen for the analysis and selection of policy approaches. This approach was selected for the ability to achieve a balance between finding robust solutions that are optimal in a specific scenarios, while also being computationally efficient, given constraints in time and computing power \parencite{bartholomew_considering_2020}. A flow diagram for this approach is shown in Figure \ref{fig:msmordm}. Below, the deep uncertainty techniques applied in each of the steps are explained and selections of these approaches motivated in light of currently available literature. 
+Multiple alternative approaches were considered to analyse the explicated problem framings. Ultimately, a straightforward combination of techniques was adopted to analyse and interpret the problem framings of Gorssel, as well as its two rival/coalition-forming actors, Deventer and Overijssel. A multi-scenario multi objective robust decision making (MORDM) process was chosen for the analysis and selection of policy approaches. This approach was selected for the ability to achieve a balance between finding robust solutions that are optimal in a specific scenarios, while also being computationally efficient, given constraints in time and computing power \parencite{bartholomew_considering_2020}. A visualisation of the workflow we adopted it shown in Figure~\ref{fig:msmordm}. Below, the deep uncertainty techniques applied in each of the steps are explained and selections of these approaches motivated in light of currently available literature. 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.4\textwidth]{report/figures/msmordm.png}
-    \caption{The MSMORDM Process from \citeauthor{bartholomew_considering_2020}}
+    \includegraphics[width=0.8\textwidth]{report/figures/methodology.png}
+    \caption{The MSMORDM Process, inspired by  \citeauthor{bartholomew_considering_2020}}
     \label{fig:msmordm}
 \end{figure}
 
@@ -20,58 +20,57 @@ The Exploratory Modelling Workbench (an open source Python library) was used to 
 \subsection{Problem Formulation}
 In the first step of this process, the problem formulations for each of the three actors were defined, as described in Section \ref{s:prob_frame}. For each actor, multiple objectives were defined, to elicit relevant trade-offs (predominantly between cost and risk). These formulations were used to initialise the model to run experiments. We opted to look at results every $66.66$ years (which equals 3 planning steps) to observe evolution of planning and risk, and to get more granularity in the potential policies and uncertainties.
 
-For the experiments, 50,000 scenarios were generated for each actor. We chose to run 50,000 scenarios for each actor in an effort to trade off the granularity/resolution of available scenarios against the computational intensity of generating and optimising over this large range. A large number of scenarios was also necessary as the chosen problem framing resulted in an increase in the number of uncertainties in the model (that is, the levers for actors outside of Overijssel Province). We opted to use the LHS uncertainty sampling method which splits the uncertainty space into intervals of equal probability.
+\subsection{Generation of scenarios}
+For the experiments, 50,000 scenarios were generated for each actor (without policies). We chose to run 50,000 scenarios for each actor in an effort to trade off the granularity/resolution of available scenarios against the computational intensity of generating and optimising over this large range. A large number of scenarios was also necessary as the chosen problem framing resulted in an increase in the number of uncertainties in the model (that is, the levers for actors outside of Overijssel Province). We opted to use the LHS uncertainty sampling method which splits the uncertainty space into intervals of equal probability.
 
-The underlying model was also modified to serve the selected problem formulation, by disaggregating the cost factors of Room for the River Costs and the Evacuations Costs, such that costs for the actors of Gorssel and Deventer were individualised.
+The underlying model was also modified to serve the selected problem formulation, by disaggregating the cost factors of Room for the River Costs and the Evacuations Costs, such that costs for the actors of Gorssel and Deventer were individualised. The ranges of the uncertainties already present in the model were left unchanged. We also used the population size for Deventer and Lochem to get the difference in damage in deaths per capita. 
 
-\subsection{Data analysis, uncertainty analysis and scenario discovery}
-Since no policies were implemented, all costs were 0, so we could disregard this outcome for now. We also performed a quick data analysis, and found that there is a high correlation between deaths and damages for all actors: $0.98$ for Gorssel, $0.98$ for Deventer, and $0.98$ for Overijssel. Hence, for the remainder of this step of the analysis, we primarily focused on damage.
+
+\subsection{Uncertainty analysis and scenario discovery}
+Since no policies were implemented, all costs were 0, so we could disregard this outcome for now. We also performed a quick data inspection, and found that there is a high correlation between deaths and damages for all actors: $0.98$ for Gorssel, $0.98$ for Deventer, and $0.98$ for Overijssel. Hence, for the remainder of this step of the analysis, we primarily focused on damage.
 
 Following this, uncertainty analysis and scenario discovery were conducted to identify the most dominant uncertainties in the uncertainty space for each of the three actors (regarding damage). For Uncertainty analysis the extra trees algorithm was employed. It showed that for Gorssel only the durability of their own dike was by far the most dominant (estimator instance of 0.55). For Deventer this dominance was shared by the durability of their own dike and Gorssel's dike (estimator instances of 0.5 and 0.6 respectively). For Overijssel the sensitivity analysis showed the durability of Deventer's dike would be the most dominant (estimator instance of 0.5). All estimator instances can be seen in Appendix~\ref{a:sensitivity-analysis}.
 
-Scenario discovery was conducted using the PRIM algorithm, as it allowed us to visualise and investigate the uncertainty space to identify suitable ranges of uncertainty for scenario selection in the multi-scenario MORDM process \parencite{bryant_thinking_2010}. We specifically looked at the worst 10 percentile of damages, and the best 40. Whenever a density $\rho$ with $\rho>0.8$ was reached, we looked at the range of uncertainties. This showed that the durability of Gorssel's dike is also dominant for Overijssel (even though it had an estimator instance of 0.06 during the sensitivity analysis).
+Scenario discovery was conducted using the PRIM algorithm, as it allowed us to visualise and investigate the uncertainty space to identify suitable ranges of uncertainty for scenario selection in the multi-scenario MORDM process \parencite{bryant_thinking_2010}. We specifically looked at the worst 10th percentile of damages, and the best 40th percentile. Whenever a density $\rho$ with $\rho>0.8$ was reached, we looked at the range of uncertainties. This showed that the durability of Gorssel's dike is also dominant for Overijssel (even though it had an estimator instance of 0.06 during the sensitivity analysis).
 
-This process thus revealed that the most dominant uncertainties for the three actors were the probability of dike failure at either Gorssel and/or Deventer. These factors were the strongest determinants of policy success across the widest range of scenarios.
+This process thus revealed that the most dominant uncertainties for the three actors were the probability of dike failure at either Gorssel and/or Deventer. These factors were the strongest determinants of policy success across the widest range of scenarios. These uncertainties and their influence on the worst 10th percentile and best 40th percentile is shown in Figure~\ref{fig:prim}
 
 \subsection{Scenario Selection}
-Provided this information on the importance of different uncertainties on outcomes of interest, we developed a process for selection of six scenarios, over which policies could be developed. Attention was given to ensure a good distribution of dike failure probability values across the selected scenarios. We opted for a mixture of good, 'middle' and worst case scenarios, to enable us to observe performance of and preferences towards policies under the widest range of scenarios. This was also done to support stakeholder comprehension of policy outcomes. The scenarios were selected from the same percentile that bo
-
-
-The two 'worst case' scenarios (one representing worst case for deaths or damages, and another across all outcomes) exist within the uncertainty range for probability of failure identified in the previous step.
-
-
-This approach was selected instead of a 'maximise diversity' approach due to time constraints in the computational intensity of such an approach over such a large number of scenarios and uncertainties \parencite{eker_including_2018}.
+Provided this information on the importance of different uncertainties on outcomes of interest, we developed a process for selection of six scenarios, over which policies could be developed. Attention was given to ensure a good distribution of dike failure probability values across the selected scenarios. We opted for a mixture of good, 'middle' and worst case scenarios, to enable us to observe performance of and preferences towards policies under the widest range of scenarios. This was also done to support stakeholder comprehension of policy outcomes. The logic used to select the scenarios is shown in Table~\ref{tab:scenarios}. The best scenario was just one of the scenarios that resulted in 0 deaths and damages. The worst deaths and worst damage scenarios was the scenario that resulted in most deaths or damage respectively. The absolute worst scenario is the scenario with the combined highest damage and deaths. Often this scenario was the same scenario as the worst damage (for Gorssel) or worst deaths (Overijssel and Deventer), in which we opted to continue with the "absolute worst" label for that scenario. The remaining scenarios were selected based on the union of the scenarios present in the ranges displayed in the table. Note that we needed to use a bigger range for Deventer's low scenario, which means there is less correlation in the lower range of Deaths and Damages.
 
 \begin{table}[h!]
-\caption{Scenarios}
+\caption{A crude notation of the logic that was used to select scenarios. For low, middle and high, these ranges were applied to both Damage and Deaths, and the scenario would have to  be present in both. The range for Deventer's low scenario is bigger, as there is less overlap between the two outcomes than for the other actors. For the best scenario we just picked a scenario with 0 deaths and 0 damages, and for the worst scenarios we just picked the scenarios with the worst outcomes. For all actors, either worst damage or worst deaths was the same as the absolute worst scenario, hence why either one of these is excluded (indicated with an \emph{x}) from the set of scenarios. The absolute worst was selected by normalising Damages and deaths and dividing it by 2, meaning that if damages and deaths were highest in one and the same scenario, this value would equal 1.}
 \label{tab:scenarios}
 \centering
-\begin{tabular}{llll}
+\begin{tabular}{lccc}
                & Gorssel& Deventer & Overijssel \\
-best           & & & \\
-low            & $23\%> D \leq 27\%$ & $25\%> D \leq 35\%$ & $23\%> D \leq 27\%$\\
+best           & $D_1 = 0 \land D_2 = 0$ & $D_1 = 0 \land D_2 = 0$ & $D_1 = 0 \land D_2 = 0$ \\
+low            & $23\%> D \leq 27\% $ & $25\%> D \leq 35\%$ & $23\%> D \leq 27\%$\\
 middle         & $48\%> D \leq 52\%$ & $48\%> D \leq 52\%$ & $48\%> D \leq 52\%$ \\
 high           & $73\%> D \leq 77\%$ & $73\%> D \leq 77\%$ & $73\%> D \leq 77\%$            \\
-worst deaths   & & x & x \\
-worst damage   & x &          & \\
-absolute worst &  &          &           
+worst deaths   & $max(D_1)$ & x & x \\
+worst damage   & x & $max(D_2)$ & $max(D_2)$ \\
+absolute worst & $max(\frac{norm(D_1)+norm(D_2)}{2}) $ & $max(\frac{norm(D_1)+norm(D_2)}{2})$ & $max(\frac{norm(D_1)+norm(D_2)}{2})$           
 \end{tabular}
 \end{table}
+
+The two 'worst case' scenarios (one representing worst case for deaths or damages, and another across all outcomes) exist within the uncertainty range for probability of failure identified in the previous step. This is shown in Figure~\ref{fig:prim}.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{report/figures/results/scenario_discovery.png}
-    \caption{The results from scenario discovery process and the selected scenarios. The first 3 items in the legend are the actors, and the remaining items are the scenarios.}
+    \caption{The results from scenario discovery process and the selected scenarios. The first 3 items in the legend are the actors, and the remaining items are the scenarios. $<40\%$ is all the scenarios with damage up to the 40th percentile, and $>90$ are all the scenarios that have a damage between the 90th and 100th percentile. All values of the dominant uncertainties of the "worst scenarios" correspond to worst 10th percentile.}
     \label{fig:prim}
 \end{figure}
 
+This approach was selected instead of a 'maximise diversity' approach due to time constraints in the computational intensity of such an approach over such a large number of scenarios and uncertainties \parencite{eker_including_2018}.
 
 \subsection{Identifying Policy Alternatives}
 
 Following scenario generation, policy alternatives were generated by optimising over the policy objectives for the three actors to determine the Pareto-approximate set, using a many-objective evolutionary algorithm. The algorithm used was $\epsilon$-NSGA2. This algorithm was considered appropriate for our formulations, as previous studies have shown that it performs well for six-objective problem formulations in related applications \parencite{salazar_diagnostic_2016}. The epsilon values for these optimisations were selected through a process of trial and error, informed by the range of values observed in the generated scenarios, with attention given to the number of potential policies generated from each iteration. We were ultimately satisfied that the chosen epsilon values represented an optimisation space which could trade-off between being able to generate a sufficient number of interesting policy combinations, without creating so much granularity that there was duplication or 'nonsense' policies being generated. The number of function evaluations for each optimisation were also selected based on trial and error, with the optimisations re-run until model results converged.
 
-\subsection{Re-evaluation of policies under deep-uncertainty}
-Having selected these six scenarios over which to optimise, the MOEA was run again to identify Pareto-approximate policies for each of the scenarios, for each actor. Then we discarded duplicate policies, and selected a more manageable subset by clustering the remaining subset with k-means (with $K=6$) to get 6 clusters. Within those clusters we normalised the lever values, and summed the values per policy. Then we selected the policies with the highest two sums, to get the most "extreme" policies per cluster. This means that there were at most 12 different policies to be processed by the next step.
+\subsection{Re-evaluation of policies under deep-uncertainty and subset selection}
+Having selected these six scenarios over which to optimise, the Many-Objective evolutionary algorithm (MOEA) was run to identify Pareto-approximate policies for each of the scenarios, for each actor. Then we discarded duplicate policies, and selected a more manageable subset by clustering the remaining subset with k-means (with $K=6$) to get 6 clusters. Within those clusters we normalised the lever values, and summed the values per policy. Then we selected the policies with the highest two sums, to get the most "extreme" policies per cluster. This means that there were at most 12 different policies to be processed by the next step.
 
 \subsection{Robustness Analysis}
 The subsetted selection of policy alternatives were then examine in terms of their robustness according to two types of robustness metrics: one satisficing, and one regret based. The use of two metrics was deemed necessary to see where there might be disagreement between the two types of metrics, and to identify if any policies achieve good scores under both metrics (indicating  policies that are more robust across different perspectives) \parencite{mcphail_robustness_2018}. These robustness metrics then resulted in a final shortlist of five candidate policies per actor.
