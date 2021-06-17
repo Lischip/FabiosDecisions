@@ -3,7 +3,7 @@
 %Results; this should be a readable summary of the results from applying the approach. Don’t pursue death by figures but carefully select what visualisations (figures, tables) are functional for telling your story and logically lead to the main conclusions and policy advice?
 
 % Convincing story, consistent with approach using carefully designed visuals and tables to support narrative
-In this section, we summarise the key results from applying this approach, identifying the most robust policies for Gorssel, Deventer and Overijssel, and discussing options for synthesising policy choices between the three actors.
+In this section, we summarise the key results from applying this approach, first identifying the most robust policies for Gorssel, Deventer and Overijssel, and subsequently discussing options for synthesising policy choices between the three actors. 
 
 
 \subsection{Uncertainty Analysis}
@@ -11,13 +11,20 @@ Uncertainty Analysis revealed uncertainties in these ranges: x-y
 
 The scenarios selected were based on understanding both how the policies perform under these uncertainty ranges, as well as under a diverse set of 'better' conditions. As such, the two 'worst case' scenarios fall within this uncertainty range, while the remaining scenarios fall across other ranges.
 
+%Z going ham
+
+For the sensitivity analysis on scenarios without any policies, extra trees was employed. It showed that for Gorssel only the durability of their own dike was by far the most dominant (estimator instance of 0.55). For Deventer this dominance was shared by the durability of their own dike and Gorssel's dike (estimator instances of 0.5 and 0.6 respectively). For Overijssel the sensitivity analysis showed the durability of Deventer's dike would be the most dominant (estimator instance of 0.5).
+
+We also found that there is a high correlation between deaths and damages for all actors: $0.09$ for Gorssel, $0.98$ for Deventer, and $0.98$ for Overijssel. Hence, during the scenario discvoery process, we only looked at the Damages. The Prim-algorithm allowed us to zoomed in on certain outcomes. We specifically looked at the worst 10 percentile of damages, and the best 40. Whenever a density was reached $>0.8$ we looked at the range of uncertainties. This showed that the durability of Gorssel's dike is also dominant for Overijssel (even though it had an estimator instance of 0.06 during the sensitivity analysis).
+
+Based on these values the scenarios for the optimisation were selected. The values for 
 
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{report/figures/results/scenario_discovery.png}
-    \caption{The results from scenario discovery process. The sensitivity analysis showed only a couple of uncertainties were dominant for the results. For Gorssel the durability of their own dike was by far the most dominant (0.55). For Deventer this dominance was shared by the durability of their own dike and Gorssel's dike (0.5 and 0.6 respectively). For Overijssel the sensitivity analysis showed the durability of Deventer's dike would be the most dominant (0.5). During the scenario discovery process it was found that the durability of Gorssel's dike is also dominant (just not as dominant as Deventer's dike)}
-    \label{fig:msmordm}
+    \caption{The results from scenario discovery process and the selected scenarios.}
+    \label{fig:prim}
 \end{figure}
 
 
@@ -29,7 +36,7 @@ For the robust decision making process two metrics were used: Satisficing (or th
 %#################################################################
 \subsubsection{Gorssel}
 The results from this analysis: The results for Gorssels satisficing analysis with the domain criterion are shown in \autoref{fig:domain_criterion_gorssel}. The 12 selected policies are analysed for trade-offs and how satisficing their results are. \newline
-\autoref{fig:domain_criterion_gorssel} shows that every policy is satisficing for "gorssel Expected Number of Deaths". This means that later policy recommendations, can be sure that the legal standards for citizen safety will be met in "all" scenarios. \newline
+\autoref{fig:domain_criterion_gorssel} shows that every policy is satisficing for "Gorssel Expected Number of Deaths". This means that later policy recommendations, can be sure that the legal standards for citizen safety will be met in "all" scenarios. \newline
 
 Gorssels 'scenario absolute worst option 2' performs best for the domain-criterion results. The policy reaches the highest domain-criterion scores on average. However this policy comes with a big trade-off with the expected annual damage, where the policy often goes over the annual damage budget, and thus reaches a low domain-criterion value for 'expected annual damage'. This would make the policy less robust in terms of damage and more in terms of costs. For the other policies it is the other way around. Most policies except for 'scenario absolute worst option 2' score 0 on 'total costs' and these policies are thus not robust, when considering only satisficing results.  
 
@@ -107,6 +114,15 @@ The five most robust policies for Gorssel are presented in Table \ref{fig:gpols}
     \label{fig:gpols}
 \end{figure}
 
+To describe these five policies in plain-English, none of Gorssel's preferred policies contain Room for the River upgrades, specific differences in policies are:
+\begin{itemize}
+    \item G1: With only one day of early warning for flood threats, and two Room for the River Projects implemented in Deventer, this policy requires large dike increases in both Gorssel and Deventer (80cm and 1.5m respectively) to manage flood risks.
+    \item G2: One additional Room for the River project and two days of warning in this policy allows for more modest dike increases.
+    \item G3: Implement Room for River projects at all planning steps
+    \item G4: Implement Room for River projects at all planning steps
+    \item G5: Implement Room for River projects at all planning steps
+\end{itemize}
+
 \subsubsection{Deventer}
 The five most robust policies for Deventer are presented in Table \ref{fig:dpols}
 
@@ -127,6 +143,7 @@ The five most robust policies for Overijssel are presented in Table \ref{fig:opo
     \label{fig:opols}
 \end{figure}
 
+Overijssel's policies prioritise dike increases in the first planning step, with none of the policies prioritising Room for the River (reflecting the relative expense of these policies compared to dike increases).
 
 
 \subsection{Sensitivity Analysis}
