@@ -1,7 +1,7 @@
 \section{Problem Framing}
 \label{s:prob_frame}
 \subsection{Introduction}
-Through the years, the river IJssel has been of incredible importance in Dutch history. In times of prosperity the river was trading route, in times of war it made up a strategically defendable border. Situated along this river, between the two bigger cities of Deventer and Zutphen, one can find the smaller town of Gorssel. Located along the banks of the IJssel river, water management and flood prevention have both been interwoven with the town's existence since the first farmers situated themselves there. However, when in 1993 and 1995 the water rose to dangerous levels in the IJssel, the discussion on water management became a national interest and thus, the Room for the River initiative was born. (\textbf{Cite Rijke et al.}) However, the fight against water continues. With global warming added into the mix, the rivers currently face even greater pressure (\textbf{Cite Takken}) and a waterproof water protection plan is key for the future of Gorssel and its farmers. Besides the complexity such a plan inherently has, this particular problem requires a careful examination of the actor field, for there are many involved stakeholders. It can fairly be assumed that all parties want to prevent a life-threatening flood, but beneath that, all involved parties have their own objectives they aim to achieve.  
+Through the years, the river IJssel has been of incredible importance in Dutch history. In times of prosperity the river was trading route, in times of war it made up a strategically defendable border. Situated along this river, between the two bigger cities of Deventer and Zutphen, one can find the smaller town of Gorssel. Located along the banks of the IJssel river, water management and flood prevention have both been interwoven with the town's existence since the first farmers situated themselves there. However, when in 1993 and 1995 the water rose to dangerous levels in the IJssel, the discussion on water management became a national interest and thus, the Room for the River initiative was born. \parencite{rijke_room_2012}) However, the fight against water continues. With global warming added into the mix, the rivers currently face even greater pressure \parencite{takken_wegen_2009}) and a waterproof water protection plan is key for the future of Gorssel and its farmers. Besides the complexity such a plan inherently has, this particular problem requires a careful examination of the actor field, for there are many involved stakeholders. It can fairly be assumed that all parties want to prevent a life-threatening flood, but beneath that, all involved parties have their own objectives they aim to achieve.  
 
 This report uses innovative modelling and analysis techniques to analyse options for the planning of flood protection measures along the IJssel river. As explained, the problem of flood management in this region is complex, due to significant uncertainties (i.e. flood wave shapes, dike failure probabilities, and breach widths) and conflicting priorities of different stakeholders in the region. Here, exploratory modelling and analysis is used to support decision making under the deep uncertainty this complexity causes. This model-based decision making is performed from the perspective of our problem owner, Gorssel, in addition to two key stakeholders of interest: Overijssel Regional Government and the city of Deventer. This is done to reveal important trade-offs and the outcomes of conflicting objectives to inform the policy-making process in the Overijssel region.
 
@@ -23,7 +23,7 @@ The goal of this report is to find a strategy for Gorssel to navigate these diff
 %How are you framing the problem? 
 The research question that is in line with this goal is as follows: 
 \begin{quote}
-    How can Gorssel (Dike Ring 4) affordably protect it's citizens and businesses from flood risk to a similar level as neighbouring urban areas, while still preserving and protecting farmland from encroachment?
+    \textit{How can Gorssel (Dike Ring 4) affordably protect it's citizens and businesses from flood risk to a similar level as neighbouring urban areas, while still preserving and protecting farmland from encroachment?}
 \end{quote}
 
 This question was informed by the mandate for Gorssel provided as part of the EPA1361 Debate (see Chapter \ref{s:poli_reflect} for more information), in addition to formal documentation of the Room for the River project, conducted by Rijkswaterstaat between 2010 and 2019 \parencite{rijkswaterstaat_tailor_2013,rijke_room_2012}.
@@ -31,19 +31,19 @@ This question was informed by the mandate for Gorssel provided as part of the EP
 To explore suitable policies for achieving these objectives, a problem formulation in the EMA Workbench was devised.
 The prioritised objectives for the Gorssel-perspective problem formulation are:
 \begin{itemize}
-    \item Minimise Expected Annual Damage for Gorssel: This objective reflects Gorssel's desire to generally minimise flood risk, while also reflecting effects of damage to farms and other property
-    \item Minimise Expected Number of Deaths for Gorssel: This objective reflects Gorssel's desire to generally minimse flood risk.
-    \item Minimise Total Costs: This objective reflects the desire to reduce the cost impact of flood mitigation measures taken across the entire IJssel River system. Total costs for all actors was considered relevant given the requirement of cost sharing for flood mitigation activities across the region.
-    \item Difference in Expected Annual Damage (EAD) between Gorssel and Deventer (information only - no objective set): This function returns results on the difference in Expected Annual Damages between Gorssel and Deventer, but will not be optimised for. The results for this feature under different policies serves to provide information on the relative 'fairness' in terms of rural-urban burden sharing in terms of flood risk, and as an additional feature for informing satisficing or regret-based robustness metrics.
-    \item Difference in Expected Number of Deaths between Gorssel and Deventer (information only - no objective set): rationale for inclusion of this metric is as for difference in EAD.
+    \item \textit{Minimise Expected Annual Damage for Gorssel}: This objective reflects Gorssel's desire to generally minimise flood risk, while also reflecting effects of damage to farms and other property
+    \item \textit{Minimise Expected Number of Deaths for Gorssel:} This objective reflects Gorssel's desire to generally minimse flood risk.
+    \item \textit{Minimise Total Costs:} This objective reflects the desire to reduce the cost impact of flood mitigation measures taken across the entire IJssel River system. Total costs for all actors was considered relevant given the requirement of cost sharing for flood mitigation activities across the region.
+    \item \textit{Difference in Expected Annual Damage (EAD) between Gorssel and Deventer (information only - no objective set)}: This function returns results on the difference in Expected Annual Damages between Gorssel and Deventer, but will not be optimised for. The results for this feature under different policies serves to provide information on the relative 'fairness' in terms of rural-urban burden sharing in terms of flood risk, and as an additional feature for informing satisficing or regret-based robustness metrics.
+    \item \textit{Difference in Expected Number of Deaths between Gorssel and Deventer (information only - no objective set)}: rationale for inclusion of this metric is as for difference in EAD.
 \end{itemize}
 These five core objectives are a refinement of all available objectives. These were prioritised due to the computational limitations of the exploratory modelling and analysis approaches (as explained in Section \ref{s:approach}) and due to limitations in stakeholder comprehension of multiple objectives. As a we have chosen not to present the analysis in the format of dynamic adaptive policy pathways, all objective outcomes were aggregated to a single planning step. 
 %What levers are relevant, and what is being treated as uncertain.
 For Gorssel, the relevant levers were:
 \begin{itemize}
-    \item Dike Ring: Gorssel has the option to switch on and off the 
+    \item Dike Heightening: Gorssel can elect for dike heightening in Gorssel and/or Deventer
     \item Early Warning System: Applied across the whole region
-    \item Room for the River: Applied across the whole region
+    \item Room for the River: Gorssel can elect for Room for the River projects to be implemented in Gorssel or Deventer.
 \end{itemize}
 
 \subsection{Actor Analysis}
@@ -93,7 +93,7 @@ Gorssel                & Livelihood of resident farmers & protecting farmland, m
 
 \bigskip 
 % b) Justification of Rival Actors
-Considering the power interest matrix as shown in figure \ref{fig:pi-grid} as well as relations between actors, Deventer and Overijssel are chosen as rival actors to explore alternate problem formulations. Since both Gorssel and Deventer are both administered by the Overijssel provincial government, there is the greatest chance of having conflicting goals and objectives regarding land use change, possibly resulting in negative outcomes for the client. At the same time these two actors also present opportunity of finding common ground and forming coalitions, to support one another at the negotiation table with other provinces, like Gelderland, and to ensure that a mutually beneficial proposal is drafted by the Rijkswaterstaat. The actions of other cities (those in Gelderland province) have been converted to uncertainties in the model.
+Considering the power interest matrix as shown in Figure \ref{fig:pi-grid} as well as relations between actors, Deventer and Overijssel are chosen as rival actors to explore alternate problem formulations. Since both Gorssel and Deventer are both administered by the Overijssel provincial government, there is the greatest chance of having conflicting goals and objectives regarding land use change, possibly resulting in negative outcomes for the client. At the same time these two actors also present opportunity of finding common ground and forming coalitions, to support one another at the negotiation table with other provinces, like Gelderland, and to ensure that a mutually beneficial proposal is drafted by the Rijkswaterstaat. The actions of other cities (those in Gelderland province) have been converted to uncertainties in the model.
 
 \bigskip 
 
