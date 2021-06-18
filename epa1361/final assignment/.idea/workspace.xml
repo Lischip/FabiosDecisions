@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96affc32-a0b4-420f-9ad5-31a4badde532" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/blabla.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Outcome_spread_plots.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Outcome_spread_plots.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/funs_project.py" beforeDir="false" afterPath="$PROJECT_DIR$/funs_project.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulation/generated/genscen_Deventer_50000_12-06-2021-02-25-33.tar - Copy.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulation/generated/genscen_Gorssel_50000_12-06-2021-03-06-15.tar - Copy.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulation/generated/genscen_Overijssel_50000_12-06-2021-02-18-42.tar - Copy.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../report/figures/results/spreads/outcome_spreads_Gorssel.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../report/figures/results/spreads/outcome_spreads_Gorssel.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../report/figures/results/spreads/outcome_spreads_Overijssel.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../report/figures/results/spreads/outcome_spreads_Overijssel.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
