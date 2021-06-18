@@ -7,19 +7,18 @@ In this section, we summarise the key results from applying this approach, first
 
 \subsection{Robust Decision Making}
 %Look at the policies for the five different scenarios, and examine trade-offs using different robustness metrics.
-For the robust decision making process two metrics were used: Satisficing (or the domain-criterion) and maximum regret. 
+For the robust decision making process two metrics were used: Satisficing (the domain-criterion) and maximum regret. 
 %#################################################################
 %   REGRET AND SATISFICING - GORSSEL
 %#################################################################
 \subsubsection{Gorssel}
 The results for Gorssel's satisficing analysis with the domain criterion are shown in \autoref{fig:domain_criterion_gorssel}. The twelve selected policies are analysed for trade-offs and the extent to which the results satisfy Gorssel's threshold values. \newline
-\autoref{fig:domain_criterion_gorssel} shows that every policy is satisficing for "Gorssel Expected Number of Deaths". This means that later policy recommendations, can be sure that the legal standards for citizen safety will be met in all tested scenarios. \newline
+\autoref{fig:domain_criterion_gorssel} shows that every policy is satisficing for "Gorssel Expected Number of Deaths". This means that all potential policy recommendations ensure that the legal standards for citizen safety are met in all tested scenarios. 
+It can also be observed that Gorssel's 'G\_1' policy performs best for the domain-criterion results, reaching the highest domain-criterion scores on average. However, this policy comes with a big trade-off with the expected annual damage as the policy often goes over the annual damage budget, and thus reaches a low domain-criterion value for 'expected annual damage'. This would make the policy less robust in terms of damage and more in terms of costs. For the other policies it is the other way around. Most policies except for 'G\_1' score 0 on 'total costs' and these policies are thus not robust, when considering these satisficing results.  \newline
 
-\noindent Gorssel's 'G\_1' performs best for the domain-criterion results. The policy reaches the highest domain-criterion scores on average. However this policy comes with a big trade-off with the expected annual damage, where the policy often goes over the annual damage budget, and thus reaches a low domain-criterion value for 'expected annual damage'. This would make the policy less robust in terms of damage and more in terms of costs. For the other policies it is the other way around. Most policies except for 'G\_1' score 0 on 'total costs' and these policies are thus not robust, when considering only satisficing results.  \newline
+\noindent In \autoref{fig:regret_gorssel}, the results for Gorssel's regret analysis are shown. The least regret for Gorssel appears with policy 'G\_2'. This is due to the fact that the expected number of Deaths and the Damage for Gorssel have 0 regret in this policy, this comes at a high total cost. This is a clear example of the trade-offs that have to be made within the policies. A trade off like this is also shown with policy G\_8, where there is little regret for the damage but the number of deaths and the costs lead to high regret.
 
-\noindent \autoref{fig:regret_gorssel} shows the results for Gorssel's regret analysis. The least regret for Gorssel appears with policy 'G\_2'. This is due to the fact that the expected number of Deaths and the and the Damage for Gorssel have 0 regret in this policy, this comes at a high total cost for Gorssel. Which clearly shows the trade-offs that have to be made within the policies. A trade off like this is also shown with policy G\_8, where there is little regret for the damage, but the number of deaths and the costs lead to high regret.
-
-\noindent For Gorssel there is another noticeable result. Some of the policies that have a high regret, have a low satisficing score or vice-versa.
+Another noteworthy result is that some of the policies that have a high regret, have a low satisficing score, and vice-versa.
 
 \begin{figure}[H]
   \centering
@@ -43,8 +42,8 @@ The results for Gorssel's satisficing analysis with the domain criterion are sho
 %   REGRET AND SATISFICING - DEVENTER
 %#################################################################
 \subsubsection{Deventer}
-The results from this analysis: The results for Deventer's satisficing analysis with the domain criterion are shown in \autoref{fig:domain_criterion_Deventers}. The 12 selected policies are analysed for trade-offs and how satisficing their results are. \newline
-\autoref{fig:domain_criterion_Deventers} shows that every policy is satisficing for "Deventer Expected Number of Deaths" and for "Deventer Total Costs". This means that later policy recommendations, can be sure that the legal standards for citizen safety will be met in "all" scenarios and that the budget of Deventer never ends up to high (within the set thresholds). \newline 
+The results for Deventer's satisficing analysis with the domain criterion are shown in  \autoref{fig:domain_criterion_Deventers}. 
+\autoref{fig:domain_criterion_Deventers} shows that every policy is satisficing for "Deventer Expected Number of Deaths" and for "Deventer Total Costs". This means that later policy recommendations, just like in Gorssel's care, are ensured that the legal standards for citizen safety will be met in "all" scenarios and that the budget of Deventer never ends up to high (within the set thresholds). \newline 
 
 \noindent The policy G\_9 together with D\_8 performed the 'best with the satisficing scores for the expected damage. The other policies score only a little over half of this value. Meaning that policy D\_8 and D\_9 are the more robust (satisficing) policies. \newline
 
@@ -70,7 +69,7 @@ The results from this analysis: The results for Deventer's satisficing analysis 
 \subsubsection{Overijssel}
 The results from this analysis: Overijssel's satisficing analysis with the domain criterion are shown in \autoref{fig:domain_criterion_Overijssels}. The selected policies are analysed for their trade-offs and their satisficing results. \newline
 \autoref{fig:domain_criterion_Overijssels} shows that every policy is satisficing for "Gorssel and Deventer Expected Number of Deaths" and all but one are not for "Gorssel and Deventer Total Costs". This means that later policy recommendations, can be sure that the legal standards for citizen safety will be met in "all" scenarios. However, most policies do not upheld the total cost threshold of Overijssel (only one) \newline 
-\noindent Policy O\_8 and policy O\_10 are one of the lower scoring policies based on their satisficing scores. This is mainly due to their scores on 'expected damage'. 
+Policy O\_8 and policy O\_10 are one of the lower scoring policies based on their satisficing scores. This is mainly due to their scores on 'expected damage'. 
 
 \noindent \autoref{fig:domain_criterion_Overijssels} shows the regret results for Overijssel's policy options. Here policy O\_8 and O\_10 score again the best on the 'average' regret, but due show certain trade-offs. Especially policy D\_10 shows a almost no trade-off compared to the other policies. There are four policies for Overijssel's policies don't show a lot of regret, so are quite robust based on the regret.
 
@@ -89,8 +88,8 @@ The results from this analysis: Overijssel's satisficing analysis with the domai
   \end{minipage}
 \end{figure}
 
-\subsection{Shortlisted policies for each Actor}
-From the robustness analysis, a subset of the top five most robust policies (prioritising regret-based metrics) were identified. Here, a brief description of each policy, and the relevant actions in terms of dike heightening, room the the river projects, and early warning systems are presented for each actor. The damage, death, and cost outcomes are not included in these tables, as they are already assumed to have been optimised to be within acceptable levels based on the robustness metrics in previous steps. Policies were qualitatively interpreted for opportunities for coalition forming, with relevant policies highlighted yellow in each table.
+\subsection{Shortlisted Policies per Actor}
+From the robustness analysis, a subset of the top five most robust policies (prioritising regret-based metrics) were identified. Here, a brief summary of each policy in terms of dike heightening, room the the river projects, and early warning systems are presented for each actor. The damage, death, and cost outcomes are not included in these tables, as they are already assumed to have been optimised to be within acceptable levels based on the robustness metrics in previous steps. Policies were qualitatively interpreted for opportunities for coalition forming, with relevant policies highlighted yellow in each table.
 
 Interpreting these policies for opportunities for coalition-forming, there is a commonly re-occurring objective of a three-day early warning, which presents an opening for consensus-building between actors in the Overijssel region. The below tables explore this in more detail.
 
@@ -105,7 +104,7 @@ The five most robust policies for Gorssel are presented in Table \ref{tab:gpols}
   \includegraphics[width=0.8\linewidth]{report/figures/gpols.png}
 \end{table}
 
-Obviously, given these policies are optimised for Gorssel's objectives, all of these policies are favourable for Gorssel. However, we highlight policies G1 and G2 for opportunities they present for coalition forming with Deventer and Overijssel. Arguably, these two policies are less favourable for Deventer, given the larger investments in Room for the River and dike increases. However, they are well-aligned with many of Overijssel's preferred policies (seen in Table \ref{tab:opols}) which prioritise earlier warnings and modest dike heightening (although they do not include Room for the River policies).
+\noindent Obviously, given these policies are optimised for Gorssel's objectives, all of these policies are favourable for Gorssel. However, we highlight policies G1 and G2 for opportunities they present for coalition forming with Deventer and Overijssel. Arguably, these two policies are less favourable for Deventer, given the larger investments in Room for the River and dike increases. However, they are well-aligned with many of Overijssel's preferred policies (seen in Table \ref{tab:opols}) which prioritise earlier warnings and modest dike heightening (although they do not include Room for the River policies).
 
 \subsubsection{Deventer}
 The five most robust policies for Deventer are presented in Table \ref{tab:dpols}
@@ -136,15 +135,15 @@ Overijssel's policies prioritise dike increases in the first planning step, with
 
 \subsection{Sensitivity Analysis}
 
-To see which policies and uncertainties have a large effect on model behaviour, a sensitivity analysis is carried out. The analysis of these can be viewed per actor in the following section. Firstly, the sensitivity analysis was done with feature scoring without the policies to get a grasp of which uncertainty the actors would be most sensitive to. After, policies are added and analysed to assess whether they would be sensitive or not. The generated figures for the sensitivity analysis can be found in Appendix \ref{a:sensitivity-analysis}/
+To see which uncertainties and levers have a large effect on model behaviour, a sensitivity analysis was carried out. The analysis of these can be viewed per actor in the following section. Firstly, the sensitivity analysis was done with feature scoring without the policies to get a grasp of which uncertainty and levers the actors would be most sensitive to. After, policies are added and analysed to assess whether they would be sensitive or not. The generated figures for the sensitivity analysis can be found in Appendix \ref{a:sensitivity-analysis}.
 
 \subsubsection{Gorssel}
 
-From the sensitivity analysis for damage and deaths for Gorssel it becomes apparent that they are not only influenced by their own dike failure, but also by that of Deventer. This has to do with the fairness criteria specified by Gorssel, where they strive to achieve fairness between all actors in the Overijssel province. As a result, the failures of \textit{both} cities have the highest impact on the deaths and damage. When adding the policies, we observe that the sensitivity to dike failure remains the highest for both the deaths and damage. 
+From the sensitivity analysis for damage and deaths for Gorssel it becomes apparent that they are not only influenced by their own dike durability, but also by that of Deventer. This has to do with the fairness criteria specified by Gorssel, where they strive to achieve fairness between all actors in the Overijssel province. As a result, the failures of \textit{both} cities have the highest impact on the deaths and damage. When adding the policies, we observe that the sensitivity to dike durability remains the highest for both the deaths and damage. 
 
 \subsubsection{Deventer}
 
-For Deventer the biggest threat to damages and deaths is the dike failure of just Deventer. This is in line with expectations, because only their own dikes breaking would impact Deventer. And just as with Gorssel, we can observe that when adding the policies, we see that the outcome is still least robust under dike failure. 
+For Deventer the biggest threat to damages and deaths is the dike durability of just Deventer. This is in line with expectations, because only their own dikes breaking would impact Deventer. And just as with Gorssel, we can observe that when adding the policies, we see that the outcome is still least robust under dike failure. 
 
 \subsubsection{Overijssel}
 
@@ -152,3 +151,12 @@ For the costs of the province of Overijssel it can be observed that they are sen
 
 \subsection{Policy Comparison}
 Here, the top five policies from each actor are considered and compared to investigate opportunities for coalition forming, or to identify sources of tension in the policy-making process.
+
+\subsection{Summary of Policy Recommendations}
+Based on the above results, there are four key pieces of policy advice for the Municipality of Gorssel:
+\begin{itemize}
+    \item Modest dike increases in both Gorssel and Deventer in the first planning step present a robust solution to minimise flood risk in Gorssel.
+    \item Gorssel should support the Overijsssel regional government in lobbying for an increase of the Early Warning System to 3 days.
+    \item The current scoping of the problem suggests that Room for the River projects are not favourable due to relative costs (compared to dike increases). However, the sensitivity of proposed policies to uncertainty in the probability of a dike failure suggests that these options may warrant further exploration as a policy option.
+    \item We recommend that should Gorssel pursue dike heightening projects and EWS increases, that they complement these policies with other activities to improve their real-world robustness. For example, instantiating improved monitoring and evaluation of dike strength to proactively minimise uncertainty and risk, and/or public relations/community engagement strategies to improve the uptake and acceptance of the increased (and potentially more frequent) warnings.
+\end{itemize}
