@@ -1,4 +1,4 @@
-# EPA-simmodel
+# EPA1361
 
 ## Authors
 | Name                | Student number| 
