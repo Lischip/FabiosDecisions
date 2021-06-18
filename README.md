@@ -13,6 +13,7 @@ Final assignment repository.
 
 ## Introduction
 
-This repository pertains the final assignment for EPA1361, a course from the EPA programme at TU Delft, in which a model for flood risk management in the Netherlands was used to provide policy recommendations under deep uncertainty.
+This repository pertains the final assignment for EPA1361, a course from the EPA programme at TU Delft, in which a model
+for flood risk management in the Netherlands was used to provide policy recommendations under deep uncertainty.
 
 

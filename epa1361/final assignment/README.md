@@ -12,7 +12,8 @@
 
 ## Introduction
 
-This repository pertains the final assignment for EPA1361, a course from the EPA programme at TU Delft. This file outlines the file structure and how to use the model for flood risk management in the Netherlands.
+This repository pertains the final assignment for EPA1361, a course from the EPA programme at TU Delft. 
+This file outlines the file structure and how to use the model for flood risk management in the Netherlands.
 
 
 ## File structure
@@ -65,7 +66,8 @@ FabiosDecisions
 
 ### Problem formulation
 
-The problem_formulation file contains the get_model_for_problem_formulation function that allows for easy access to the model, set with the uncertainties and levers for a selected actor (Gorssel, Deventer, or Overijssel).
+The problem_formulation file contains the get_model_for_problem_formulation function that allows for easy access to the
+model, set with the uncertainties and levers for a selected actor (Gorssel, Deventer, or Overijssel).
 
 ### Scenario generation
 
@@ -75,17 +77,31 @@ second the number of scenarios. Their default values are Gorssel and 5000 respec
 If one were to generate 40 scenarios for Overijssel, one were to type: 'python gen_scen.py Overijssel 40' in the
 terminal.
 
+### Scenario discovery and primary sensitivity analysis
+
+In SA_mod.ipynb we look at how sensitive the outcomes are to the levers and uncertainties in the model without any
+policy in place.
+In scen_discovery_actorname, a preliminary scenario discovery was performed for each actor. To devise of an algorithm
+that has a good distribution on the results, we also plotted all the scenarios we selected for directed search later on.
+We then combined all the insights we gained from these notebooks in scen_disco.ipynb.
+
 ### Scenario selection
 
-Scenario selection is done for every actor before optimisation. The optimisation_actorname notebooks select scenarios before running optimisation, based on a variety of outcomes. This process can also be informed with use of the scen_discovery_actorname notebooks.
+Scenario selection is done for every actor before optimisation. The optimisation_actorname notebooks select scenarios 
+before running optimisation, based on a variety of outcomes. This process was performed in tandem with scenario discovery,
+as this allowed us to figure out a good method to get apropriate scenarios. In these notebooks we also look at the
+correlation between deaths and damages for each actor
 
 ### Optimisation
 
-A set of preferred policies is found for every actor in the optimisation_actorname notebooks, where policies are found that perform well under the selected scenarios and then re-evaluated under deep uncertainty.
+A set of preferred policies is found for every actor in the optimisation_actorname notebooks, where policies are found 
+that perform well under the selected scenarios and then re-evaluated under deep uncertainty.
 
 ### Policy selection
 
-A subset of the optimised policies is selected by processing the optimisation results in the opt_proc_actorname notebooks. A new file, called funs_project.py, where a few useful functions were stored, including crude_policy_selection, which performs this function. 
+A subset of the optimised policies is selected by processing the optimisation results in the opt_proc_actorname 
+notebooks. The function crude_policy_selection from funs_project.py is used to make an initial selection of policies,
+which is then processed by the optimisiation_actorname notebooks.
 
 ### Robustness analysis
 
@@ -93,11 +109,17 @@ The selected policies are then tested under satisficing and regret-based robustn
 
 ### Sensitivity analysis or uncertainty analysis
 
-We evaluate the sensitivity of the different outcomes of interests for every actor to the uncertainty ranges in the model, with the selected subset of policies. This is done with feature scoring in the extra_trees.py file. To use it, you need to  open your terminal and cd to the final assignment folder and type command 'python extra_trees.py' there are 2 optional parameters, the first being the actor of interest, and the second the number of scenarios. If one were to perform the analysis for 100 scenarios for Overijssel, one were to type: 'python extra_trees.py Overijssel 100' in the terminal.
+We evaluate the sensitivity of the different outcomes of interests for every actor to the uncertainty ranges in the model,
+with the selected subset of policies. This is done with feature scoring in the extra_trees.py file. To use it, you need 
+to  pen your terminal and cd to the final assignment folder and type command 'python extra_trees.py' there are 2 optional 
+parameters, the first being the actor of interest, and the second the number of scenarios. If one were to perform the
+analysis for 100 scenarios for Overijssel, one were to type: 'python extra_trees.py Overijssel 100' in the terminal.
 
 ### Re-evaluate with other formulations
 
-To evaluate the feasibility of an actor proposing a policy to other actors, the synthesis.py was generated, which evaluates the performance of policies from one actor in terms of the outcomes of interest of the other actors. The outcome of this is then processed in the Outcome_spread_plots notebook to produce visualisations useful for analysis.
+To evaluate the feasibility of an actor proposing a policy to other actors, the synthesis.py was generated, 
+which evaluates the performance of policies from one actor in terms of the outcomes of interest of the other actors. 
+The outcome of this is then processed in the Outcome_spread_plots notebook to produce visualisations useful for analysis.
 
 **Note: actorname in file names stands for the uncapitalised name of the actor**
 
