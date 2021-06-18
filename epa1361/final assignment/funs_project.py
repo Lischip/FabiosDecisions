@@ -137,7 +137,7 @@ def get_opti_policies(actor, n_scenarios=1000):
     levers = [lever.name for lever in dike_model.levers]
     policies = []
     read_results = get_opti_results(actor, n_scenarios)
-    cases = get_cases(actor, n_scenarios)
+    cases = the_cases(actor, n_scenarios)
 
     for i, (result, _) in enumerate(read_results):
         result = result.loc[:, levers]
