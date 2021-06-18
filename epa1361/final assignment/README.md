@@ -56,6 +56,22 @@ FabiosDecisions
 │    │   opt_proc_overijssel.ipynb
 │    │   optimisation_deventer.ipynb
 │    │   optimisation_gorssel.ipynb
+│    │   optimisation_overijssel.ipynb
+│    │   optimization Moro.ipymn <-- legacy
+│    │   Outcome_spread_plots.ipynb
+│    │   Problem Formulations.ipynb
+│    │   problem_formulations.py
+│    │   README.md
+│    │   requirements.txt
+│    │   rfr_Ijssel.PNG
+│    │   rfr_wlreduction.PNG
+│    │   SA_plots.ipynb
+│    │   SA_mod.ipynb
+│    │   scen_disco.ipynb
+│    │   scen_discovery_deventer.ipynb
+│    │   scen_discovery_gorssel.ipynb
+│    │   scen_discovery_overijssel.ipynb
+│    │   synthesis.py
 └─── report   <-- includes all files necessary to compile report using LaTeX
 │    └───chapters
 │    └───figures
