@@ -65,7 +65,6 @@ FabiosDecisions
 │    │   requirements.txt
 │    │   rfr_Ijssel.PNG
 │    │   rfr_wlreduction.PNG
-│    │   SA_plots.ipynb
 │    │   SA_mod.ipynb
 │    │   scen_disco.ipynb
 │    │   scen_discovery_deventer.ipynb
