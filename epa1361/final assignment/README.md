@@ -1,4 +1,4 @@
-# EPA-simmodel
+# EPA1361
 
 ## Authors
 | Name                | Student number| 
@@ -26,15 +26,7 @@ FabiosDecisions
 │    └───final assignment 
 │    │   │ 
 │    │   └─── data <-- contains the datafiles neccesary to run the model
-│    │   │
 │    │   └───results <-- contains the results of our analysis
-│    │   │   └───scenario0.csv
-│    │   │   └───scenario1.csv
-│    │   │   └───scenario2.csv
-│    │   │   └───scenario3.csv
-│    │   │   └───scenario4.csv
-│    │   │   └───simulation.csv
-│    │   │   └───total_waiting_time.xlsx
 │    │   └─── simulation <-- contains the results of our analysis
 │    │   │   └─── generated
 │    │   │   └─── optimisation
@@ -56,6 +48,21 @@ FabiosDecisions
 │    │   opt_proc_overijssel.ipynb
 │    │   optimisation_deventer.ipynb
 │    │   optimisation_gorssel.ipynb
+│    │   optimisation_overijssel.ipynb
+│    │   optimization Moro.ipymn <-- legacy
+│    │   Outcome_spread_plots.ipynb
+│    │   Problem Formulations.ipynb
+│    │   problem_formulations.py
+│    │   README.md
+│    │   requirements.txt
+│    │   rfr_Ijssel.PNG
+│    │   rfr_wlreduction.PNG
+│    │   SA_mod.ipynb
+│    │   scen_disco.ipynb
+│    │   scen_discovery_deventer.ipynb
+│    │   scen_discovery_gorssel.ipynb
+│    │   scen_discovery_overijssel.ipynb
+│    │   synthesis.py
 └─── report   <-- includes all files necessary to compile report using LaTeX
 │    └───chapters
 │    └───figures
