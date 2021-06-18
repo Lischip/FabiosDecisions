@@ -10,8 +10,8 @@ dcases = {0: "best", 1: "low", 2: "middle", 3: "high", 4: "absolute worst", 5: "
 
 
 n_overijssel = 1.16e6
-#n_deventer = 100719
-#n_lochem = 33590
+# n_deventer = 100719
+# n_lochem = 33590
 
 thresholds_overijssel = {'Gorssel and Deventer Expected Annual Damage': 1.53e6,
                          'Gorssel and Deventer Expected Number of Deaths': (1e-5*n_overijssel),
@@ -22,6 +22,7 @@ thresholds_deventer = {'Deventer Expected Annual Damage': 1.1e6,
 thresholds_gorssel = {'Gorssel Expected Annual Damage': 5.4e5,
                       'Gorssel Expected Number of Deaths': (1e-5*n_lochem),
                       'Gorssel Total Costs': 5.4e6}
+
 
 def the_cases(actor):
     """
@@ -36,6 +37,7 @@ def the_cases(actor):
     else:
         print("Error")
         return 0
+
 
 def crude_policy_selection(actor, clusters):
     """"
@@ -86,68 +88,6 @@ def crude_policy_selection(actor, clusters):
         idx.extend(groups.loc[groups["cluster"] == cluster].sort_values(by="value", ascending=False)[:2].index.values.tolist())
 
     return opt_df.iloc[idx]
-
-def get_cases(actor, n_scenarios=1000):
-    """
-    Obtain the cases used from optimisation
-    """
-    du_experiments, _ = load_results(
-        "simulation/optimisation/du_scen_" + str(n_scenarios) + "_" + actor + ".tar.gz")
-
-    cases_set = set()
-
-    for policy in du_experiments.policy.unique():
-        cases_set.add(' '.join(policy.split(' ')[1:-2]))
-
-    cases = {}
-
-    for i, case in enumerate(cases_set):
-        cases[i] = case
-    return cases
-
-def get_opti_results(actor, n_scenarios=1000):
-    """
-    Obtain the optimisation results (paretto front) stored for a given actor
-    """
-
-    cases = the_cases(actor, n_scenarios)
-
-    read_results = []
-
-    for _, case in cases.items():
-        temp = pd.read_csv("simulation/optimisation/" + actor + "/results_" + case + ".csv")
-        temp_ = pd.read_csv("simulation/optimisation/" + actor + "/convergence_" + case + ".csv")
-        read_results.append([temp, temp_])
-
-    # opt_df = pd.DataFrame()
-    #
-    # for i, (result, convergence) in enumerate(read_results):
-    #     opt_df = pd.concat([opt_df, result], axis=0)
-    #
-    # return opt_df
-
-    return read_results
-
-def get_opti_policies(actor, n_scenarios=1000):
-    """
-    Obtain paretto front policies
-    """
-
-    dike_model, _ = get_model_for_problem_formulation(actor)
-    levers = [lever.name for lever in dike_model.levers]
-    policies = []
-    read_results = get_opti_results(actor, n_scenarios)
-    cases = the_cases(actor, n_scenarios)
-
-    for i, (result, _) in enumerate(read_results):
-        result = result.loc[:, levers]
-        # print(result)
-        for j, row in result.iterrows():
-            # print(f'scenario {cases[i]} option {j}')
-            policy = Policy(f'scenario {cases[i]} option {j}', **row.to_dict())
-            policies.append(policy)
-
-    return policies
 
 def get_selected_policies(actor):
     """
