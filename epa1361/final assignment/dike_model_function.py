@@ -123,7 +123,7 @@ class DikeNetwork(object):
         # Call RfR initialization:
         self._initialize_rfr_ooi(G, dikelist, self.planning_steps)
 
-        # Fabio moved this
+        # Moved to disaggregate costs
         # Dictionary storing outputs:
         data = {}
 
@@ -151,7 +151,7 @@ class DikeNetwork(object):
                     proj_node['cost'] += kwargs[item] * proj_node[string1][
                         'costs_1e6'] * 1e6
 
-                    # Fabio's addition
+                    # Added this to disaggregate RfR costs
                     data.update({'{}_{}'.format(string1, string2): proj_node['cost'] - old_cost})
 
                     # Iterate over the location affected by the project
@@ -283,7 +283,7 @@ class DikeNetwork(object):
 
                 # Expected Evacuation costs: depend on the event, the higher
                 # the event, the more people you have got to evacuate:
-                # Fabio's adaptation
+                # Added this to disaggregate evacuation costs
                 evacosts = np.trapz(node['evacuation_costs {}'.format(s)], self.p_exc)
                 EECosts.append(evacosts)
 
