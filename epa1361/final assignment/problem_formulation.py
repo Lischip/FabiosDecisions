@@ -21,25 +21,8 @@ n_lochem = 33590
 n_deventer = 100719
 # budget = 1e8
 
-# "Het totale budget was 2,3 miljard euro"
-# http://www.waterbouwsite.nl/projects/project.php?ID_projecten=361&show_uitvoerders=1   95.6 mln
-# https://www.ijsseldeltaprogramma.nl/ruimte-voor-de-rivier-ijsseldelta-al-in-2022-afgerond/ 121 million for phase 2, so
-# about 200e6 for the entire rfr stuff?
-
-
-# thresholds = {"Overijssel": budget,
-#               "Gorssel": 1e7,
-#               "Deventer": 1e7}
-
 def sum_over(*args):
     return sum(args)
-
-# def sum_over_threshold(actor, *args):
-#     return max(0, max(sum(args), thresholds[actor]) - thresholds[actor])
-#
-# G_sum_over_t = functools.partial(sum_over_threshold, "Gorssel")
-# D_sum_over_t = functools.partial(sum_over_threshold, "Deventer")
-# O_sum_over_t = functools.partial(sum_over_threshold, "Overijssel")
 
 def difference(*args):
     '''
@@ -305,10 +288,6 @@ def get_model_for_problem_formulation(problem_formulation_id):
 
     # Problem formulation Gorssel
     elif problem_formulation_id == "Gorssel":
-        # Just want less expected annual damage and number of deaths than Deventer
-        # Want to minimise land encroachment
-        # change differences to info
-        # minimise ALL COSTS of ALL DIKES + rfr + evacuation, minimise deaths + minimise damage
 
         # changing the levers + uncertainties to match the problem framing
         swap = [s for s in levers if "A.3" in str(s) or "A.2" in str(s) or "A.1" in str(s) or "2_RfR" in str(s) or
@@ -329,12 +308,6 @@ def get_model_for_problem_formulation(problem_formulation_id):
             variable_names__.extend(['A.4_{} {}'.format(e, n) for e in ['Dike Investment Costs', 'Expected Evacuation Costs']])
             variable_names__.extend(["3_RfR {}".format(n)])
 
-        # for n in function.planning_steps:
-        #     variable_names__.extend(['{}_Dike Investment Costs {}'.format(dike, n)
-        #                             for dike in function.dikelist] + [
-        #                                'RfR Total Costs {}'.format(n)
-        #                            ] + ['Expected Evacuation Costs {}'.format(n)])
-
         outcomes = [ScalarOutcome('Difference in Expected Annual Damage Gorssel-Deventer',
                                   variable_name=[var for var in variable_names], function=difference,
                                   kind=ScalarOutcome.INFO),
@@ -350,16 +323,12 @@ def get_model_for_problem_formulation(problem_formulation_id):
                     ScalarOutcome('Gorssel Total Costs',
                                   variable_name=[var for var in variable_names__],
                                   function=sum_over, kind=direction),
-                    ] # evacuation + their own dikes
+                    ]
 
         dike_model.outcomes = outcomes
 
     # Problem Formulation Deventer
     elif problem_formulation_id == "Deventer":
-        # Minimise expected deaths as possible for Deventer
-        # Minimise damage as possible for Deventer
-        # It is impossible to install dikes in Deventer (hard constraint)
-        # Include minimise rfr costs and minimise evacuation costs
 
         # changing the levers + uncertainties to match the problem framing
         swap = [s for s in levers if "A.3" in str(s) or "A.2" in str(s) or "A.1" in str(s) or "2_RfR" in str(s)
@@ -389,11 +358,10 @@ def get_model_for_problem_formulation(problem_formulation_id):
                                ScalarOutcome('Deventer Total Costs',
                                              variable_name=[var for var in variable_names__],
                                              function=sum_over, kind=direction)
-                               ] # evacation
+                               ]
 
     # Problem formulation Overijssel
     elif problem_formulation_id == "Overijssel":
-        # Just want to minimise deaths + damage for the province + minimise ALL costs
         variable_names = []
         variable_names_ = []
         variable_names__ = []

@@ -5,43 +5,6 @@
 % Convincing story, consistent with approach using carefully designed visuals and tables to support narrative
 In this section, we summarise the key results from applying this approach, first identifying the most robust policies for Gorssel, Deventer and Overijssel, and subsequently discussing options for synthesising policy choices between the three actors. 
 
-
-\subsection{Uncertainty Analysis}
-Before sensitivity analysis and scenario discovery, we found that there is a high correlation between deaths and damages for all actors: $0.98$ for Gorssel, $0.98$ for Deventer, and $0.98$ for Overijssel. Hence, during the remainder of this section, we only target damage.
-
-For the sensitivity analysis on scenarios without any policies, extra trees was employed. It showed that for Gorssel only the durability of their own dike was by far the most dominant (estimator instance of 0.55). For Deventer this dominance was shared by the durability of their own dike and Gorssel's dike (estimator instances of 0.5 and 0.6 respectively). For Overijssel the sensitivity analysis showed the durability of Deventer's dike would be the most dominant (estimator instance of 0.5).
-
-The Prim-algorithm allowed us to zoomed in on certain outcomes. We specifically looked at the worst 10 percentile of damages, and the best 40. Whenever a density $\rho$ with $\rho>0.8$ was reached, we looked at the range of uncertainties. This showed that the durability of Gorssel's dike is also dominant for Overijssel (even though it had an estimator instance of 0.06 during the sensitivity analysis).
-
-Based on these values the scenarios for the optimisation were selected. In Figure~\ref{fig:prim} we show the values for the selected scenarios for the most dominant sensitive input variables.
-
-\begin{table}[h!]
-\caption{Scenarios}
-\label{tab:scenarios}
-\centering
-\begin{tabular}{llll}
-               & Gorssel& Deventer & Overijssel \\
-best           & & & \\
-low            & $23\%> D \leq 27\%$ & $25\%> D \leq 35\%$ & $23\%> D \leq 27\%$\\
-middle         & $48\%> D \leq 52\%$ & $48\%> D \leq 52\%$ & $48\%> D \leq 52\%$ \\
-high           & $73\%> D \leq 77\%$ & $73\%> D \leq 77\%$ & $73\%> D \leq 77\%$            \\
-worst deaths   & & x & x \\
-worst damage   & x &          & \\
-absolute worst &  &          &           
-\end{tabular}
-\end{table}
-
-The scenarios selected were based on understanding both how the policies perform under these uncertainty ranges, as well as under a diverse set of 'better' conditions. As such, the two 'worst case' scenarios fall within this uncertainty range, while the remaining scenarios fall across other ranges.
-
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\textwidth]{report/figures/results/scenario_discovery.png}
-    \caption{The results from scenario discovery process and the selected scenarios. The first 3 items in the legend are the actors, and the remaining items are the scenarios.}
-    \label{fig:prim}
-\end{figure}
-
-
 \subsection{Robust Decision Making}
 %Look at the policies for the five different scenarios, and examine trade-offs using different robustness metrics.
 For the robust decision making process two metrics were used: Satisficing (or the domain-criterion) and maximum regret. 
@@ -49,10 +12,10 @@ For the robust decision making process two metrics were used: Satisficing (or th
 %   REGRET AND SATISFICING - GORSSEL
 %#################################################################
 \subsubsection{Gorssel}
-The results from this analysis: The results for Gorssels satisficing analysis with the domain criterion are shown in \autoref{fig:domain_criterion_gorssel}. The 12 selected policies are analysed for trade-offs and how satisficing their results are. \newline
-\autoref{fig:domain_criterion_gorssel} shows that every policy is satisficing for "Gorssel Expected Number of Deaths". This means that later policy recommendations, can be sure that the legal standards for citizen safety will be met in "all" scenarios. \newline
+The results for Gorssel's satisficing analysis with the domain criterion are shown in \autoref{fig:domain_criterion_gorssel}. The twelve selected policies are analysed for trade-offs and the extent to which the results satisfy Gorssel's threshold values. \newline
+\autoref{fig:domain_criterion_gorssel} shows that every policy is satisficing for "Gorssel Expected Number of Deaths". This means that later policy recommendations, can be sure that the legal standards for citizen safety will be met in all tested scenarios. \newline
 
-\noindent Gorssels 'G\_1' performs best for the domain-criterion results. The policy reaches the highest domain-criterion scores on average. However this policy comes with a big trade-off with the expected annual damage, where the policy often goes over the annual damage budget, and thus reaches a low domain-criterion value for 'expected annual damage'. This would make the policy less robust in terms of damage and more in terms of costs. For the other policies it is the other way around. Most policies except for 'G\_1' score 0 on 'total costs' and these policies are thus not robust, when considering only satisficing results.  \newline
+\noindent Gorssel's 'G\_1' performs best for the domain-criterion results. The policy reaches the highest domain-criterion scores on average. However this policy comes with a big trade-off with the expected annual damage, where the policy often goes over the annual damage budget, and thus reaches a low domain-criterion value for 'expected annual damage'. This would make the policy less robust in terms of damage and more in terms of costs. For the other policies it is the other way around. Most policies except for 'G\_1' score 0 on 'total costs' and these policies are thus not robust, when considering only satisficing results.  \newline
 
 \noindent \autoref{fig:regret_gorssel} shows the results for Gorssel's regret analysis. The least regret for Gorssel appears with policy 'G\_2'. This is due to the fact that the expected number of Deaths and the and the Damage for Gorssel have 0 regret in this policy, this comes at a high total cost for Gorssel. Which clearly shows the trade-offs that have to be made within the policies. A trade off like this is also shown with policy G\_8, where there is little regret for the damage, but the number of deaths and the costs lead to high regret.
 
@@ -62,7 +25,7 @@ The results from this analysis: The results for Gorssels satisficing analysis wi
   \centering
   \begin{minipage}[b]{0.4\textwidth}
     \includegraphics[width=1.15\textwidth]{report/figures/results/domain_criterion_Gorssel.png}
-    \caption{Results for Gorssels domain criterion}
+    \caption{Results for Gorssel's domain criterion}
     \label{fig:domain_criterion_gorssel}
   \end{minipage}
   \hfill
@@ -80,12 +43,12 @@ The results from this analysis: The results for Gorssels satisficing analysis wi
 %   REGRET AND SATISFICING - DEVENTER
 %#################################################################
 \subsubsection{Deventer}
-The results from this analysis: The results for Deventers satisficing analysis with the domain criterion are shown in \autoref{fig:domain_criterion_Deventers}. The 12 selected policies are analysed for trade-offs and how satisficing their results are. \newline
+The results from this analysis: The results for Deventer's satisficing analysis with the domain criterion are shown in \autoref{fig:domain_criterion_Deventers}. The 12 selected policies are analysed for trade-offs and how satisficing their results are. \newline
 \autoref{fig:domain_criterion_Deventers} shows that every policy is satisficing for "Deventer Expected Number of Deaths" and for "Deventer Total Costs". This means that later policy recommendations, can be sure that the legal standards for citizen safety will be met in "all" scenarios and that the budget of Deventer never ends up to high (within the set thresholds). \newline 
 
 \noindent The policy G\_9 together with D\_8 performed the 'best with the satisficing scores for the expected damage. The other policies score only a little over half of this value. Meaning that policy D\_8 and D\_9 are the more robust (satisficing) policies. \newline
 
-\noindent \autoref{fig:regret_Deventers} shows the regret results for Deventers policy options. Here policy D\_8 and D\_9 score again the best on the 'average' regret, but due show certain trade-offs. Especially policy D\_9 shows a big trade-off compared to D\_8 between expected damage and expected deaths versus the total costs that this brings with it. Another policy that shows some insight in possible policies for Deventer is policy D\_4. This policy shows that Deventer will only not 'regret' their total costs when they trade for this high damages and high expected number of deaths. 
+\noindent \autoref{fig:regret_Deventers} shows the regret results for Deventer's policy options. Here policy D\_8 and D\_9 score again the best on the 'average' regret, but due show certain trade-offs. Especially policy D\_9 shows a big trade-off compared to D\_8 between expected damage and expected deaths versus the total costs that this brings with it. Another policy that shows some insight in possible policies for Deventer is policy D\_4. This policy shows that Deventer will only not 'regret' their total costs when they trade for this high damages and high expected number of deaths. 
 \begin{figure}[H]
   \centering
   \begin{minipage}[b]{0.4\textwidth}
@@ -105,11 +68,11 @@ The results from this analysis: The results for Deventers satisficing analysis w
 %   REGRET AND SATISFICING - OVERIJSSEL
 %#################################################################
 \subsubsection{Overijssel}
-The results from this analysis: Overijssels satisficing analysis with the domain criterion are shown in \autoref{fig:domain_criterion_Overijssels}. The selected policies are analysed for their trade-offs and their satisficing results. \newline
-\autoref{fig:domain_criterion_Overijssels} shows that every policy is satisficing for "Gorssel and Deventer Expected Number of Deaths" and all but one are not for "Gorssel and Deventer Total Costs". This means that later policy recommendations, can be sure that the legal standards for citizen safety will be met in "all" scenarios. However, most policies do not upheld the total cost threshold of Overijssel (newline 
+The results from this analysis: Overijssel's satisficing analysis with the domain criterion are shown in \autoref{fig:domain_criterion_Overijssels}. The selected policies are analysed for their trade-offs and their satisficing results. \newline
+\autoref{fig:domain_criterion_Overijssels} shows that every policy is satisficing for "Gorssel and Deventer Expected Number of Deaths" and all but one are not for "Gorssel and Deventer Total Costs". This means that later policy recommendations, can be sure that the legal standards for citizen safety will be met in "all" scenarios. However, most policies do not upheld the total cost threshold of Overijssel (only one) \newline 
 \noindent Policy O\_8 and policy O\_10 are one of the lower scoring policies based on their satisficing scores. This is mainly due to their scores on 'expected damage'. 
 
-\noindent \autoref{fig:domain_criterion_Overijssels} shows the regret results for Overijssels policy options. Here policy O\_8 and O\_10 score again the best on the 'average' regret, but due show certain trade-offs. Especially policy D\_10 shows a almost no trade-off compared to the other policies. There are four policies for Overijssels policies don't show a lot of regret, so are quite robust based on the regret.
+\noindent \autoref{fig:domain_criterion_Overijssels} shows the regret results for Overijssel's policy options. Here policy O\_8 and O\_10 score again the best on the 'average' regret, but due show certain trade-offs. Especially policy D\_10 shows a almost no trade-off compared to the other policies. There are four policies for Overijssel's policies don't show a lot of regret, so are quite robust based on the regret.
 
 \begin{figure}[H]
   \centering
