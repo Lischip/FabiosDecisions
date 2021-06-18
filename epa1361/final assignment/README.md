@@ -26,15 +26,7 @@ FabiosDecisions
 │    └───final assignment 
 │    │   │ 
 │    │   └─── data <-- contains the datafiles neccesary to run the model
-│    │   │
 │    │   └───results <-- contains the results of our analysis
-│    │   │   └───scenario0.csv
-│    │   │   └───scenario1.csv
-│    │   │   └───scenario2.csv
-│    │   │   └───scenario3.csv
-│    │   │   └───scenario4.csv
-│    │   │   └───simulation.csv
-│    │   │   └───total_waiting_time.xlsx
 │    │   └─── simulation <-- contains the results of our analysis
 │    │   │   └─── generated
 │    │   │   └─── optimisation
