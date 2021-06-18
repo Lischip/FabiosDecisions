@@ -43,7 +43,10 @@
 \addbibresource{mbdm.bib}
 \usepackage{amsmath}
 \usepackage{longtable}
+\usepackage{multicol}
 \renewcommand\familydefault{\sfdefault}
+\usepackage[section]{placeins}
+
 \begin{document}
 
 %%%% Title Page
@@ -93,6 +96,9 @@ Menghua Prisse 4454308 \\[1.5cm]
 % Main chapters
 \newpage
 \input{report/chapters/1-exec_summary}
+
+\newpage
+\tableofcontents
 
 \newpage
 \input{report/chapters/2-problem_framing}
